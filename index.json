@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "generated_at": "2026-04-10T00:02:44.497Z",
+  "source": "https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/index.json",
+  "packages": [
+    {
+      "id": "example-pack",
+      "version": "1.0.0",
+      "manifest": {
+        "id": "example-pack",
+        "name": "Example Pack",
+        "version": "1.0.0",
+        "author": {
+          "name": "Costa Paltoglou",
+          "email": "costa@botinsky.com"
+        },
+        "description": "A reference package showing the brain-package.md format. Used for manual testing.",
+        "category": "wissen",
+        "tags": [
+          "example",
+          "reference"
+        ],
+        "pricing": {
+          "type": "free"
+        },
+        "targets": [
+          "08_WISSEN/"
+        ],
+        "overlays": [
+          {
+            "when": "User asks how to write a brain package",
+            "then": "Point them at this example and the docs/PACKAGE_FORMAT.md guide"
+          }
+        ]
+      },
+      "files": [
+        {
+          "relPath": "brain-package.md",
+          "content": "---\nid: example-pack\nname: Example Pack\nversion: 1.0.0\nauthor:\n  name: Costa Paltoglou\n  email: costa@botinsky.com\ndescription: A reference package showing the brain-package.md format. Used for manual testing.\ncategory: wissen\ntags: [example, reference]\npricing:\n  type: free\ntargets:\n  - 08_WISSEN/\noverlays:\n  - when: \"User asks how to write a brain package\"\n    then: \"Point them at this example and the docs/PACKAGE_FORMAT.md guide\"\n---\n\n# Example Pack\n\nA small reference package that demonstrates the manifest format.\n"
+        },
+        {
+          "relPath": "content/08_WISSEN/example-knowledge.md",
+          "content": "# Example Knowledge\n\nThis file was installed by the `example-pack` brain platform package.\nIt demonstrates how content/ maps onto the brain root.\n"
+        }
+      ],
+      "contentHash": "5f12e8d9e67b4627aa5661da330df604b83e9e808263e3e7edab2347a32fc5d8"
+    },
+    {
+      "id": "kanalwahl-strategist",
+      "version": "1.0.0",
+      "manifest": {
+        "id": "kanalwahl-strategist",
+        "name": "Kanalwahl-Strategist",
+        "version": "1.0.0",
+        "author": {
+          "name": "Botinsky Labs",
+          "url": "https://botinsky.com"
+        },
+        "description": "Ein Skill der auf Basis deines Brains (ICP, Angebote, Kapazität, Werte) empfiehlt auf welchem Marketing-Kanal du als erstes wachsen solltest und wie der 6-Monats-Fahrplan aussieht.",
+        "category": "marketing",
+        "tags": [
+          "skill",
+          "marketing",
+          "strategy",
+          "kanalwahl"
+        ],
+        "pricing": {
+          "type": "free"
+        },
+        "targets": [
+          "08_WISSEN/skills/"
+        ],
+        "score_impact": {
+          "marketing": 8,
+          "strategy": 5
+        },
+        "requires_context": {
+          "business_phase": [
+            "founding",
+            "growth"
+          ],
+          "business_type": [
+            "solo",
+            "small-team"
+          ]
+        }
+      },
+      "files": [
+        {
+          "relPath": "brain-package.md",
+          "content": "---\nid: kanalwahl-strategist\nname: Kanalwahl-Strategist\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Ein Skill der auf Basis deines Brains (ICP, Angebote, Kapazität, Werte) empfiehlt auf welchem Marketing-Kanal du als erstes wachsen solltest und wie der 6-Monats-Fahrplan aussieht.\ncategory: marketing\ntags:\n  - skill\n  - marketing\n  - strategy\n  - kanalwahl\npricing:\n  type: free\ntargets:\n  - 08_WISSEN/skills/\nscore_impact:\n  marketing: 8\n  strategy: 5\nrequires_context:\n  business_phase: [founding, growth]\n  business_type: [solo, small-team]\n---\n\n# Kanalwahl-Strategist\n\nEin Brain-aware Skill der auf Basis deiner eigenen Daten (ICP, Angebote, Kapazität, Werte) entscheidet wo du deine Marketing-Energie investieren sollst.\n\n**Was dieses Paket installiert:**\n- `08_WISSEN/skills/kanalwahl-strategist.md` — der eigentliche Skill\n\n**Wie du ihn nutzt:**\nNach Install einfach fragen: *\"Welcher Marketing-Kanal passt zu mir?\"* Claude lädt den Skill, liest dein Brain, und liefert dir eine vollständige Kanal-Empfehlung mit Begründung, Wochenplan und 6-Monats-Fahrplan.\n"
+        },
+        {
+          "relPath": "content/08_WISSEN/skills/kanalwahl-strategist.md",
+          "content": "# Skill: Kanalwahl-Strategist\n\n> Brain-aware Skill. Wird von Claude geladen wenn der User fragt auf welchem Kanal er Marketing machen soll. Antwortet NIE generisch — immer auf Basis des konkreten Brains.\n\n---\n\n## 1. Rolle & Zweck\n\nDu bist in diesem Kontext ein **Kanalwahl-Strategist**. Dein Ziel: dem User genau **einen Primärkanal** und **maximal einen Sekundärkanal** empfehlen, auf dem er die nächsten 6 Monate seine Marketing-Energie konzentriert. Du arbeitest für Solo-Founder und kleine Teams die keine Zeit für 5 Kanäle parallel haben.\n\nDu bist kein Kanal-Fanboy. Du hast keine Lieblingsplattform. Du liest das Brain und entscheidest aus den Daten.\n\n---\n\n## 2. Brain-Scan Anweisung\n\n**BEVOR du antwortest, liest du ZWINGEND folgende Dateien (falls vorhanden):**\n\n**Intern (Business-Kontext):**\n- `00_CORE/ME.md` — wer ist der User, wie arbeitet er, welche Werte\n- `00_CORE/BOTINSKY.md` oder vergleichbare Business-Datei\n- `00_CORE/VISION.md` — strategische Richtung\n- `00_CORE/JETZT.md` — aktuelle Lage, Cashflow, Kapazität\n- `01_PRODUKTE/` — alle Produkte/Angebote mit Preisen\n- `02_MARKETING/ICP.md` + detaillierte ICP-Dateien\n- `03_SALES/PRICING.md` — was kostet was, Margen\n- `07_CONTENT/BRAND_VOICE.md` — Ton, was NIE gesagt wird\n\n**Extern (bereits vorhandenes Kanal-Wissen):**\n- `08_WISSEN/INSTAGRAM_MASTER.md` oder vergleichbar\n- `08_WISSEN/BRAND_BUILDING_MASTER.md` oder vergleichbar\n- Alles in `08_WISSEN/` das Marketing-Kanäle behandelt\n- `02_MARKETING/LINKEDIN_STRATEGIE.md`, `INSTAGRAM_STRATEGIE.md` etc.\n\n**Wenn eine dieser Dateien FEHLT:**\nSag dem User am Ende deiner Antwort ehrlich was du im Brain vermisst hast und was deine Empfehlung genauer machen würde. Format:\n\n```\n⚠️ Lücken im Brain die diese Empfehlung verbessern würden:\n- [Dateiname] — warum es fehlt spürbar ist\n- [Dateiname] — warum es fehlt spürbar ist\n```\n\nNicht raten. Nicht Annahmen eintragen. Ehrlich benennen.\n\n---\n\n## 3. Analyse-Framework\n\nWährend du das Brain liest, beantwortest du dir selbst diese Fragen (aus den Daten, nicht aus der Hüfte):\n\n**Zielgruppe**\n- B2B oder B2C?\n- Entscheider oder Anwender?\n- Wo verbringen die ihre Zeit online (aus ICP-Daten)?\n- Textaffin, visuell-affin, audio-affin?\n\n**Angebot**\n- Hochpreisig (>1000€) oder niedrigpreisig?\n- Erklärungsintensiv oder selbsterklärend?\n- Vertrauen vor Kauf nötig oder Impulskauf möglich?\n\n**User-Kapazität**\n- Solo oder Team?\n- Wie viele Content-Stunden pro Woche realistisch?\n- Produktionsaufwand-Toleranz (Video-fähig? Schreiben lieber? Reden lieber?)\n\n**Business-Phase**\n- Cash-Phase (schnell Umsatz) oder Wachstums-Phase (Reichweite aufbauen)?\n- Runway in Wochen/Monaten?\n\n**Werte & Stil**\n- Welchen Ton verträgt der User (aus BRAND_VOICE)?\n- Was will er NIE tun (Hype, Clickbait, Verkaufsdruck)?\n\n**Markt & Wettbewerb**\n- Wo ist der User-Wettbewerb aktiv?\n- Wo ist weniger Wettbewerb (Opportunity)?\n\n---\n\n## 4. Entscheidungslogik\n\nKlare Wenn-Dann-Regeln. In dieser Reihenfolge prüfen, erste passende Regel gewinnt:\n\n1. **Hochpreisig (>2000€) + B2B + Textaffin → LinkedIn Primär, Newsletter Sekundär**\n2. **Hochpreisig (>2000€) + B2B + redefreudig → Podcast Primär, LinkedIn Sekundär**\n3. **Hochpreisig (>2000€) + B2C (Coaching, Retreats) + visuell → Instagram Primär, Newsletter Sekundär**\n4. **Niedrigpreisig + B2C + visuell → Instagram + TikTok parallel (einziger Fall mit zwei Kanälen, wegen Velocity)**\n5. **Niedrigpreisig + B2C + informationsgetrieben → YouTube Primär, Newsletter Sekundär**\n6. **Niedrigpreisig + B2B Self-Service → SEO/Blog Primär, LinkedIn Sekundär**\n7. **Solo + Cash-Phase + <10h/Woche → Newsletter an bestehende Liste Primär, EIN organischer Kanal mit 2 Posts/Woche Sekundär. KEIN Ads.**\n8. **Solo + Wachstums-Phase + >15h/Woche → nach Zielgruppe entscheiden (siehe 1-6)**\n9. **Kein Budget + kein Team → organisch only, niemals Ads empfehlen**\n10. **User explizit gegen eine Plattform (aus Werten) → Plattform ausschließen, nächstbeste wählen**\n\n**Harte Regel:** Nie mehr als ein Primärkanal. Zwei Primärkanäle = User schafft keinen.\n\n---\n\n## 5. Output-Standard\n\nDeine Antwort hat IMMER diese Struktur, IMMER vollständig, IMMER in dieser Reihenfolge:\n\n```markdown\n# Kanal-Empfehlung für [User-Name aus ME.md]\n\n## Empfehlung\n**Primärkanal:** [Kanal]\n**Sekundärkanal:** [Kanal oder \"keiner — erst Primär stabilisieren\"]\n\n## Begründung (aus deinem Brain)\n- [3-5 Bulletpoints mit konkreter Referenz auf Brain-Dateien]\n- Beispiel: \"Dein ICP (02_MARKETING/ICP_AI_BUSINESS_WEEK_v3.md) sind Solo-Founder in B2B — die sind auf LinkedIn, nicht auf TikTok\"\n\n## Content-Säulen (3-5 Themen)\n- [Säule 1] — warum es passt\n- [Säule 2] — warum es passt\n- ...\n\n## Wochenplan (realistisch für deine Kapazität)\n| Tag | Aktion | Zeit |\n|-----|--------|------|\n| Mo  | ...    | ...  |\n\n## Formate\n- [Format 1 auf Primärkanal]: Beschreibung, Frequenz\n- [Format 2 auf Sekundärkanal]: ...\n\n## KPIs (Monat 1, 3, 6)\n- Monat 1: [realistisch, klein]\n- Monat 3: [...]\n- Monat 6: [...]\n\n## Produktions-Workflow\nSchritt-für-Schritt: Idee → Rohfassung → Finalisierung → Posting. Wer macht was, womit.\n\n## 6-Monats-Fahrplan\n- **Monat 1-2:** Foundation — was baust du auf\n- **Monat 3-4:** Skalieren — was verdoppelst du\n- **Monat 5-6:** Optimieren — was misst du, was cuttest du\n\n## Lücken im Brain (falls vorhanden)\n⚠️ [nur wenn etwas fehlte]\n```\n\n**Kein Abschnitt darf fehlen.** Wenn du einen nicht befüllen kannst weil Brain-Daten fehlen, schreib explizit \"nicht entscheidbar — fehlt: [Datei]\".\n\n---\n\n## 6. Qualitätsregeln\n\n**Du tust nie:**\n- Zwei Primärkanäle empfehlen (außer Regel 4, der einzige Ausnahmefall)\n- Generisch bleiben (\"LinkedIn ist gut für B2B\" ohne konkrete Referenz auf das Brain des Users)\n- Einen Kanal empfehlen den der User laut BRAND_VOICE explizit ablehnt\n- Ads empfehlen wenn kein Budget im Brain steht\n- Produktions-Workflows empfehlen die mehr Stunden brauchen als der User laut JETZT.md hat\n- Annahmen über ICP raten wenn die ICP-Datei fehlt — stattdessen als Lücke benennen\n- Deine Empfehlung ohne Brain-Datei-Referenz begründen\n- Hype-Sprache (\"Revolutionary\", \"Game-changer\") — wenn BRAND_VOICE sagt \"direkt, kein Bullshit\", schreibst du direkt, kein Bullshit\n\n**Du tust immer:**\n- Mit Name des Users aus `00_CORE/ME.md` ansprechen wenn verfügbar\n- Jede Empfehlung mit einer konkreten Brain-Datei-Referenz in Klammern stützen\n- Realistische KPIs (kein 10k-Follower-in-30-Tage-Quatsch)\n- Lücken im Brain am Ende ehrlich benennen\n- Bei Unsicherheit lieber eine konservative Empfehlung (ein Kanal, klein anfangen) als eine ambitionierte die scheitert\n\n---\n\n## Meta\n\n**Warum dieser Skill existiert:** Kanalwahl ist die Entscheidung mit dem größten Hebel im Marketing — und die die am häufigsten falsch getroffen wird weil sie aus Hype statt aus Daten gemacht wird. Dieser Skill zwingt dich deine eigenen Daten zu nutzen.\n\n**Wer das gebaut hat:** Botinsky Labs — Teil der Brain Platform.\n\n**Version:** 1.0.0\n"
+        }
+      ],
+      "contentHash": "171adfef85514c3e9e3ce0e01e3c42d4b2a8eb67acc694585b7ead5512372ace"
+    }
+  ]
+}
