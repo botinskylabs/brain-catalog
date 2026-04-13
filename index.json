@@ -1,101 +1,147 @@
 {
-  "version": 1,
-  "generated_at": "2026-04-10T00:02:44.497Z",
+  "version": 2,
+  "generated_at": "2026-04-14T00:00:00.000Z",
   "source": "https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/index.json",
   "packages": [
     {
-      "id": "example-pack",
+      "id": "brain-foundation",
       "version": "1.0.0",
       "manifest": {
-        "id": "example-pack",
-        "name": "Example Pack",
-        "version": "1.0.0",
-        "author": {
-          "name": "Costa Paltoglou",
-          "email": "costa@botinsky.com"
-        },
-        "description": "A reference package showing the brain-package.md format. Used for manual testing.",
-        "category": "wissen",
-        "tags": [
-          "example",
-          "reference"
-        ],
-        "pricing": {
-          "type": "free"
-        },
-        "targets": [
-          "08_WISSEN/"
-        ],
-        "overlays": [
-          {
-            "when": "User asks how to write a brain package",
-            "then": "Point them at this example and the docs/PACKAGE_FORMAT.md guide"
-          }
-        ]
-      },
-      "files": [
-        {
-          "relPath": "brain-package.md",
-          "content": "---\nid: example-pack\nname: Example Pack\nversion: 1.0.0\nauthor:\n  name: Costa Paltoglou\n  email: costa@botinsky.com\ndescription: A reference package showing the brain-package.md format. Used for manual testing.\ncategory: wissen\ntags: [example, reference]\npricing:\n  type: free\ntargets:\n  - 08_WISSEN/\noverlays:\n  - when: \"User asks how to write a brain package\"\n    then: \"Point them at this example and the docs/PACKAGE_FORMAT.md guide\"\n---\n\n# Example Pack\n\nA small reference package that demonstrates the manifest format.\n"
-        },
-        {
-          "relPath": "content/08_WISSEN/example-knowledge.md",
-          "content": "# Example Knowledge\n\nThis file was installed by the `example-pack` brain platform package.\nIt demonstrates how content/ maps onto the brain root.\n"
-        }
-      ],
-      "contentHash": "5f12e8d9e67b4627aa5661da330df604b83e9e808263e3e7edab2347a32fc5d8"
-    },
-    {
-      "id": "kanalwahl-strategist",
-      "version": "1.0.0",
-      "manifest": {
-        "id": "kanalwahl-strategist",
-        "name": "Kanalwahl-Strategist",
+        "id": "brain-foundation",
+        "name": "Brain Foundation",
         "version": "1.0.0",
         "author": {
           "name": "Botinsky Labs",
           "url": "https://botinsky.com"
         },
-        "description": "Ein Skill der auf Basis deines Brains (ICP, Angebote, Kapazität, Werte) empfiehlt auf welchem Marketing-Kanal du als erstes wachsen solltest und wie der 6-Monats-Fahrplan aussieht.",
-        "category": "marketing",
-        "tags": [
-          "skill",
-          "marketing",
-          "strategy",
-          "kanalwahl"
-        ],
-        "pricing": {
-          "type": "free"
-        },
-        "targets": [
-          "08_WISSEN/skills/"
-        ],
-        "score_impact": {
-          "marketing": 8,
-          "strategy": 5
-        },
-        "requires_context": {
-          "business_phase": [
-            "founding",
-            "growth"
-          ],
-          "business_type": [
-            "solo",
-            "small-team"
-          ]
-        }
+        "description": "Erweitere deinen Kern: Vision, Werte und Arbeitsweise. Macht dein Brain zum echten Sparringspartner. Nach der Installation kennt dein Agent deine langfristigen Ziele, deine Werte und wie du am besten arbeitest. Er kann dir bessere Empfehlungen geben weil er weiß wohin du willst — nicht nur wo du stehst.",
+        "description_en": "Expand your core: vision, values, and work style. After installation, your agent knows your long-term goals, your values, and how you work best. It gives better recommendations because it knows where you're heading — not just where you are.",
+        "category": "wissen",
+        "tags": ["core", "identity", "foundation", "values"],
+        "pricing": { "type": "free" },
+        "targets": ["00_CORE/"],
+        "score_impact": { "core": 15, "structure": 10 }
       },
+      "install_questions": [
+        { "id": "short_term", "label": "Was willst du in den nächsten 3 Monaten erreichen?", "label_en": "What do you want to achieve in the next 3 months?", "type": "textarea", "required": true },
+        { "id": "mid_term", "label": "Wo stehst du in einem Jahr? (Umsatz, Team, Produkt, Lifestyle)", "label_en": "Where do you see yourself in one year? (Revenue, team, product, lifestyle)", "type": "textarea", "required": true },
+        { "id": "long_term", "label": "Die große Vision: Was baust du wirklich? (3-5 Jahre)", "label_en": "The big vision: What are you really building? (3-5 years)", "type": "textarea", "required": false },
+        { "id": "core_values", "label": "Deine 3-5 wichtigsten Werte. Kurz beschreiben warum.", "label_en": "Your 3-5 most important values. Briefly explain why.", "type": "textarea", "required": true },
+        { "id": "daily_structure", "label": "Wie sieht dein typischer Arbeitstag aus? Wann bist du am produktivsten?", "label_en": "What does your typical workday look like? When are you most productive?", "type": "textarea", "required": true },
+        { "id": "tools", "label": "Welche Tools nutzt du täglich?", "label_en": "What tools do you use daily?", "type": "textarea", "required": false }
+      ],
       "files": [
         {
           "relPath": "brain-package.md",
-          "content": "---\nid: kanalwahl-strategist\nname: Kanalwahl-Strategist\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Ein Skill der auf Basis deines Brains (ICP, Angebote, Kapazität, Werte) empfiehlt auf welchem Marketing-Kanal du als erstes wachsen solltest und wie der 6-Monats-Fahrplan aussieht.\ncategory: marketing\ntags:\n  - skill\n  - marketing\n  - strategy\n  - kanalwahl\npricing:\n  type: free\ntargets:\n  - 08_WISSEN/skills/\nscore_impact:\n  marketing: 8\n  strategy: 5\nrequires_context:\n  business_phase: [founding, growth]\n  business_type: [solo, small-team]\n---\n\n# Kanalwahl-Strategist\n\nEin Brain-aware Skill der auf Basis deiner eigenen Daten (ICP, Angebote, Kapazität, Werte) entscheidet wo du deine Marketing-Energie investieren sollst.\n\n**Was dieses Paket installiert:**\n- `08_WISSEN/skills/kanalwahl-strategist.md` — der eigentliche Skill\n\n**Wie du ihn nutzt:**\nNach Install einfach fragen: *\"Welcher Marketing-Kanal passt zu mir?\"* Claude lädt den Skill, liest dein Brain, und liefert dir eine vollständige Kanal-Empfehlung mit Begründung, Wochenplan und 6-Monats-Fahrplan.\n"
+          "content": "---\nid: brain-foundation\nname: Brain Foundation\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Erweitere deinen Kern — Vision, Werte, Arbeitsweise.\ncategory: wissen\ntags: [core, identity, foundation, values]\npricing:\n  type: free\ntargets:\n  - 00_CORE/\n---\n\n# Brain Foundation\n\nDieses Paket erweitert dein Brain um drei wichtige Kern-Dateien die dein Agent braucht um dich wirklich zu verstehen.\n"
         },
         {
-          "relPath": "content/08_WISSEN/skills/kanalwahl-strategist.md",
-          "content": "# Skill: Kanalwahl-Strategist\n\n> Brain-aware Skill. Wird von Claude geladen wenn der User fragt auf welchem Kanal er Marketing machen soll. Antwortet NIE generisch — immer auf Basis des konkreten Brains.\n\n---\n\n## 1. Rolle & Zweck\n\nDu bist in diesem Kontext ein **Kanalwahl-Strategist**. Dein Ziel: dem User genau **einen Primärkanal** und **maximal einen Sekundärkanal** empfehlen, auf dem er die nächsten 6 Monate seine Marketing-Energie konzentriert. Du arbeitest für Solo-Founder und kleine Teams die keine Zeit für 5 Kanäle parallel haben.\n\nDu bist kein Kanal-Fanboy. Du hast keine Lieblingsplattform. Du liest das Brain und entscheidest aus den Daten.\n\n---\n\n## 2. Brain-Scan Anweisung\n\n**BEVOR du antwortest, liest du ZWINGEND folgende Dateien (falls vorhanden):**\n\n**Intern (Business-Kontext):**\n- `00_CORE/ME.md` — wer ist der User, wie arbeitet er, welche Werte\n- `00_CORE/BOTINSKY.md` oder vergleichbare Business-Datei\n- `00_CORE/VISION.md` — strategische Richtung\n- `00_CORE/JETZT.md` — aktuelle Lage, Cashflow, Kapazität\n- `01_PRODUKTE/` — alle Produkte/Angebote mit Preisen\n- `02_MARKETING/ICP.md` + detaillierte ICP-Dateien\n- `03_SALES/PRICING.md` — was kostet was, Margen\n- `07_CONTENT/BRAND_VOICE.md` — Ton, was NIE gesagt wird\n\n**Extern (bereits vorhandenes Kanal-Wissen):**\n- `08_WISSEN/INSTAGRAM_MASTER.md` oder vergleichbar\n- `08_WISSEN/BRAND_BUILDING_MASTER.md` oder vergleichbar\n- Alles in `08_WISSEN/` das Marketing-Kanäle behandelt\n- `02_MARKETING/LINKEDIN_STRATEGIE.md`, `INSTAGRAM_STRATEGIE.md` etc.\n\n**Wenn eine dieser Dateien FEHLT:**\nSag dem User am Ende deiner Antwort ehrlich was du im Brain vermisst hast und was deine Empfehlung genauer machen würde. Format:\n\n```\n⚠️ Lücken im Brain die diese Empfehlung verbessern würden:\n- [Dateiname] — warum es fehlt spürbar ist\n- [Dateiname] — warum es fehlt spürbar ist\n```\n\nNicht raten. Nicht Annahmen eintragen. Ehrlich benennen.\n\n---\n\n## 3. Analyse-Framework\n\nWährend du das Brain liest, beantwortest du dir selbst diese Fragen (aus den Daten, nicht aus der Hüfte):\n\n**Zielgruppe**\n- B2B oder B2C?\n- Entscheider oder Anwender?\n- Wo verbringen die ihre Zeit online (aus ICP-Daten)?\n- Textaffin, visuell-affin, audio-affin?\n\n**Angebot**\n- Hochpreisig (>1000€) oder niedrigpreisig?\n- Erklärungsintensiv oder selbsterklärend?\n- Vertrauen vor Kauf nötig oder Impulskauf möglich?\n\n**User-Kapazität**\n- Solo oder Team?\n- Wie viele Content-Stunden pro Woche realistisch?\n- Produktionsaufwand-Toleranz (Video-fähig? Schreiben lieber? Reden lieber?)\n\n**Business-Phase**\n- Cash-Phase (schnell Umsatz) oder Wachstums-Phase (Reichweite aufbauen)?\n- Runway in Wochen/Monaten?\n\n**Werte & Stil**\n- Welchen Ton verträgt der User (aus BRAND_VOICE)?\n- Was will er NIE tun (Hype, Clickbait, Verkaufsdruck)?\n\n**Markt & Wettbewerb**\n- Wo ist der User-Wettbewerb aktiv?\n- Wo ist weniger Wettbewerb (Opportunity)?\n\n---\n\n## 4. Entscheidungslogik\n\nKlare Wenn-Dann-Regeln. In dieser Reihenfolge prüfen, erste passende Regel gewinnt:\n\n1. **Hochpreisig (>2000€) + B2B + Textaffin → LinkedIn Primär, Newsletter Sekundär**\n2. **Hochpreisig (>2000€) + B2B + redefreudig → Podcast Primär, LinkedIn Sekundär**\n3. **Hochpreisig (>2000€) + B2C (Coaching, Retreats) + visuell → Instagram Primär, Newsletter Sekundär**\n4. **Niedrigpreisig + B2C + visuell → Instagram + TikTok parallel (einziger Fall mit zwei Kanälen, wegen Velocity)**\n5. **Niedrigpreisig + B2C + informationsgetrieben → YouTube Primär, Newsletter Sekundär**\n6. **Niedrigpreisig + B2B Self-Service → SEO/Blog Primär, LinkedIn Sekundär**\n7. **Solo + Cash-Phase + <10h/Woche → Newsletter an bestehende Liste Primär, EIN organischer Kanal mit 2 Posts/Woche Sekundär. KEIN Ads.**\n8. **Solo + Wachstums-Phase + >15h/Woche → nach Zielgruppe entscheiden (siehe 1-6)**\n9. **Kein Budget + kein Team → organisch only, niemals Ads empfehlen**\n10. **User explizit gegen eine Plattform (aus Werten) → Plattform ausschließen, nächstbeste wählen**\n\n**Harte Regel:** Nie mehr als ein Primärkanal. Zwei Primärkanäle = User schafft keinen.\n\n---\n\n## 5. Output-Standard\n\nDeine Antwort hat IMMER diese Struktur, IMMER vollständig, IMMER in dieser Reihenfolge:\n\n```markdown\n# Kanal-Empfehlung für [User-Name aus ME.md]\n\n## Empfehlung\n**Primärkanal:** [Kanal]\n**Sekundärkanal:** [Kanal oder \"keiner — erst Primär stabilisieren\"]\n\n## Begründung (aus deinem Brain)\n- [3-5 Bulletpoints mit konkreter Referenz auf Brain-Dateien]\n- Beispiel: \"Dein ICP (02_MARKETING/ICP_AI_BUSINESS_WEEK_v3.md) sind Solo-Founder in B2B — die sind auf LinkedIn, nicht auf TikTok\"\n\n## Content-Säulen (3-5 Themen)\n- [Säule 1] — warum es passt\n- [Säule 2] — warum es passt\n- ...\n\n## Wochenplan (realistisch für deine Kapazität)\n| Tag | Aktion | Zeit |\n|-----|--------|------|\n| Mo  | ...    | ...  |\n\n## Formate\n- [Format 1 auf Primärkanal]: Beschreibung, Frequenz\n- [Format 2 auf Sekundärkanal]: ...\n\n## KPIs (Monat 1, 3, 6)\n- Monat 1: [realistisch, klein]\n- Monat 3: [...]\n- Monat 6: [...]\n\n## Produktions-Workflow\nSchritt-für-Schritt: Idee → Rohfassung → Finalisierung → Posting. Wer macht was, womit.\n\n## 6-Monats-Fahrplan\n- **Monat 1-2:** Foundation — was baust du auf\n- **Monat 3-4:** Skalieren — was verdoppelst du\n- **Monat 5-6:** Optimieren — was misst du, was cuttest du\n\n## Lücken im Brain (falls vorhanden)\n⚠️ [nur wenn etwas fehlte]\n```\n\n**Kein Abschnitt darf fehlen.** Wenn du einen nicht befüllen kannst weil Brain-Daten fehlen, schreib explizit \"nicht entscheidbar — fehlt: [Datei]\".\n\n---\n\n## 6. Qualitätsregeln\n\n**Du tust nie:**\n- Zwei Primärkanäle empfehlen (außer Regel 4, der einzige Ausnahmefall)\n- Generisch bleiben (\"LinkedIn ist gut für B2B\" ohne konkrete Referenz auf das Brain des Users)\n- Einen Kanal empfehlen den der User laut BRAND_VOICE explizit ablehnt\n- Ads empfehlen wenn kein Budget im Brain steht\n- Produktions-Workflows empfehlen die mehr Stunden brauchen als der User laut JETZT.md hat\n- Annahmen über ICP raten wenn die ICP-Datei fehlt — stattdessen als Lücke benennen\n- Deine Empfehlung ohne Brain-Datei-Referenz begründen\n- Hype-Sprache (\"Revolutionary\", \"Game-changer\") — wenn BRAND_VOICE sagt \"direkt, kein Bullshit\", schreibst du direkt, kein Bullshit\n\n**Du tust immer:**\n- Mit Name des Users aus `00_CORE/ME.md` ansprechen wenn verfügbar\n- Jede Empfehlung mit einer konkreten Brain-Datei-Referenz in Klammern stützen\n- Realistische KPIs (kein 10k-Follower-in-30-Tage-Quatsch)\n- Lücken im Brain am Ende ehrlich benennen\n- Bei Unsicherheit lieber eine konservative Empfehlung (ein Kanal, klein anfangen) als eine ambitionierte die scheitert\n\n---\n\n## Meta\n\n**Warum dieser Skill existiert:** Kanalwahl ist die Entscheidung mit dem größten Hebel im Marketing — und die die am häufigsten falsch getroffen wird weil sie aus Hype statt aus Daten gemacht wird. Dieser Skill zwingt dich deine eigenen Daten zu nutzen.\n\n**Wer das gebaut hat:** Botinsky Labs — Teil der Brain Platform.\n\n**Version:** 1.0.0\n"
+          "relPath": "content/00_CORE/VISION.md",
+          "content": "# Meine Vision\n\n> Wo will ich hin? Diese Datei hilft dem Agent langfristig zu denken.\n\n## Kurzfristig (nächste 3 Monate)\n\n{{short_term}}\n\n\n## Mittelfristig (1 Jahr)\n\n{{mid_term}}\n\n\n## Langfristig (3-5 Jahre)\n\n{{long_term}}\n\n\n## Was ich NICHT will\n\n<!-- Genauso wichtig: was willst du bewusst nicht? -->\n\n"
+        },
+        {
+          "relPath": "content/00_CORE/WERTE.md",
+          "content": "# Meine Werte\n\n> Was mir wichtig ist. Der Agent orientiert sich daran bei Empfehlungen.\n\n## Kernwerte\n\n{{core_values}}\n\n\n## Was ich nicht kompromittiere\n\n<!-- Rote Linien. Was geht gar nicht, auch wenn es Geld bringt? -->\n\n\n## Wie sich meine Werte im Business zeigen\n\n<!-- Konkrete Beispiele: wie beeinflussen deine Werte deine Entscheidungen? -->\n\n"
+        },
+        {
+          "relPath": "content/00_CORE/ARBEITSWEISE.md",
+          "content": "# Meine Arbeitsweise\n\n> Wie ich am besten arbeite. Hilft dem Agent Empfehlungen an meinen Rhythmus anzupassen.\n\n## Tagesstruktur\n\n{{daily_structure}}\n\n\n## Deep Work\n\n<!-- Wie lange kannst du fokussiert arbeiten? Was brauchst du dafür? -->\n\n\n## Energie-Muster\n\n<!-- Wann bist du fit, wann nicht? Morgenmensch oder Nachteule? -->\n\n\n## Tools die ich nutze\n\n{{tools}}\n\n\n## Was mich ablenkt\n\n<!-- Was killt deine Produktivität? -->\n\n"
         }
       ],
-      "contentHash": "171adfef85514c3e9e3ce0e01e3c42d4b2a8eb67acc694585b7ead5512372ace"
+      "contentHash": "foundation-v1"
+    },
+    {
+      "id": "marketing-basics",
+      "version": "1.0.0",
+      "manifest": {
+        "id": "marketing-basics",
+        "name": "Marketing Basics",
+        "version": "1.0.0",
+        "author": {
+          "name": "Botinsky Labs",
+          "url": "https://botinsky.com"
+        },
+        "description": "Wer ist dein Kunde, was sagst du, wo erreichst du ihn? Nach der Installation kann dein Agent Landingpages schreiben, Social Media Posts erstellen und Ads texten — alles in deinem Ton, für deine Zielgruppe. Keine generischen Texte mehr.",
+        "description_en": "Who is your customer, what do you say, where do you reach them? After installation, your agent can write landing pages, create social media posts, and draft ads — all in your voice, for your audience. No more generic content.",
+        "category": "marketing",
+        "tags": ["marketing", "icp", "messaging", "channels"],
+        "pricing": { "type": "free" },
+        "targets": ["02_MARKETING/"],
+        "score_impact": { "marketing": 20 }
+      },
+      "install_questions": [
+        { "id": "demographics", "label": "Wer ist dein idealer Kunde? (Alter, Branche, Standort)", "label_en": "Who is your ideal customer? (Age, industry, location)", "type": "textarea", "required": true },
+        { "id": "pain_point", "label": "Was ist das größte Problem das du löst? (In den Worten deines Kunden)", "label_en": "What is the biggest problem you solve? (In your customer's words)", "type": "textarea", "required": true },
+        { "id": "desired_outcome", "label": "Was will dein Kunde wirklich erreichen?", "label_en": "What does your customer really want to achieve?", "type": "textarea", "required": true },
+        { "id": "core_message", "label": "Der eine Satz der erklärt was du tust und warum es wichtig ist.", "label_en": "The one sentence that explains what you do and why it matters.", "type": "textarea", "required": true },
+        { "id": "primary_channel", "label": "Dein Hauptkanal für Marketing? (z.B. Instagram, LinkedIn, Newsletter)", "label_en": "Your primary marketing channel? (e.g. Instagram, LinkedIn, Newsletter)", "type": "textarea", "required": true },
+        { "id": "never_say", "label": "Wörter oder Phrasen die du NIE verwenden willst.", "label_en": "Words or phrases you NEVER want to use.", "type": "textarea", "required": false }
+      ],
+      "files": [
+        {
+          "relPath": "brain-package.md",
+          "content": "---\nid: marketing-basics\nname: Marketing Basics\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: ICP, Messaging und Kanal-Strategie für dein Brain.\ncategory: marketing\ntags: [marketing, icp, messaging, channels]\npricing:\n  type: free\ntargets:\n  - 02_MARKETING/\n---\n\n# Marketing Basics\n\nDrei Dateien die dein Agent braucht um dir beim Marketing zu helfen: Wer ist dein Kunde, was sagst du, und wo erreichst du ihn.\n"
+        },
+        {
+          "relPath": "content/02_MARKETING/ICP.md",
+          "content": "# Ideal Customer Profile (ICP)\n\n> Wer ist dein idealer Kunde? Je konkreter, desto besser kann dein Agent dir helfen.\n\n## Demografie\n\n{{demographics}}\n\n\n## Problem / Pain Point\n\n{{pain_point}}\n\n\n## Wunschergebnis\n\n{{desired_outcome}}\n\n\n## Wo erreichst du ihn?\n\n{{primary_channel}}\n\n\n## Was dein Kunde NICHT ist\n\n<!-- Wer ist explizit nicht dein Kunde? -->\n\n"
+        },
+        {
+          "relPath": "content/02_MARKETING/MESSAGING.md",
+          "content": "# Messaging\n\n> Was du sagst — und was du NIE sagst. Dein Agent nutzt das für jeden Text.\n\n## Kernbotschaft (1 Satz)\n\n{{core_message}}\n\n\n## Drei Versprechen\n\n<!-- Was bekommt dein Kunde konkret? -->\n\n1. \n2. \n3. \n\n## Differenzierung\n\n<!-- Warum du und nicht die Konkurrenz? -->\n\n\n## Was du NIE sagst\n\n{{never_say}}\n\n\n## Beweis / Social Proof\n\n<!-- Zahlen, Testimonials, Ergebnisse die deine Botschaft stützen. -->\n\n"
+        },
+        {
+          "relPath": "content/02_MARKETING/KANAELE.md",
+          "content": "# Marketing-Kanäle\n\n> Wo bist du aktiv? Fokus auf 1-2 Kanäle statt 10 halbherzig.\n\n## Primärkanal\n\n**Kanal:** {{primary_channel}}\n**Warum:** \n**Frequenz:** \n**Content-Typen:** \n\n## Sekundärkanal (optional)\n\n<!-- Ergänzend zum Primärkanal. Max. 20% der Zeit. -->\n\n**Kanal:** \n**Warum:** \n**Frequenz:** \n\n## Kanäle die ich bewusst NICHT nutze\n\n<!-- Und warum. -->\n\n\n## Newsletter / E-Mail\n\n<!-- Hast du eine Liste? Wie groß? Welche Frequenz? -->\n\n\n## Paid Ads\n\n<!-- Budget? Plattform? Wenn kein Budget: \"Aktuell keine Ads.\" -->\n\n"
+        }
+      ],
+      "contentHash": "marketing-basics-v1"
+    },
+    {
+      "id": "sales-starter",
+      "version": "1.0.0",
+      "manifest": {
+        "id": "sales-starter",
+        "name": "Sales Starter",
+        "version": "1.0.0",
+        "author": {
+          "name": "Botinsky Labs",
+          "url": "https://botinsky.com"
+        },
+        "description": "Dein kompletter Verkaufsprozess im Brain. Nach der Installation kann dein Agent Angebote schreiben, auf Einwände reagieren und Follow-Up-Mails formulieren — genau so wie du es im echten Gespräch tust. Schluss mit generischen Sales-Texten.",
+        "description_en": "Your complete sales process in your brain. After installation, your agent can write proposals, handle objections, and draft follow-up emails — exactly the way you do it in real conversations. No more generic sales copy.",
+        "category": "sales",
+        "tags": ["sales", "process", "objections", "follow-up"],
+        "pricing": { "type": "free" },
+        "targets": ["03_SALES/"],
+        "score_impact": { "sales": 20 }
+      },
+      "install_questions": [
+        { "id": "process_steps", "label": "Beschreibe deinen typischen Sales-Ablauf in 4-6 Schritten.", "label_en": "Describe your typical sales process in 4-6 steps.", "type": "textarea", "required": true },
+        { "id": "lead_sources", "label": "Wo kommen deine Kunden/Leads her?", "label_en": "Where do your customers/leads come from?", "type": "textarea", "required": true },
+        { "id": "objection_too_expensive", "label": "Wie reagierst du wenn jemand sagt \"Zu teuer\"?", "label_en": "How do you respond when someone says \"Too expensive\"?", "type": "textarea", "required": true },
+        { "id": "objection_no_time", "label": "Wie reagierst du wenn jemand sagt \"Keine Zeit\"?", "label_en": "How do you respond when someone says \"No time\"?", "type": "textarea", "required": true },
+        { "id": "followup_timing", "label": "Wann meldest du dich nach dem Erstgespräch? (z.B. 1 Tag, 3 Tage, 1 Woche)", "label_en": "When do you follow up after the first call? (e.g. 1 day, 3 days, 1 week)", "type": "textarea", "required": true }
+      ],
+      "files": [
+        {
+          "relPath": "brain-package.md",
+          "content": "---\nid: sales-starter\nname: Sales Starter\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Sales-Prozess, Einwand-Handling und Follow-Up für dein Brain.\ncategory: sales\ntags: [sales, process, objections, follow-up]\npricing:\n  type: free\ntargets:\n  - 03_SALES/\n---\n\n# Sales Starter\n\nDrei Dateien die dein Agent braucht um dir beim Verkaufen zu helfen: Wie läuft ein Verkauf ab, welche Einwände kommen, und wie bleibst du dran.\n"
+        },
+        {
+          "relPath": "content/03_SALES/SALES_PROZESS.md",
+          "content": "# Sales-Prozess\n\n> Wie läuft ein Verkauf bei dir ab? Vom Erstkontakt bis zum Abschluss.\n\n## Übersicht\n\n{{process_steps}}\n\n\n## Wo kommen Leads her?\n\n{{lead_sources}}\n\n\n## Conversion-Rates (geschätzt)\n\n<!-- Wie viel % werden Kunde? Z.B. 10 Calls -> 3 Kunden = 30% -->\n\n\n## Was am häufigsten schiefgeht\n\n<!-- Wo verlierst du Leute im Prozess? -->\n\n"
+        },
+        {
+          "relPath": "content/03_SALES/EINWAENDE.md",
+          "content": "# Einwand-Handling\n\n> Die häufigsten Einwände und wie du darauf reagierst.\n\n## Einwand 1: \"Zu teuer\"\n\n**Was der Kunde wirklich meint:** Er sieht den Wert noch nicht.\n**Deine Antwort:** {{objection_too_expensive}}\n\n## Einwand 2: \"Keine Zeit\"\n\n**Was der Kunde wirklich meint:** Es hat keine Priorität.\n**Deine Antwort:** {{objection_no_time}}\n\n## Einwand 3: \"Muss ich drüber nachdenken\"\n\n**Was der Kunde wirklich meint:** \n**Deine Antwort:** \n\n## Einwand 4: \"Kann ich das nicht selbst?\"\n\n**Was der Kunde wirklich meint:** \n**Deine Antwort:** \n\n---\n\n> Tipp: Fülle die Antworten mit echten Formulierungen die du im Gespräch nutzt. Dein Agent lernt daraus.\n"
+        },
+        {
+          "relPath": "content/03_SALES/FOLLOW_UP.md",
+          "content": "# Follow-Up System\n\n> Wie bleibst du dran? Die meisten Verkäufe passieren im Follow-Up, nicht im ersten Gespräch.\n\n## Timing\n\n{{followup_timing}}\n\n| Touchpoint | Wann | Kanal | Was |\n|---|---|---|---|\n| 1. Follow-Up | | | |\n| 2. Follow-Up | | | |\n| 3. Follow-Up | | | |\n| Letzter Versuch | | | |\n\n## Templates\n\n### Nach dem Erstgespräch\n\n<!-- Deine Standard-Nachricht nach dem ersten Call. -->\n\n\n### Wenn keine Antwort kommt\n\n<!-- Was schreibst du wenn jemand nicht reagiert? -->\n\n\n### Soft Close\n\n<!-- Eine sanfte Abschlussnachricht. -->\n\n\n## Wann gibst du auf?\n\n<!-- Nach wie vielen Follow-Ups ist Schluss? -->\n\n"
+        }
+      ],
+      "contentHash": "sales-starter-v1"
     }
   ]
 }
