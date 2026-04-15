@@ -20,7 +20,71 @@
         "tags": ["core", "identity", "foundation", "values"],
         "pricing": { "type": "free" },
         "targets": ["00_CORE/"],
-        "score_impact": { "core": 15, "structure": 10 }
+        "score_impact": { "core": 15, "structure": 10 },
+        "kind": "knowledge",
+        "placement": "setup",
+        "requires_capabilities": ["knowledge.read", "text.generate"],
+        "long_description": "Dieses Paket macht aus deinem Brain einen echten strategischen Sparringspartner.\n\nOhne Foundation antwortet Claude generisch: \"Das kommt darauf an...\". Mit Foundation antwortet Claude mit Bezug auf deine Vision, deine Werte und deinen Rhythmus. Du bekommst Empfehlungen die zu DIR passen, nicht zu einem durchschnittlichen Gründer.\n\nDrei Kern-Dateien werden angelegt: VISION (wo willst du hin), WERTE (wofür stehst du), ARBEITSWEISE (wie funktionierst du am besten). Nach dem Install kennt dein Agent deinen 3-Jahres-Horizont, weiß welche Kompromisse du nicht eingehst, und empfiehlt Arbeitsweisen die zu deinem Energielevel passen.",
+        "long_description_en": "This package turns your brain into a real strategic sparring partner.\n\nWithout Foundation, Claude answers generically: \"It depends...\". With Foundation, Claude answers with reference to your vision, your values, and your rhythm. You get recommendations that fit YOU — not an average founder.\n\nThree core files are created: VISION (where you want to go), VALUES (what you stand for), WORKING STYLE (how you work best). After install, your agent knows your 3-year horizon, which compromises you won't make, and recommends work patterns that match your energy level.",
+        "use_cases": [
+          {
+            "title": "Strategische Entscheidung prüfen",
+            "title_en": "Check a strategic decision",
+            "prompt": "Ich überlege mit einem Agentur-Kunden für 20k/Monat zu starten. Passt das zu meiner Vision?",
+            "prompt_en": "I'm thinking about taking on an agency client for 20k/month. Does that fit my vision?",
+            "outcome": "Claude liest deine Vision + Werte und prüft: passt das zum 3-Jahres-Ziel? Verletzt es Werte (z.B. Freiheit, Fokus)? Gibt klare Empfehlung mit Begründung.",
+            "outcome_en": "Claude reads your vision + values and checks: does it align with the 3-year goal? Does it violate values (e.g. freedom, focus)? Gives a clear recommendation with reasoning."
+          },
+          {
+            "title": "Tagesplan an deinem Rhythmus ausrichten",
+            "title_en": "Align your daily plan with your rhythm",
+            "prompt": "Mach mir einen Tagesplan für morgen mit 3 Deep-Work-Slots.",
+            "prompt_en": "Make me a daily plan for tomorrow with 3 deep-work slots.",
+            "outcome": "Claude nutzt deine ARBEITSWEISE-Datei — kennt wann du produktiv bist, wie lange Deep-Work-Blöcke sinnvoll sind, welche Tools du nutzt. Plan ist auf DICH zugeschnitten.",
+            "outcome_en": "Claude uses your WORKING STYLE file — knows when you're productive, how long deep-work blocks should be, which tools you use. Plan is tailored to YOU."
+          },
+          {
+            "title": "\"Soll ich X machen?\"-Entscheidungen",
+            "title_en": "\"Should I do X?\" decisions",
+            "prompt": "Ich habe ein Angebot für einen Job bei einer großen Firma. 120k Gehalt. Soll ich annehmen?",
+            "prompt_en": "I have a job offer at a big company. 120k salary. Should I take it?",
+            "outcome": "Claude spiegelt die Entscheidung gegen deine Werte (Unabhängigkeit, Purpose) und langfristigen Ziele. Nicht nur \"pro/contra\", sondern eine Perspektive die deine Geschichte kennt.",
+            "outcome_en": "Claude mirrors the decision against your values (independence, purpose) and long-term goals. Not just \"pro/con\" — a perspective that knows your story."
+          }
+        ],
+        "what_you_get": [
+          {
+            "file": "00_CORE/VISION.md",
+            "description": "Deine kurz-, mittel- und langfristigen Ziele. Plus: was du NICHT willst.",
+            "description_en": "Your short-, mid- and long-term goals. Plus: what you explicitly do NOT want."
+          },
+          {
+            "file": "00_CORE/WERTE.md",
+            "description": "Deine Kernwerte, rote Linien und wie sich das im Business zeigt.",
+            "description_en": "Your core values, red lines, and how they show up in your business."
+          },
+          {
+            "file": "00_CORE/ARBEITSWEISE.md",
+            "description": "Tagesstruktur, Energie-Muster, Tools und was dich ablenkt.",
+            "description_en": "Daily structure, energy patterns, tools, and what distracts you."
+          }
+        ],
+        "triggers": [
+          {
+            "id": "foundation-vision",
+            "when": ["Vision", "langfristige Ziele", "wo will ich hin", "3 Jahre", "5 Jahre"],
+            "then": ["00_CORE/VISION.md", "00_CORE/WERTE.md"],
+            "note": "Bei strategischen Entscheidungen immer gegen die langfristige Vision prüfen.",
+            "note_en": "Always check strategic decisions against the long-term vision."
+          },
+          {
+            "id": "foundation-arbeitsweise",
+            "when": ["Tagesplanung", "wie arbeite ich", "Produktivität", "Deep Work", "Routine"],
+            "then": ["00_CORE/ARBEITSWEISE.md"],
+            "note": "Empfehlungen an den persönlichen Energie-Rhythmus anpassen.",
+            "note_en": "Adapt recommendations to the user's personal energy rhythm."
+          }
+        ]
       },
       "install_questions": [
         { "id": "short_term", "label": "Was willst du in den nächsten 3 Monaten erreichen?", "label_en": "What do you want to achieve in the next 3 months?", "type": "textarea", "required": true },
@@ -33,7 +97,7 @@
       "files": [
         {
           "relPath": "brain-package.md",
-          "content": "---\nid: brain-foundation\nname: Brain Foundation\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Erweitere deinen Kern — Vision, Werte, Arbeitsweise.\ncategory: wissen\ntags: [core, identity, foundation, values]\npricing:\n  type: free\ntargets:\n  - 00_CORE/\n---\n\n# Brain Foundation\n\nDieses Paket erweitert dein Brain um drei wichtige Kern-Dateien die dein Agent braucht um dich wirklich zu verstehen.\n"
+          "content": "---\nid: brain-foundation\nname: Brain Foundation\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Erweitere deinen Kern — Vision, Werte, Arbeitsweise.\ncategory: wissen\nplacement: setup\ntags: [core, identity, foundation, values]\npricing:\n  type: free\ntargets:\n  - 00_CORE/\ntriggers:\n  - id: foundation-vision\n    when:\n      - Vision\n      - langfristige Ziele\n      - wo will ich hin\n      - 3 Jahre\n      - 5 Jahre\n    then:\n      - 00_CORE/VISION.md\n      - 00_CORE/WERTE.md\n    note: Bei strategischen Entscheidungen immer gegen die langfristige Vision prüfen.\n  - id: foundation-arbeitsweise\n    when:\n      - Tagesplanung\n      - wie arbeite ich\n      - Produktivität\n      - Deep Work\n      - Routine\n    then:\n      - 00_CORE/ARBEITSWEISE.md\n    note: Empfehlungen an den persönlichen Energie-Rhythmus anpassen.\n---\n\n# Brain Foundation\n\nDieses Paket erweitert dein Brain um drei wichtige Kern-Dateien die dein Agent braucht um dich wirklich zu verstehen.\n"
         },
         {
           "relPath": "content/00_CORE/VISION.md",
@@ -67,7 +131,78 @@
         "tags": ["marketing", "icp", "messaging", "channels"],
         "pricing": { "type": "free" },
         "targets": ["02_MARKETING/"],
-        "score_impact": { "marketing": 20 }
+        "score_impact": { "marketing": 20 },
+        "kind": "knowledge",
+        "placement": "setup",
+        "requires_capabilities": ["knowledge.read", "text.generate"],
+        "long_description": "Nach Installation kann dein Agent Marketing-Content schreiben, der wirklich zu deiner Zielgruppe passt. Keine generischen Copy-Texte mehr.\n\nDrei Dateien werden angelegt: ICP (wer ist dein Kunde), MESSAGING (was sagst du, was NIE), KANAELE (wo bist du aktiv). Deine Agents (Claude, ChatGPT, Gemini) lesen beim Schreiben automatisch diese Dateien und passen Tonalität, Argumente und Beispiele daran an.\n\nStatt \"Schreib mir ein Instagram-Reel-Skript\" reicht dann: \"Schreib ein Reel für meinen ICP\". Der Agent weiß wer das ist, was ihn bewegt, welche Worte er nicht mag, und wo du ihn triffst.",
+        "long_description_en": "After installation, your agent can write marketing content that actually fits your target audience. No more generic copy.\n\nThree files are created: ICP (who your customer is), MESSAGING (what you say and what you NEVER say), CHANNELS (where you're active). Your agents (Claude, ChatGPT, Gemini) read these files automatically when writing and adapt tone, arguments and examples accordingly.\n\nInstead of \"Write me an Instagram reel script\" you just say \"Write a reel for my ICP\". The agent knows who that is, what moves them, which words they hate, and where you reach them.",
+        "use_cases": [
+          {
+            "title": "Landingpage-Hero schreiben",
+            "title_en": "Write a landing page hero",
+            "prompt": "Schreib die Hero-Section meiner Landingpage. Zielgruppe: ICP. Messaging: kennst du.",
+            "prompt_en": "Write the hero section of my landing page. Audience: my ICP. Messaging: you know it.",
+            "outcome": "Claude pullt automatisch ICP + MESSAGING und schreibt eine Hero, die den Pain genau benennt, die Kernbotschaft trifft und die Wörter vermeidet die du als \"nie sagen\" markiert hast.",
+            "outcome_en": "Claude automatically pulls ICP + MESSAGING and writes a hero that names the pain, hits the core message, and avoids the words you marked as \"never say\"."
+          },
+          {
+            "title": "Instagram-Reel-Hook brainstormen",
+            "title_en": "Brainstorm Instagram reel hooks",
+            "prompt": "Gib mir 5 Hook-Ideen für ein Reel zum Thema Selbstständigkeit.",
+            "prompt_en": "Give me 5 hook ideas for a reel about self-employment.",
+            "outcome": "Agent nutzt dein ICP (was bewegt sie?) + KANAELE (was funktioniert auf Instagram?) und schlägt 5 Hooks vor, die auf deiner Zielgruppe reinhauen — nicht generisches Motivation-Gelaber.",
+            "outcome_en": "Agent uses your ICP (what moves them?) + CHANNELS (what works on Instagram?) and suggests 5 hooks that land with your audience — not generic motivation talk."
+          },
+          {
+            "title": "E-Mail-Sequenz für Launch",
+            "title_en": "Email sequence for a launch",
+            "prompt": "Entwirf eine 5-Mail-Sequenz für meinen nächsten Produkt-Launch.",
+            "prompt_en": "Draft a 5-email sequence for my next product launch.",
+            "outcome": "Agent liest ICP (Awareness Stage), MESSAGING (Kernbotschaften), KANAELE (vermutlich Newsletter als Primärkanal) und baut eine Sequenz von \"Awareness\" bis \"Call to Action\" in deinem Ton.",
+            "outcome_en": "Agent reads ICP (awareness stage), MESSAGING (core messages), CHANNELS (newsletter likely primary) and builds a sequence from \"awareness\" to \"call to action\" in your tone."
+          }
+        ],
+        "what_you_get": [
+          {
+            "file": "02_MARKETING/ICP.md",
+            "description": "Dein idealer Kunde: Demografie, Pain, Wunschergebnis. Plus wer explizit NICHT dein Kunde ist.",
+            "description_en": "Your ideal customer: demographics, pain, desired outcome. Plus who is explicitly NOT your customer."
+          },
+          {
+            "file": "02_MARKETING/MESSAGING.md",
+            "description": "Kernbotschaft (1 Satz), drei Versprechen, Differenzierung und was du NIE sagst.",
+            "description_en": "Core message (1 sentence), three promises, differentiation and what you NEVER say."
+          },
+          {
+            "file": "02_MARKETING/KANAELE.md",
+            "description": "Primär- und Sekundärkanal, Frequenz, Content-Typen. Plus welche Kanäle du bewusst vermeidest.",
+            "description_en": "Primary and secondary channels, frequency, content types. Plus channels you deliberately avoid."
+          }
+        ],
+        "triggers": [
+          {
+            "id": "marketing-icp",
+            "when": ["ICP", "Zielgruppe", "idealer Kunde", "Target Audience", "Buyer Persona"],
+            "then": ["02_MARKETING/ICP.md"],
+            "note": "Jede Marketing-Aufgabe auf die ICP ausrichten.",
+            "note_en": "Align every marketing task with the ICP."
+          },
+          {
+            "id": "marketing-messaging",
+            "when": ["Messaging", "Positionierung", "Elevator Pitch", "Was biete ich", "USP"],
+            "then": ["02_MARKETING/MESSAGING.md"],
+            "note": "Kernbotschaft nicht verwässern. \"Was NIE gesagt wird\" respektieren.",
+            "note_en": "Don't dilute the core message. Respect the \"never say\" list."
+          },
+          {
+            "id": "marketing-kanaele",
+            "when": ["Marketing-Kanal", "Instagram", "LinkedIn", "Newsletter", "Ads", "wo posten"],
+            "then": ["02_MARKETING/KANAELE.md", "02_MARKETING/ICP.md"],
+            "note": "Nur Kanäle empfehlen die zur ICP und zur Frequenz passen.",
+            "note_en": "Only recommend channels that fit the ICP and the sustainable frequency."
+          }
+        ]
       },
       "install_questions": [
         { "id": "demographics", "label": "Wer ist dein idealer Kunde? (Alter, Branche, Standort)", "label_en": "Who is your ideal customer? (Age, industry, location)", "type": "textarea", "required": true },
@@ -80,7 +215,7 @@
       "files": [
         {
           "relPath": "brain-package.md",
-          "content": "---\nid: marketing-basics\nname: Marketing Basics\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: ICP, Messaging und Kanal-Strategie für dein Brain.\ncategory: marketing\ntags: [marketing, icp, messaging, channels]\npricing:\n  type: free\ntargets:\n  - 02_MARKETING/\n---\n\n# Marketing Basics\n\nDrei Dateien die dein Agent braucht um dir beim Marketing zu helfen: Wer ist dein Kunde, was sagst du, und wo erreichst du ihn.\n"
+          "content": "---\nid: marketing-basics\nname: Marketing Basics\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: ICP, Messaging und Kanal-Strategie für dein Brain.\ncategory: marketing\nplacement: setup\ntags: [marketing, icp, messaging, channels]\npricing:\n  type: free\ntargets:\n  - 02_MARKETING/\ntriggers:\n  - id: marketing-icp\n    when:\n      - ICP\n      - Zielgruppe\n      - idealer Kunde\n      - Target Audience\n      - Buyer Persona\n    then:\n      - 02_MARKETING/ICP.md\n    note: Jede Marketing-Aufgabe auf die ICP ausrichten.\n  - id: marketing-messaging\n    when:\n      - Messaging\n      - Positionierung\n      - Elevator Pitch\n      - Was biete ich\n      - USP\n    then:\n      - 02_MARKETING/MESSAGING.md\n    note: Kernbotschaft nicht verwässern. \"Was NIE gesagt wird\" respektieren.\n  - id: marketing-kanaele\n    when:\n      - Marketing-Kanal\n      - Instagram\n      - LinkedIn\n      - Newsletter\n      - Ads\n      - wo posten\n    then:\n      - 02_MARKETING/KANAELE.md\n      - 02_MARKETING/ICP.md\n    note: Nur Kanäle empfehlen die zur ICP und zur Frequenz passen.\n---\n\n# Marketing Basics\n\nDrei Dateien die dein Agent braucht um dir beim Marketing zu helfen: Wer ist dein Kunde, was sagst du, und wo erreichst du ihn.\n"
         },
         {
           "relPath": "content/02_MARKETING/ICP.md",
@@ -114,7 +249,78 @@
         "tags": ["sales", "process", "objections", "follow-up"],
         "pricing": { "type": "free" },
         "targets": ["03_SALES/"],
-        "score_impact": { "sales": 20 }
+        "score_impact": { "sales": 20 },
+        "kind": "knowledge",
+        "placement": "setup",
+        "requires_capabilities": ["knowledge.read", "text.generate", "email.send"],
+        "long_description": "Dein Sales-Prozess wird Teil deines Brains. Nach Installation entwirft dein Agent Angebote, Follow-Up-Mails und Einwand-Antworten so, wie DU sie im echten Gespräch formulierst — nicht im Stil eines generischen Sales-Templates aus dem Internet.\n\nDrei Dateien: SALES_PROZESS (wie läuft ein Verkauf ab), EINWAENDE (die 4-5 häufigsten mit deinen echten Gegenframes), FOLLOW_UP (Timing und Templates für Nachfassen).\n\nDie meisten Deals werden im Follow-Up gewonnen, nicht im Erstgespräch. Mit diesem Paket weiß dein Agent wie lange du wartest, wie viele Touchpoints du einsetzt, und wann du los lässt. Zum automatischen Mail-Versand brauchst du zusätzlich ein Mail-Tool-Paket — sonst entwirft der Agent nur den Text, den du selbst kopierst und verschickst.",
+        "long_description_en": "Your sales process becomes part of your brain. After installation, your agent drafts proposals, follow-up emails, and objection responses the way YOU phrase them in real conversations — not like a generic sales template from the internet.\n\nThree files: SALES_PROCESS (how a sale unfolds), OBJECTIONS (the 4-5 most common with your real counter-frames), FOLLOW_UP (timing and templates).\n\nMost deals are won in the follow-up, not the first call. With this package, your agent knows how long you wait, how many touchpoints you use, and when to let go. For automatic mail sending you additionally need a Mail-Tool package — otherwise the agent only drafts the text, which you copy and send yourself.",
+        "use_cases": [
+          {
+            "title": "Follow-Up-Mail nach Erstgespräch entwerfen",
+            "title_en": "Draft a follow-up email after a first call",
+            "prompt": "Ich hatte gestern einen Call mit Jochen über die AI Business Week. Er war interessiert, hat aber nicht direkt zugesagt. Entwirf die Follow-Up-Mail.",
+            "prompt_en": "I had a call with Jochen yesterday about the AI Business Week. He was interested but didn't commit. Draft the follow-up email.",
+            "outcome": "Agent kennt dein FOLLOW_UP-Timing (z.B. 1 Tag), deine Standard-Phrasen und deinen Ton. Entwurf liegt in 30 Sekunden vor — in deinem Stil, nicht \"Hi, I hope this email finds you well\". Versand machst du selbst per Copy/Paste (oder automatisch wenn du ein Mail-Tool installiert hast).",
+            "outcome_en": "Agent knows your FOLLOW_UP timing (e.g. 1 day), your standard phrases, your tone. Draft is ready in 30 seconds — in your style, not \"Hi, I hope this email finds you well\". You send via copy/paste (or automatically if you've installed a Mail Tool)."
+          },
+          {
+            "title": "\"Zu teuer\"-Einwand behandeln",
+            "title_en": "Handle the \"too expensive\" objection",
+            "prompt": "Ein Lead sagt \"2490 Euro ist mir zu viel\". Wie antworte ich?",
+            "prompt_en": "A lead says \"2490 euros is too much for me\". How do I respond?",
+            "outcome": "Agent nutzt EINWAENDE.md und antwortet mit DEINEM validierten Gegenframe — nicht mit generischem \"Wertargumentation\". Kennt deine Formulierungen aus echten Gesprächen.",
+            "outcome_en": "Agent uses OBJECTIONS.md and responds with YOUR validated counter-frame — not generic value-argumentation. Uses your real phrasing from actual conversations."
+          },
+          {
+            "title": "Angebot schreiben",
+            "title_en": "Write a proposal",
+            "prompt": "Erstell mir ein Angebot für Done-For-You Installation. Kunde: mittelständischer Handwerker.",
+            "prompt_en": "Create a proposal for a Done-For-You Installation. Customer: mid-size craftsman.",
+            "outcome": "Agent liest SALES_PROZESS + ICP (aus Marketing-Paket falls installiert) und schreibt ein Angebot in deiner Struktur: Problem, Lösung, Preis, Social Proof, nächste Schritte.",
+            "outcome_en": "Agent reads SALES_PROCESS + ICP (if Marketing package is installed) and writes a proposal in your structure: problem, solution, price, social proof, next steps."
+          }
+        ],
+        "what_you_get": [
+          {
+            "file": "03_SALES/SALES_PROZESS.md",
+            "description": "Dein Verkaufsablauf in 4-6 Schritten, Lead-Quellen, Conversion-Raten und typische Knackpunkte.",
+            "description_en": "Your sales flow in 4-6 steps, lead sources, conversion rates, typical bottlenecks."
+          },
+          {
+            "file": "03_SALES/EINWAENDE.md",
+            "description": "Die 4-5 häufigsten Einwände + DEINE echten Gegenframes (was der Kunde wirklich meint + deine Antwort).",
+            "description_en": "The 4-5 most common objections + YOUR real counter-frames (what the customer really means + your answer)."
+          },
+          {
+            "file": "03_SALES/FOLLOW_UP.md",
+            "description": "Timing, Kanal-Wahl und Templates für Follow-Up. Plus: wann gibst du auf?",
+            "description_en": "Timing, channel choice, templates for follow-up. Plus: when do you let go?"
+          }
+        ],
+        "triggers": [
+          {
+            "id": "sales-prozess",
+            "when": ["Sales-Prozess", "Verkauf", "Pipeline", "Closing", "Deal"],
+            "then": ["03_SALES/SALES_PROZESS.md"],
+            "note": "Sales-Schritte und Conversion-Raten bei Sales-Empfehlungen berücksichtigen.",
+            "note_en": "Factor in sales steps and conversion rates when giving sales advice."
+          },
+          {
+            "id": "sales-einwaende",
+            "when": ["Einwand", "zu teuer", "keine Zeit", "muss ich nachdenken", "Kunde zögert"],
+            "then": ["03_SALES/EINWAENDE.md"],
+            "note": "Echte Formulierungen aus der Datei verwenden, keine generischen Sales-Templates.",
+            "note_en": "Use the real phrasing from the file, not generic sales templates."
+          },
+          {
+            "id": "sales-followup",
+            "when": ["Follow-Up", "Nachfassen", "Kunde meldet sich nicht", "Reminder Mail"],
+            "then": ["03_SALES/FOLLOW_UP.md"],
+            "note": "Timing und Templates aus FOLLOW_UP.md nutzen, nicht neu erfinden.",
+            "note_en": "Use the timing and templates from FOLLOW_UP.md, don't reinvent."
+          }
+        ]
       },
       "install_questions": [
         { "id": "process_steps", "label": "Beschreibe deinen typischen Sales-Ablauf in 4-6 Schritten.", "label_en": "Describe your typical sales process in 4-6 steps.", "type": "textarea", "required": true },
@@ -126,7 +332,7 @@
       "files": [
         {
           "relPath": "brain-package.md",
-          "content": "---\nid: sales-starter\nname: Sales Starter\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Sales-Prozess, Einwand-Handling und Follow-Up für dein Brain.\ncategory: sales\ntags: [sales, process, objections, follow-up]\npricing:\n  type: free\ntargets:\n  - 03_SALES/\n---\n\n# Sales Starter\n\nDrei Dateien die dein Agent braucht um dir beim Verkaufen zu helfen: Wie läuft ein Verkauf ab, welche Einwände kommen, und wie bleibst du dran.\n"
+          "content": "---\nid: sales-starter\nname: Sales Starter\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Sales-Prozess, Einwand-Handling und Follow-Up für dein Brain.\ncategory: sales\nplacement: setup\ntags: [sales, process, objections, follow-up]\npricing:\n  type: free\ntargets:\n  - 03_SALES/\ntriggers:\n  - id: sales-prozess\n    when:\n      - Sales-Prozess\n      - Verkauf\n      - Pipeline\n      - Closing\n      - Deal\n    then:\n      - 03_SALES/SALES_PROZESS.md\n    note: Sales-Schritte und Conversion-Raten bei Sales-Empfehlungen berücksichtigen.\n  - id: sales-einwaende\n    when:\n      - Einwand\n      - zu teuer\n      - keine Zeit\n      - muss ich nachdenken\n      - Kunde zögert\n    then:\n      - 03_SALES/EINWAENDE.md\n    note: Echte Formulierungen aus der Datei verwenden, keine generischen Sales-Templates.\n  - id: sales-followup\n    when:\n      - Follow-Up\n      - Nachfassen\n      - Kunde meldet sich nicht\n      - Reminder Mail\n    then:\n      - 03_SALES/FOLLOW_UP.md\n    note: Timing und Templates aus FOLLOW_UP.md nutzen, nicht neu erfinden.\n---\n\n# Sales Starter\n\nDrei Dateien die dein Agent braucht um dir beim Verkaufen zu helfen: Wie läuft ein Verkauf ab, welche Einwände kommen, und wie bleibst du dran.\n"
         },
         {
           "relPath": "content/03_SALES/SALES_PROZESS.md",
