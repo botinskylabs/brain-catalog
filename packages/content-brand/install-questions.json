@@ -1,0 +1,30 @@
+[
+  {
+    "id": "brand_voice",
+    "label": "Wie klingst du? Beschreibe deinen Ton in 3-5 Adjektiven mit Beispielen.",
+    "label_en": "What do you sound like? Describe your tone in 3-5 adjectives with examples.",
+    "type": "textarea",
+    "required": true
+  },
+  {
+    "id": "content_pillars",
+    "label": "Über welche 3-5 Themen postest du regelmäßig?",
+    "label_en": "What 3-5 topics do you regularly post about?",
+    "type": "textarea",
+    "required": true
+  },
+  {
+    "id": "content_frequency",
+    "label": "Wie oft postest du? Auf welchen Plattformen?",
+    "label_en": "How often do you post? On which platforms?",
+    "type": "textarea",
+    "required": true
+  },
+  {
+    "id": "never_topics",
+    "label": "Worüber sprichst du NIE?",
+    "label_en": "What do you NEVER talk about?",
+    "type": "textarea",
+    "required": false
+  }
+]

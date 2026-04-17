@@ -1,0 +1,3 @@
+# Wettbewerber-Analyse
+
+{{competitors}}

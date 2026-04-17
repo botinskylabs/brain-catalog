@@ -1,0 +1,30 @@
+[
+  {
+    "id": "tools_stack",
+    "label": "Welche Tools nutzt du täglich?",
+    "label_en": "What tools do you use daily?",
+    "type": "textarea",
+    "required": true
+  },
+  {
+    "id": "workflows",
+    "label": "Beschreibe deine 2-3 wichtigsten Workflows.",
+    "label_en": "Describe your 2-3 most important workflows.",
+    "type": "textarea",
+    "required": true
+  },
+  {
+    "id": "automations",
+    "label": "Was hast du automatisiert?",
+    "label_en": "What have you automated?",
+    "type": "textarea",
+    "required": false
+  },
+  {
+    "id": "team",
+    "label": "Arbeitest du alleine oder im Team? Wer macht was?",
+    "label_en": "Do you work alone or with a team? Who does what?",
+    "type": "textarea",
+    "required": true
+  }
+]

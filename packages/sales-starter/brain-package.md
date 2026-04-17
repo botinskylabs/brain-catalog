@@ -6,6 +6,7 @@ author:
   name: Botinsky Labs
   url: https://botinsky.com
 description: Sales-Prozess, Einwand-Handling und Follow-Up für dein Brain.
+cover_image: https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/sales-starter/cover.png
 category: sales
 placement: setup
 tags: [sales, process, objections, follow-up]

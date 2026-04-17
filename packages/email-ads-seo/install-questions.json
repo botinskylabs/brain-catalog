@@ -1,0 +1,30 @@
+[
+  {
+    "id": "email_list",
+    "label": "Hast du eine E-Mail-Liste? Wie groß? Welches Tool?",
+    "label_en": "Do you have an email list? How big? What tool?",
+    "type": "textarea",
+    "required": true
+  },
+  {
+    "id": "email_frequency",
+    "label": "Wie oft schickst du Newsletter?",
+    "label_en": "How often do you send newsletters?",
+    "type": "textarea",
+    "required": true
+  },
+  {
+    "id": "ads_budget",
+    "label": "Schaltest du Paid Ads? Plattform? Budget?",
+    "label_en": "Do you run paid ads? Platform? Budget?",
+    "type": "textarea",
+    "required": false
+  },
+  {
+    "id": "seo_status",
+    "label": "Betreibst du SEO? Welche Keywords?",
+    "label_en": "Do you do SEO? What keywords?",
+    "type": "textarea",
+    "required": false
+  }
+]

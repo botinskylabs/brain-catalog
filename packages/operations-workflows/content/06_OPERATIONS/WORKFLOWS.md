@@ -1,0 +1,7 @@
+# Workflows
+
+{{workflows}}
+
+## Automatisierungen
+
+{{automations}}

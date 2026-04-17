@@ -1,7 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-04-15T15:25:52.081Z",
-  "source": "https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/index.json",
+  "generated_at": "2026-04-17T12:59:34.970Z",
   "packages": [
     {
       "id": "brain-foundation",
@@ -22,6 +21,7 @@
           "foundation",
           "values"
         ],
+        "cover_image": "https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/brain-foundation/cover.png",
         "pricing": {
           "type": "free"
         },
@@ -64,7 +64,7 @@
       "files": [
         {
           "relPath": "brain-package.md",
-          "content": "---\nid: brain-foundation\nname: Brain Foundation\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Erweitere deinen Kern — Vision, Werte, Arbeitsweise.\ncategory: wissen\nplacement: setup\ntags: [core, identity, foundation, values]\npricing:\n  type: free\ntargets:\n  - 00_CORE/\ntriggers:\n  - id: foundation-vision\n    when:\n      - Vision\n      - langfristige Ziele\n      - wo will ich hin\n      - 3 Jahre\n      - 5 Jahre\n    then:\n      - 00_CORE/VISION.md\n      - 00_CORE/WERTE.md\n    note: Bei strategischen Entscheidungen immer gegen die langfristige Vision prüfen.\n  - id: foundation-arbeitsweise\n    when:\n      - Tagesplanung\n      - wie arbeite ich\n      - Produktivität\n      - Deep Work\n      - Routine\n    then:\n      - 00_CORE/ARBEITSWEISE.md\n    note: Empfehlungen an den persönlichen Energie-Rhythmus anpassen.\n---\n\n# Brain Foundation\n\nDieses Paket erweitert dein Brain um drei wichtige Kern-Dateien die dein Agent braucht um dich wirklich zu verstehen.\n"
+          "content": "---\nid: brain-foundation\nname: Brain Foundation\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Erweitere deinen Kern — Vision, Werte, Arbeitsweise.\ncover_image: https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/brain-foundation/cover.png\ncategory: wissen\nplacement: setup\ntags: [core, identity, foundation, values]\npricing:\n  type: free\ntargets:\n  - 00_CORE/\ntriggers:\n  - id: foundation-vision\n    when:\n      - Vision\n      - langfristige Ziele\n      - wo will ich hin\n      - 3 Jahre\n      - 5 Jahre\n    then:\n      - 00_CORE/VISION.md\n      - 00_CORE/WERTE.md\n    note: Bei strategischen Entscheidungen immer gegen die langfristige Vision prüfen.\n  - id: foundation-arbeitsweise\n    when:\n      - Tagesplanung\n      - wie arbeite ich\n      - Produktivität\n      - Deep Work\n      - Routine\n    then:\n      - 00_CORE/ARBEITSWEISE.md\n    note: Empfehlungen an den persönlichen Energie-Rhythmus anpassen.\n---\n\n# Brain Foundation\n\nDieses Paket erweitert dein Brain um drei wichtige Kern-Dateien die dein Agent braucht um dich wirklich zu verstehen.\n"
         },
         {
           "relPath": "content/00_CORE/ARBEITSWEISE.md",
@@ -82,51 +82,383 @@
           "encoding": "utf8"
         }
       ],
-      "contentHash": "9bd60f1b3d410ae2032a9f833bc772e59d89c518b2364fd0555e06a4dea2adc3",
-      "install_questions": [
+      "contentHash": "524555bd113a9b180ead0e03e2d56f6ea9030a983f230600ad2dabe22e62272d"
+    },
+    {
+      "id": "business-essentials",
+      "version": "1.0.0",
+      "manifest": {
+        "id": "business-essentials",
+        "name": "Business Essentials",
+        "version": "1.0.0",
+        "author": {
+          "name": "Botinsky Labs",
+          "url": "https://botinsky.com"
+        },
+        "description": "Produkte, Preise, Positionierung und Wettbewerber.",
+        "category": "wissen",
+        "tags": [
+          "business",
+          "products",
+          "pricing",
+          "positioning"
+        ],
+        "cover_image": "https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/business-essentials/cover.png",
+        "pricing": {
+          "type": "free"
+        },
+        "targets": [
+          "01_PRODUKTE/"
+        ],
+        "description_en": "Products, pricing, positioning and competitors."
+      },
+      "files": [
         {
-          "id": "short_term",
-          "label": "Was willst du in den nächsten 3 Monaten erreichen?",
-          "label_en": "What do you want to achieve in the next 3 months?",
-          "type": "textarea",
-          "required": true
+          "relPath": "brain-package.md",
+          "content": "---\nid: business-essentials\nname: Business Essentials\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Produkte, Preise, Positionierung und Wettbewerber.\ncover_image: https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/business-essentials/cover.png\ndescription_en: Products, pricing, positioning and competitors.\ncategory: wissen\ntags: [business, products, pricing, positioning]\npricing:\n  type: free\ntargets:\n  - 01_PRODUKTE/\n---\n\n# Business Essentials\n\nProdukte, Preise, Positionierung und Wettbewerber.\n"
         },
         {
-          "id": "mid_term",
-          "label": "Wo stehst du in einem Jahr? (Umsatz, Team, Produkt, Lifestyle)",
-          "label_en": "Where do you see yourself in one year? (Revenue, team, product, lifestyle)",
-          "type": "textarea",
-          "required": true
+          "relPath": "content/01_PRODUKTE/POSITIONIERUNG.md",
+          "content": "# Positionierung\n\n## Was mich unterscheidet\n\n{{positioning}}\n\n## Geschäftsmodell\n\n{{business_model}}\n",
+          "encoding": "utf8"
         },
         {
-          "id": "long_term",
-          "label": "Die große Vision: Was baust du wirklich? (3-5 Jahre)",
-          "label_en": "The big vision: What are you really building? (3-5 years)",
-          "type": "textarea",
-          "required": false
+          "relPath": "content/01_PRODUKTE/PRODUKTE.md",
+          "content": "# Meine Produkte & Services\n\n{{products}}\n\n## Pricing\n\n{{pricing_model}}\n",
+          "encoding": "utf8"
         },
         {
-          "id": "core_values",
-          "label": "Deine 3-5 wichtigsten Werte. Kurz beschreiben warum.",
-          "label_en": "Your 3-5 most important values. Briefly explain why.",
-          "type": "textarea",
-          "required": true
-        },
-        {
-          "id": "daily_structure",
-          "label": "Wie sieht dein typischer Arbeitstag aus? Wann bist du am produktivsten?",
-          "label_en": "What does your typical workday look like? When are you most productive?",
-          "type": "textarea",
-          "required": true
-        },
-        {
-          "id": "tools",
-          "label": "Welche Tools nutzt du täglich?",
-          "label_en": "What tools do you use daily?",
-          "type": "textarea",
-          "required": false
+          "relPath": "content/01_PRODUKTE/WETTBEWERBER.md",
+          "content": "# Wettbewerber-Analyse\n\n{{competitors}}\n",
+          "encoding": "utf8"
         }
-      ]
+      ],
+      "contentHash": "77e92d9d4b4122be90c7b7e80780933ef843240959d09921371c775790e9cc2a"
+    },
+    {
+      "id": "clients-network",
+      "version": "1.0.0",
+      "manifest": {
+        "id": "clients-network",
+        "name": "Kunden & Netzwerk",
+        "version": "1.0.0",
+        "author": {
+          "name": "Botinsky Labs",
+          "url": "https://botinsky.com"
+        },
+        "description": "Kundenstamm, Kontakte und Partnerschaften.",
+        "category": "sales",
+        "tags": [
+          "clients",
+          "contacts",
+          "network"
+        ],
+        "cover_image": "https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/clients-network/cover.png",
+        "pricing": {
+          "type": "free"
+        },
+        "targets": [
+          "04_CLIENTS/",
+          "15_CONTACTS/"
+        ],
+        "description_en": "Client base, contacts and partnerships."
+      },
+      "files": [
+        {
+          "relPath": "brain-package.md",
+          "content": "---\nid: clients-network\nname: Kunden & Netzwerk\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Kundenstamm, Kontakte und Partnerschaften.\ncover_image: https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/clients-network/cover.png\ndescription_en: Client base, contacts and partnerships.\ncategory: sales\ntags: [clients, contacts, network]\npricing:\n  type: free\ntargets:\n  - 04_CLIENTS/\n  - 15_CONTACTS/\n---\n\n# Kunden & Netzwerk\n\nKundenstamm, Kontakte und Partnerschaften.\n"
+        },
+        {
+          "relPath": "content/04_CLIENTS/KUNDEN.md",
+          "content": "# Meine Kunden\n\n{{key_clients}}\n",
+          "encoding": "utf8"
+        },
+        {
+          "relPath": "content/04_CLIENTS/TESTIMONIALS.md",
+          "content": "# Testimonials\n\n{{testimonials}}\n",
+          "encoding": "utf8"
+        },
+        {
+          "relPath": "content/15_CONTACTS/NETZWERK.md",
+          "content": "# Mein Netzwerk\n\n{{key_contacts}}\n\n## Partner\n\n{{partnerships}}\n",
+          "encoding": "utf8"
+        }
+      ],
+      "contentHash": "14a2bc933ec45a7d4a8519ada748bf28a39ef5edc43b6d6cd6788a7f34ba48d3"
+    },
+    {
+      "id": "content-brand",
+      "version": "1.0.0",
+      "manifest": {
+        "id": "content-brand",
+        "name": "Content & Brand Voice",
+        "version": "1.0.0",
+        "author": {
+          "name": "Botinsky Labs",
+          "url": "https://botinsky.com"
+        },
+        "description": "Deine Content-Strategie und Brand Voice.",
+        "category": "marketing",
+        "tags": [
+          "content",
+          "brand",
+          "voice",
+          "social-media"
+        ],
+        "cover_image": "https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/content-brand/cover.png",
+        "pricing": {
+          "type": "free"
+        },
+        "targets": [
+          "07_CONTENT/"
+        ],
+        "description_en": "Your content strategy and brand voice."
+      },
+      "files": [
+        {
+          "relPath": "brain-package.md",
+          "content": "---\nid: content-brand\nname: Content & Brand Voice\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Deine Content-Strategie und Brand Voice.\ncover_image: https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/content-brand/cover.png\ndescription_en: Your content strategy and brand voice.\ncategory: marketing\ntags: [content, brand, voice, social-media]\npricing:\n  type: free\ntargets:\n  - 07_CONTENT/\n---\n\n# Content & Brand Voice\n\nDeine Content-Strategie und Brand Voice.\n"
+        },
+        {
+          "relPath": "content/07_CONTENT/BRAND_VOICE.md",
+          "content": "# Brand Voice\n\n## Mein Ton\n\n{{brand_voice}}\n\n## Was ich NIE sage/mache\n\n{{never_topics}}\n",
+          "encoding": "utf8"
+        },
+        {
+          "relPath": "content/07_CONTENT/CONTENT_STRATEGIE.md",
+          "content": "# Content-Strategie\n\n## Content Pillars\n\n{{content_pillars}}\n\n## Frequenz & Plattformen\n\n{{content_frequency}}\n",
+          "encoding": "utf8"
+        }
+      ],
+      "contentHash": "9220bae456a4d2b498d2c0dbf9ac4242e07b447cd4bef8bd85fa4eac0425ddf8"
+    },
+    {
+      "id": "email-ads-seo",
+      "version": "1.0.0",
+      "manifest": {
+        "id": "email-ads-seo",
+        "name": "E-Mail, Ads & SEO",
+        "version": "1.0.0",
+        "author": {
+          "name": "Botinsky Labs",
+          "url": "https://botinsky.com"
+        },
+        "description": "Newsletter-Strategie, Paid Ads und SEO-Grundlagen.",
+        "category": "marketing",
+        "tags": [
+          "email",
+          "newsletter",
+          "ads",
+          "seo"
+        ],
+        "cover_image": "https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/email-ads-seo/cover.png",
+        "pricing": {
+          "type": "free"
+        },
+        "targets": [
+          "02_MARKETING/"
+        ],
+        "description_en": "Newsletter strategy, paid ads and SEO basics."
+      },
+      "files": [
+        {
+          "relPath": "brain-package.md",
+          "content": "---\nid: email-ads-seo\nname: E-Mail, Ads & SEO\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Newsletter-Strategie, Paid Ads und SEO-Grundlagen.\ncover_image: https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/email-ads-seo/cover.png\ndescription_en: Newsletter strategy, paid ads and SEO basics.\ncategory: marketing\ntags: [email, newsletter, ads, seo]\npricing:\n  type: free\ntargets:\n  - 02_MARKETING/\n---\n\n# E-Mail, Ads & SEO\n\nNewsletter-Strategie, Paid Ads und SEO-Grundlagen.\n"
+        },
+        {
+          "relPath": "content/02_MARKETING/ADS.md",
+          "content": "# Paid Ads\n\n{{ads_budget}}\n",
+          "encoding": "utf8"
+        },
+        {
+          "relPath": "content/02_MARKETING/EMAIL_NEWSLETTER.md",
+          "content": "# E-Mail & Newsletter\n\n## Meine Liste\n\n{{email_list}}\n\n## Frequenz\n\n{{email_frequency}}\n",
+          "encoding": "utf8"
+        },
+        {
+          "relPath": "content/02_MARKETING/SEO.md",
+          "content": "# SEO & Organic\n\n{{seo_status}}\n",
+          "encoding": "utf8"
+        }
+      ],
+      "contentHash": "ac0d9671aeb126f8025ddd023990307f70810c3e5c9f3b3d57c1509fe5cabd88"
+    },
+    {
+      "id": "finance-legal",
+      "version": "1.0.0",
+      "manifest": {
+        "id": "finance-legal",
+        "name": "Finanzen & Legal",
+        "version": "1.0.0",
+        "author": {
+          "name": "Botinsky Labs",
+          "url": "https://botinsky.com"
+        },
+        "description": "Budget, Cashflow und rechtliche Grundlagen.",
+        "category": "other",
+        "tags": [
+          "finance",
+          "legal",
+          "budget"
+        ],
+        "cover_image": "https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/finance-legal/cover.png",
+        "pricing": {
+          "type": "free"
+        },
+        "targets": [
+          "10_LEGAL/"
+        ],
+        "description_en": "Budget, cashflow and legal basics."
+      },
+      "files": [
+        {
+          "relPath": "brain-package.md",
+          "content": "---\nid: finance-legal\nname: Finanzen & Legal\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Budget, Cashflow und rechtliche Grundlagen.\ncover_image: https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/finance-legal/cover.png\ndescription_en: Budget, cashflow and legal basics.\ncategory: other\ntags: [finance, legal, budget]\npricing:\n  type: free\ntargets:\n  - 10_LEGAL/\n---\n\n# Finanzen & Legal\n\nBudget, Cashflow und rechtliche Grundlagen.\n"
+        },
+        {
+          "relPath": "content/10_LEGAL/FINANZEN.md",
+          "content": "# Finanzen & Budget\n\n## Umsatz\n\n{{revenue}}\n\n## Laufende Kosten\n\n{{expenses}}\n\n## Rechtsform\n\n{{legal_structure}}\n",
+          "encoding": "utf8"
+        },
+        {
+          "relPath": "content/10_LEGAL/VERTRAEGE.md",
+          "content": "# Verträge & Rechtliches\n\n{{contracts}}\n",
+          "encoding": "utf8"
+        }
+      ],
+      "contentHash": "b622f785059452c56b90ac15b31561337335a8cb6006c3adb477cc1205b3e53c"
+    },
+    {
+      "id": "health-energy",
+      "version": "1.0.0",
+      "manifest": {
+        "id": "health-energy",
+        "name": "Gesundheit & Energie",
+        "version": "1.0.0",
+        "author": {
+          "name": "Botinsky Labs",
+          "url": "https://botinsky.com"
+        },
+        "description": "Fitness, Ernährung, Schlaf und Besonderheiten.",
+        "category": "mindset",
+        "tags": [
+          "health",
+          "fitness",
+          "nutrition",
+          "sleep"
+        ],
+        "cover_image": "https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/health-energy/cover.png",
+        "pricing": {
+          "type": "free"
+        },
+        "targets": [
+          "00_CORE/"
+        ],
+        "description_en": "Fitness, nutrition, sleep and conditions."
+      },
+      "files": [
+        {
+          "relPath": "brain-package.md",
+          "content": "---\nid: health-energy\nname: Gesundheit & Energie\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Fitness, Ernährung, Schlaf und Besonderheiten.\ncover_image: https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/health-energy/cover.png\ndescription_en: Fitness, nutrition, sleep and conditions.\ncategory: mindset\ntags: [health, fitness, nutrition, sleep]\npricing:\n  type: free\ntargets:\n  - 00_CORE/\n---\n\n# Gesundheit & Energie\n\nFitness, Ernährung, Schlaf und Besonderheiten.\n"
+        },
+        {
+          "relPath": "content/00_CORE/GESUNDHEIT.md",
+          "content": "# Gesundheit & Energie\n\n## Körperlich\n\n{{physical_health}}\n\n## Fitness\n\n{{fitness}}\n\n## Ernährung\n\n{{nutrition}}\n\n## Schlaf\n\n{{sleep}}\n\n## Besonderheiten\n\n{{conditions}}\n\n## Mental\n\n{{mental_health}}\n",
+          "encoding": "utf8"
+        }
+      ],
+      "contentHash": "10c29cbf90b94a0c36ea0298510d7afff13a2117b1a0201b9a3a0205fd1d0720"
+    },
+    {
+      "id": "knowledge-learning",
+      "version": "1.0.0",
+      "manifest": {
+        "id": "knowledge-learning",
+        "name": "Wissen & Weiterbildung",
+        "version": "1.0.0",
+        "author": {
+          "name": "Botinsky Labs",
+          "url": "https://botinsky.com"
+        },
+        "description": "Fachwissen, Lernziele und Ressourcen.",
+        "category": "wissen",
+        "tags": [
+          "knowledge",
+          "learning",
+          "books"
+        ],
+        "cover_image": "https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/knowledge-learning/cover.png",
+        "pricing": {
+          "type": "free"
+        },
+        "targets": [
+          "08_WISSEN/"
+        ],
+        "description_en": "Domain knowledge, learning goals and resources."
+      },
+      "files": [
+        {
+          "relPath": "brain-package.md",
+          "content": "---\nid: knowledge-learning\nname: Wissen & Weiterbildung\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Fachwissen, Lernziele und Ressourcen.\ncover_image: https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/knowledge-learning/cover.png\ndescription_en: Domain knowledge, learning goals and resources.\ncategory: wissen\ntags: [knowledge, learning, books]\npricing:\n  type: free\ntargets:\n  - 08_WISSEN/\n---\n\n# Wissen & Weiterbildung\n\nFachwissen, Lernziele und Ressourcen.\n"
+        },
+        {
+          "relPath": "content/08_WISSEN/BUECHER_RESSOURCEN.md",
+          "content": "# Bücher & Ressourcen\n\n{{books_resources}}\n",
+          "encoding": "utf8"
+        },
+        {
+          "relPath": "content/08_WISSEN/EXPERTISE.md",
+          "content": "# Mein Fachwissen\n\n{{expertise}}\n",
+          "encoding": "utf8"
+        },
+        {
+          "relPath": "content/08_WISSEN/LERNZIELE.md",
+          "content": "# Lernziele\n\n{{learning_goals}}\n",
+          "encoding": "utf8"
+        }
+      ],
+      "contentHash": "b85499e071f3b93dfcb7dd5c7a0db27c11eb83755dedb492a605c56ff3c834ec"
+    },
+    {
+      "id": "life-admin",
+      "version": "1.0.0",
+      "manifest": {
+        "id": "life-admin",
+        "name": "Life Admin",
+        "version": "1.0.0",
+        "author": {
+          "name": "Botinsky Labs",
+          "url": "https://botinsky.com"
+        },
+        "description": "Persönliche Finanzen, Versicherungen, Abos und Termine.",
+        "category": "other",
+        "tags": [
+          "admin",
+          "finance",
+          "insurance",
+          "subscriptions"
+        ],
+        "cover_image": "https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/life-admin/cover.png",
+        "pricing": {
+          "type": "free"
+        },
+        "targets": [
+          "00_CORE/"
+        ],
+        "description_en": "Personal finances, insurance, subscriptions and dates."
+      },
+      "files": [
+        {
+          "relPath": "brain-package.md",
+          "content": "---\nid: life-admin\nname: Life Admin\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Persönliche Finanzen, Versicherungen, Abos und Termine.\ncover_image: https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/life-admin/cover.png\ndescription_en: Personal finances, insurance, subscriptions and dates.\ncategory: other\ntags: [admin, finance, insurance, subscriptions]\npricing:\n  type: free\ntargets:\n  - 00_CORE/\n---\n\n# Life Admin\n\nPersönliche Finanzen, Versicherungen, Abos und Termine.\n"
+        },
+        {
+          "relPath": "content/00_CORE/LIFE_ADMIN.md",
+          "content": "# Life Admin\n\n## Persönliche Finanzen\n\n{{personal_finance}}\n\n## Versicherungen\n\n{{insurance}}\n\n## Abos & Lizenzen\n\n{{subscriptions}}\n\n## Wichtige Termine\n\n{{important_dates}}\n",
+          "encoding": "utf8"
+        }
+      ],
+      "contentHash": "952d6cc2e903b80636943f0daf385efac5997e10effc560325b5f6929c05c714"
     },
     {
       "id": "marketing-basics",
@@ -147,6 +479,7 @@
           "messaging",
           "channels"
         ],
+        "cover_image": "https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/marketing-basics/cover.png",
         "pricing": {
           "type": "free"
         },
@@ -204,7 +537,7 @@
       "files": [
         {
           "relPath": "brain-package.md",
-          "content": "---\nid: marketing-basics\nname: Marketing Basics\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: ICP, Messaging und Kanal-Strategie für dein Brain.\ncategory: marketing\nplacement: setup\ntags: [marketing, icp, messaging, channels]\npricing:\n  type: free\ntargets:\n  - 02_MARKETING/\ntriggers:\n  - id: marketing-icp\n    when:\n      - ICP\n      - Zielgruppe\n      - idealer Kunde\n      - Target Audience\n      - Buyer Persona\n    then:\n      - 02_MARKETING/ICP.md\n    note: Jede Marketing-Aufgabe auf die ICP ausrichten.\n  - id: marketing-messaging\n    when:\n      - Messaging\n      - Positionierung\n      - Elevator Pitch\n      - Was biete ich\n      - USP\n    then:\n      - 02_MARKETING/MESSAGING.md\n    note: Kernbotschaft nicht verwässern. \"Was NIE gesagt wird\" respektieren.\n  - id: marketing-kanaele\n    when:\n      - Marketing-Kanal\n      - Instagram\n      - LinkedIn\n      - Newsletter\n      - Ads\n      - wo posten\n    then:\n      - 02_MARKETING/KANAELE.md\n      - 02_MARKETING/ICP.md\n    note: Nur Kanäle empfehlen die zur ICP und zur Frequenz passen.\n---\n\n# Marketing Basics\n\nDrei Dateien die dein Agent braucht um dir beim Marketing zu helfen: Wer ist dein Kunde, was sagst du, und wo erreichst du ihn.\n"
+          "content": "---\nid: marketing-basics\nname: Marketing Basics\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: ICP, Messaging und Kanal-Strategie für dein Brain.\ncover_image: https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/marketing-basics/cover.png\ncategory: marketing\nplacement: setup\ntags: [marketing, icp, messaging, channels]\npricing:\n  type: free\ntargets:\n  - 02_MARKETING/\ntriggers:\n  - id: marketing-icp\n    when:\n      - ICP\n      - Zielgruppe\n      - idealer Kunde\n      - Target Audience\n      - Buyer Persona\n    then:\n      - 02_MARKETING/ICP.md\n    note: Jede Marketing-Aufgabe auf die ICP ausrichten.\n  - id: marketing-messaging\n    when:\n      - Messaging\n      - Positionierung\n      - Elevator Pitch\n      - Was biete ich\n      - USP\n    then:\n      - 02_MARKETING/MESSAGING.md\n    note: Kernbotschaft nicht verwässern. \"Was NIE gesagt wird\" respektieren.\n  - id: marketing-kanaele\n    when:\n      - Marketing-Kanal\n      - Instagram\n      - LinkedIn\n      - Newsletter\n      - Ads\n      - wo posten\n    then:\n      - 02_MARKETING/KANAELE.md\n      - 02_MARKETING/ICP.md\n    note: Nur Kanäle empfehlen die zur ICP und zur Frequenz passen.\n---\n\n# Marketing Basics\n\nDrei Dateien die dein Agent braucht um dir beim Marketing zu helfen: Wer ist dein Kunde, was sagst du, und wo erreichst du ihn.\n"
         },
         {
           "relPath": "content/02_MARKETING/ICP.md",
@@ -222,51 +555,161 @@
           "encoding": "utf8"
         }
       ],
-      "contentHash": "5f1bfce8ca9a90ac1e58bc2e36c974a2c25090b047ea45d05c3156550a7cb6bd",
-      "install_questions": [
+      "contentHash": "1aaec0d373c28c7dd697be79b09f676730813aef453538dc84e78491c10580f7"
+    },
+    {
+      "id": "operations-workflows",
+      "version": "1.0.0",
+      "manifest": {
+        "id": "operations-workflows",
+        "name": "Operations & Workflows",
+        "version": "1.0.0",
+        "author": {
+          "name": "Botinsky Labs",
+          "url": "https://botinsky.com"
+        },
+        "description": "Arbeitsweise, Tools und Automatisierungen.",
+        "category": "productivity",
+        "tags": [
+          "operations",
+          "workflows",
+          "tools",
+          "team"
+        ],
+        "cover_image": "https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/operations-workflows/cover.png",
+        "pricing": {
+          "type": "free"
+        },
+        "targets": [
+          "06_OPERATIONS/",
+          "11_PROCESSES/"
+        ],
+        "description_en": "Working style, tools and automations."
+      },
+      "files": [
         {
-          "id": "demographics",
-          "label": "Wer ist dein idealer Kunde? (Alter, Branche, Standort)",
-          "label_en": "Who is your ideal customer? (Age, industry, location)",
-          "type": "textarea",
-          "required": true
+          "relPath": "brain-package.md",
+          "content": "---\nid: operations-workflows\nname: Operations & Workflows\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Arbeitsweise, Tools und Automatisierungen.\ncover_image: https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/operations-workflows/cover.png\ndescription_en: Working style, tools and automations.\ncategory: productivity\ntags: [operations, workflows, tools, team]\npricing:\n  type: free\ntargets:\n  - 06_OPERATIONS/\n  - 11_PROCESSES/\n---\n\n# Operations & Workflows\n\nArbeitsweise, Tools und Automatisierungen.\n"
         },
         {
-          "id": "pain_point",
-          "label": "Was ist das größte Problem das du löst? (In den Worten deines Kunden)",
-          "label_en": "What is the biggest problem you solve? (In your customer's words)",
-          "type": "textarea",
-          "required": true
+          "relPath": "content/06_OPERATIONS/TOOLS_STACK.md",
+          "content": "# Tools & Stack\n\n{{tools_stack}}\n",
+          "encoding": "utf8"
         },
         {
-          "id": "desired_outcome",
-          "label": "Was will dein Kunde wirklich erreichen?",
-          "label_en": "What does your customer really want to achieve?",
-          "type": "textarea",
-          "required": true
+          "relPath": "content/06_OPERATIONS/WORKFLOWS.md",
+          "content": "# Workflows\n\n{{workflows}}\n\n## Automatisierungen\n\n{{automations}}\n",
+          "encoding": "utf8"
         },
         {
-          "id": "core_message",
-          "label": "Der eine Satz der erklärt was du tust und warum es wichtig ist.",
-          "label_en": "The one sentence that explains what you do and why it matters.",
-          "type": "textarea",
-          "required": true
-        },
-        {
-          "id": "primary_channel",
-          "label": "Dein Hauptkanal für Marketing? (z.B. Instagram, LinkedIn, Newsletter)",
-          "label_en": "Your primary marketing channel? (e.g. Instagram, LinkedIn, Newsletter)",
-          "type": "textarea",
-          "required": true
-        },
-        {
-          "id": "never_say",
-          "label": "Wörter oder Phrasen die du NIE verwenden willst.",
-          "label_en": "Words or phrases you NEVER want to use.",
-          "type": "textarea",
-          "required": false
+          "relPath": "content/11_PROCESSES/TEAM.md",
+          "content": "# Team & Rollen\n\n{{team}}\n",
+          "encoding": "utf8"
         }
-      ]
+      ],
+      "contentHash": "fd235a5031fd376835ced36cb7a71cd82a4878cb4bc1f6fbafc3d8294ddfc795"
+    },
+    {
+      "id": "personal-life",
+      "version": "1.0.0",
+      "manifest": {
+        "id": "personal-life",
+        "name": "Persönliches",
+        "version": "1.0.0",
+        "author": {
+          "name": "Botinsky Labs",
+          "url": "https://botinsky.com"
+        },
+        "description": "Ziele, Beziehungen, Hobbies und Routinen.",
+        "category": "mindset",
+        "tags": [
+          "personal",
+          "goals",
+          "relationships",
+          "routines"
+        ],
+        "cover_image": "https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/personal-life/cover.png",
+        "pricing": {
+          "type": "free"
+        },
+        "targets": [
+          "00_CORE/"
+        ],
+        "description_en": "Goals, relationships, hobbies and routines."
+      },
+      "files": [
+        {
+          "relPath": "brain-package.md",
+          "content": "---\nid: personal-life\nname: Persönliches\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Ziele, Beziehungen, Hobbies und Routinen.\ncover_image: https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/personal-life/cover.png\ndescription_en: Goals, relationships, hobbies and routines.\ncategory: mindset\ntags: [personal, goals, relationships, routines]\npricing:\n  type: free\ntargets:\n  - 00_CORE/\n---\n\n# Persönliches\n\nZiele, Beziehungen, Hobbies und Routinen.\n"
+        },
+        {
+          "relPath": "content/00_CORE/PERSOENLICH.md",
+          "content": "# Persönliches\n\n## Meine Ziele\n\n{{personal_goals}}\n\n## Wichtige Menschen\n\n{{relationships}}\n\n## Hobbies\n\n{{hobbies}}\n\n## Reisen & Orte\n\n{{travel}}\n",
+          "encoding": "utf8"
+        },
+        {
+          "relPath": "content/00_CORE/TAGESROUTINE.md",
+          "content": "# Mein idealer Tag\n\n{{daily_routine}}\n",
+          "encoding": "utf8"
+        }
+      ],
+      "contentHash": "f4cca8e6a8c4109a9b092c33f18eb44c136c0897e26abd480bd6851e9bfd2d70"
+    },
+    {
+      "id": "planning-reflection",
+      "version": "1.0.0",
+      "manifest": {
+        "id": "planning-reflection",
+        "name": "Planung & Reflexion",
+        "version": "1.0.0",
+        "author": {
+          "name": "Botinsky Labs",
+          "url": "https://botinsky.com"
+        },
+        "description": "Wochenziele, Monatsziele, OKRs und Rückblick.",
+        "category": "productivity",
+        "tags": [
+          "planning",
+          "weekly",
+          "monthly",
+          "okr"
+        ],
+        "cover_image": "https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/planning-reflection/cover.png",
+        "pricing": {
+          "type": "free"
+        },
+        "targets": [
+          "09_WEEKLY/"
+        ],
+        "description_en": "Weekly goals, monthly goals, OKRs and review."
+      },
+      "files": [
+        {
+          "relPath": "brain-package.md",
+          "content": "---\nid: planning-reflection\nname: Planung & Reflexion\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Wochenziele, Monatsziele, OKRs und Rückblick.\ncover_image: https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/planning-reflection/cover.png\ndescription_en: Weekly goals, monthly goals, OKRs and review.\ncategory: productivity\ntags: [planning, weekly, monthly, okr]\npricing:\n  type: free\ntargets:\n  - 09_WEEKLY/\n---\n\n# Planung & Reflexion\n\nWochenziele, Monatsziele, OKRs und Rückblick.\n"
+        },
+        {
+          "relPath": "content/09_WEEKLY/MONATSZIELE.md",
+          "content": "# Monatsziele\n\n{{monthly_goals}}\n",
+          "encoding": "utf8"
+        },
+        {
+          "relPath": "content/09_WEEKLY/QUARTALSZIELE.md",
+          "content": "# Quartalsziele / OKRs\n\n{{quarterly_okrs}}\n",
+          "encoding": "utf8"
+        },
+        {
+          "relPath": "content/09_WEEKLY/REFLEXION.md",
+          "content": "# Reflexion\n\n{{reflection_habit}}\n",
+          "encoding": "utf8"
+        },
+        {
+          "relPath": "content/09_WEEKLY/WOCHENPLANUNG.md",
+          "content": "# Wochenplanung\n\n## Mein System\n\n{{weekly_routine}}\n",
+          "encoding": "utf8"
+        }
+      ],
+      "contentHash": "4ffc656b4b485c34cd2bcf86e5ce3d18873badbd969e47406c3a85b4ee233beb"
     },
     {
       "id": "sales-starter",
@@ -287,6 +730,7 @@
           "objections",
           "follow-up"
         ],
+        "cover_image": "https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/sales-starter/cover.png",
         "pricing": {
           "type": "free"
         },
@@ -341,7 +785,7 @@
       "files": [
         {
           "relPath": "brain-package.md",
-          "content": "---\nid: sales-starter\nname: Sales Starter\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Sales-Prozess, Einwand-Handling und Follow-Up für dein Brain.\ncategory: sales\nplacement: setup\ntags: [sales, process, objections, follow-up]\npricing:\n  type: free\ntargets:\n  - 03_SALES/\ntriggers:\n  - id: sales-prozess\n    when:\n      - Sales-Prozess\n      - Verkauf\n      - Pipeline\n      - Closing\n      - Deal\n    then:\n      - 03_SALES/SALES_PROZESS.md\n    note: Sales-Schritte und Conversion-Raten bei Sales-Empfehlungen berücksichtigen.\n  - id: sales-einwaende\n    when:\n      - Einwand\n      - zu teuer\n      - keine Zeit\n      - muss ich nachdenken\n      - Kunde zögert\n    then:\n      - 03_SALES/EINWAENDE.md\n    note: Echte Formulierungen aus der Datei verwenden, keine generischen Sales-Templates.\n  - id: sales-followup\n    when:\n      - Follow-Up\n      - Nachfassen\n      - Kunde meldet sich nicht\n      - Reminder Mail\n    then:\n      - 03_SALES/FOLLOW_UP.md\n    note: Timing und Templates aus FOLLOW_UP.md nutzen, nicht neu erfinden.\n---\n\n# Sales Starter\n\nDrei Dateien die dein Agent braucht um dir beim Verkaufen zu helfen: Wie läuft ein Verkauf ab, welche Einwände kommen, und wie bleibst du dran.\n"
+          "content": "---\nid: sales-starter\nname: Sales Starter\nversion: 1.0.0\nauthor:\n  name: Botinsky Labs\n  url: https://botinsky.com\ndescription: Sales-Prozess, Einwand-Handling und Follow-Up für dein Brain.\ncover_image: https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/sales-starter/cover.png\ncategory: sales\nplacement: setup\ntags: [sales, process, objections, follow-up]\npricing:\n  type: free\ntargets:\n  - 03_SALES/\ntriggers:\n  - id: sales-prozess\n    when:\n      - Sales-Prozess\n      - Verkauf\n      - Pipeline\n      - Closing\n      - Deal\n    then:\n      - 03_SALES/SALES_PROZESS.md\n    note: Sales-Schritte und Conversion-Raten bei Sales-Empfehlungen berücksichtigen.\n  - id: sales-einwaende\n    when:\n      - Einwand\n      - zu teuer\n      - keine Zeit\n      - muss ich nachdenken\n      - Kunde zögert\n    then:\n      - 03_SALES/EINWAENDE.md\n    note: Echte Formulierungen aus der Datei verwenden, keine generischen Sales-Templates.\n  - id: sales-followup\n    when:\n      - Follow-Up\n      - Nachfassen\n      - Kunde meldet sich nicht\n      - Reminder Mail\n    then:\n      - 03_SALES/FOLLOW_UP.md\n    note: Timing und Templates aus FOLLOW_UP.md nutzen, nicht neu erfinden.\n---\n\n# Sales Starter\n\nDrei Dateien die dein Agent braucht um dir beim Verkaufen zu helfen: Wie läuft ein Verkauf ab, welche Einwände kommen, und wie bleibst du dran.\n"
         },
         {
           "relPath": "content/03_SALES/EINWAENDE.md",
@@ -359,44 +803,7 @@
           "encoding": "utf8"
         }
       ],
-      "contentHash": "f3b47f56c9110fa82c6f074f42a5d8047793284a04152fc1382df408399167ae",
-      "install_questions": [
-        {
-          "id": "process_steps",
-          "label": "Beschreibe deinen typischen Sales-Ablauf in 4-6 Schritten.",
-          "label_en": "Describe your typical sales process in 4-6 steps.",
-          "type": "textarea",
-          "required": true
-        },
-        {
-          "id": "lead_sources",
-          "label": "Wo kommen deine Kunden/Leads her?",
-          "label_en": "Where do your customers/leads come from?",
-          "type": "textarea",
-          "required": true
-        },
-        {
-          "id": "objection_too_expensive",
-          "label": "Wie reagierst du wenn jemand sagt \"Zu teuer\"?",
-          "label_en": "How do you respond when someone says \"Too expensive\"?",
-          "type": "textarea",
-          "required": true
-        },
-        {
-          "id": "objection_no_time",
-          "label": "Wie reagierst du wenn jemand sagt \"Keine Zeit\"?",
-          "label_en": "How do you respond when someone says \"No time\"?",
-          "type": "textarea",
-          "required": true
-        },
-        {
-          "id": "followup_timing",
-          "label": "Wann meldest du dich nach dem Erstgespräch? (z.B. 1 Tag, 3 Tage, 1 Woche)",
-          "label_en": "When do you follow up after the first call? (e.g. 1 day, 3 days, 1 week)",
-          "type": "textarea",
-          "required": true
-        }
-      ]
+      "contentHash": "bc2094cd92decee8b19b03a40e2a46f7a6ad7322b32c1409a42b66e99d22ebfa"
     },
     {
       "id": "ux-design-essentials",

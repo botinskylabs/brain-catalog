@@ -1,0 +1,30 @@
+[
+  {
+    "id": "personal_finance",
+    "label": "Wie ist deine finanzielle Situation privat?",
+    "label_en": "What's your personal financial situation?",
+    "type": "textarea",
+    "required": false
+  },
+  {
+    "id": "insurance",
+    "label": "Welche Versicherungen hast du?",
+    "label_en": "What insurance do you have?",
+    "type": "textarea",
+    "required": false
+  },
+  {
+    "id": "subscriptions",
+    "label": "Welche Abos/Lizenzen zahlst du monatlich?",
+    "label_en": "What subscriptions do you pay monthly?",
+    "type": "textarea",
+    "required": false
+  },
+  {
+    "id": "important_dates",
+    "label": "Wichtige Termine die du nicht vergessen darfst?",
+    "label_en": "Important dates you must not forget?",
+    "type": "textarea",
+    "required": false
+  }
+]

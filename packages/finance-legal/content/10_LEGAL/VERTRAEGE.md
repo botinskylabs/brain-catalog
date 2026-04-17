@@ -1,0 +1,3 @@
+# Verträge & Rechtliches
+
+{{contracts}}

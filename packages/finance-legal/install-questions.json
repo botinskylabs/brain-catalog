@@ -1,0 +1,30 @@
+[
+  {
+    "id": "revenue",
+    "label": "Wie hoch ist dein monatlicher Umsatz/Budget?",
+    "label_en": "What's your monthly revenue/budget?",
+    "type": "textarea",
+    "required": true
+  },
+  {
+    "id": "expenses",
+    "label": "Was sind deine größten laufenden Kosten?",
+    "label_en": "What are your biggest recurring expenses?",
+    "type": "textarea",
+    "required": true
+  },
+  {
+    "id": "legal_structure",
+    "label": "Rechtsform deines Unternehmens?",
+    "label_en": "Legal structure of your business?",
+    "type": "text",
+    "required": true
+  },
+  {
+    "id": "contracts",
+    "label": "Welche wichtigen Verträge hast du?",
+    "label_en": "What important contracts do you have?",
+    "type": "textarea",
+    "required": false
+  }
+]

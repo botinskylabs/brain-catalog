@@ -1,0 +1,37 @@
+[
+  {
+    "id": "personal_goals",
+    "label": "Was sind deine persönlichen Ziele? (nicht Business)",
+    "label_en": "What are your personal goals? (not business)",
+    "type": "textarea",
+    "required": true
+  },
+  {
+    "id": "relationships",
+    "label": "Wer sind die wichtigsten Menschen in deinem Leben?",
+    "label_en": "Who are the most important people in your life?",
+    "type": "textarea",
+    "required": true
+  },
+  {
+    "id": "hobbies",
+    "label": "Was machst du gerne außerhalb der Arbeit?",
+    "label_en": "What do you enjoy doing outside of work?",
+    "type": "textarea",
+    "required": false
+  },
+  {
+    "id": "daily_routine",
+    "label": "Beschreibe deinen idealen Tag.",
+    "label_en": "Describe your ideal day.",
+    "type": "textarea",
+    "required": true
+  },
+  {
+    "id": "travel",
+    "label": "Wo lebst du? Wo reist du gerne hin?",
+    "label_en": "Where do you live? Where do you like to travel?",
+    "type": "textarea",
+    "required": false
+  }
+]

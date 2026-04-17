@@ -6,6 +6,7 @@ author:
   name: Botinsky Labs
   url: https://botinsky.com
 description: Erweitere deinen Kern — Vision, Werte, Arbeitsweise.
+cover_image: https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/brain-foundation/cover.png
 category: wissen
 placement: setup
 tags: [core, identity, foundation, values]

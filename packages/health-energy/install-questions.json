@@ -1,0 +1,44 @@
+[
+  {
+    "id": "physical_health",
+    "label": "Wie ist dein aktueller Gesundheitszustand?",
+    "label_en": "What's your current health status?",
+    "type": "textarea",
+    "required": true
+  },
+  {
+    "id": "fitness",
+    "label": "Was machst du für Fitness/Sport?",
+    "label_en": "What do you do for fitness/sports?",
+    "type": "textarea",
+    "required": true
+  },
+  {
+    "id": "nutrition",
+    "label": "Wie ernährst du dich? Besonderheiten?",
+    "label_en": "How do you eat? Any specifics?",
+    "type": "textarea",
+    "required": false
+  },
+  {
+    "id": "sleep",
+    "label": "Wie viel schläfst du? Schlafrhythmus?",
+    "label_en": "How much do you sleep? Sleep rhythm?",
+    "type": "textarea",
+    "required": false
+  },
+  {
+    "id": "conditions",
+    "label": "Allergien, Unverträglichkeiten, chronisches?",
+    "label_en": "Allergies, intolerances, chronic issues?",
+    "type": "textarea",
+    "required": false
+  },
+  {
+    "id": "mental_health",
+    "label": "Wie gehst du mit Stress um?",
+    "label_en": "How do you handle stress?",
+    "type": "textarea",
+    "required": false
+  }
+]

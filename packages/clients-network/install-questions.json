@@ -1,0 +1,30 @@
+[
+  {
+    "id": "key_clients",
+    "label": "Wer sind deine wichtigsten Kunden?",
+    "label_en": "Who are your key clients?",
+    "type": "textarea",
+    "required": true
+  },
+  {
+    "id": "key_contacts",
+    "label": "Wer sind die 5-10 wichtigsten Menschen in deinem Netzwerk?",
+    "label_en": "Who are the 5-10 most important people in your network?",
+    "type": "textarea",
+    "required": true
+  },
+  {
+    "id": "partnerships",
+    "label": "Hast du Partner oder Kooperationen?",
+    "label_en": "Do you have partners or collaborations?",
+    "type": "textarea",
+    "required": false
+  },
+  {
+    "id": "testimonials",
+    "label": "Was sagen zufriedene Kunden über dich?",
+    "label_en": "What do satisfied customers say about you?",
+    "type": "textarea",
+    "required": false
+  }
+]

@@ -6,6 +6,7 @@ author:
   name: Botinsky Labs
   url: https://botinsky.com
 description: ICP, Messaging und Kanal-Strategie für dein Brain.
+cover_image: https://raw.githubusercontent.com/botinskylabs/brain-catalog/main/packages/marketing-basics/cover.png
 category: marketing
 placement: setup
 tags: [marketing, icp, messaging, channels]

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "weekly_routine",
+    "label": "Wie planst du deine Woche?",
+    "label_en": "How do you plan your week?",
+    "type": "textarea",
+    "required": true
+  },
+  {
+    "id": "monthly_goals",
+    "label": "Was sind deine Ziele für diesen Monat?",
+    "label_en": "What are your goals for this month?",
+    "type": "textarea",
+    "required": true
+  },
+  {
+    "id": "quarterly_okrs",
+    "label": "Hast du Quartalsziele oder OKRs?",
+    "label_en": "Do you have quarterly goals or OKRs?",
+    "type": "textarea",
+    "required": false
+  },
+  {
+    "id": "reflection_habit",
+    "label": "Wie oft reflektierst du? Was hat zuletzt funktioniert?",
+    "label_en": "How often do you reflect? What worked recently?",
+    "type": "textarea",
+    "required": true
+  }
+]

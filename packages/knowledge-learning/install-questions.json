@@ -1,0 +1,23 @@
+[
+  {
+    "id": "expertise",
+    "label": "Was ist dein Fachgebiet? Worin bist du Experte?",
+    "label_en": "What's your area of expertise?",
+    "type": "textarea",
+    "required": true
+  },
+  {
+    "id": "learning_goals",
+    "label": "Was willst du als nächstes lernen?",
+    "label_en": "What do you want to learn next?",
+    "type": "textarea",
+    "required": true
+  },
+  {
+    "id": "books_resources",
+    "label": "Welche Bücher/Kurse haben dich am meisten beeinflusst?",
+    "label_en": "What books/courses have influenced you most?",
+    "type": "textarea",
+    "required": false
+  }
+]
