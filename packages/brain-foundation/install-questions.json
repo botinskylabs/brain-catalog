@@ -1,0 +1,8 @@
+[
+  {"id": "short_term", "label": "Was willst du in den nächsten 3 Monaten erreichen?", "label_en": "What do you want to achieve in the next 3 months?", "type": "textarea", "required": true},
+  {"id": "mid_term", "label": "Wo stehst du in einem Jahr? (Umsatz, Team, Produkt, Lifestyle)", "label_en": "Where do you see yourself in one year? (Revenue, team, product, lifestyle)", "type": "textarea", "required": true},
+  {"id": "long_term", "label": "Die große Vision: Was baust du wirklich? (3-5 Jahre)", "label_en": "The big vision: What are you really building? (3-5 years)", "type": "textarea", "required": false},
+  {"id": "core_values", "label": "Deine 3-5 wichtigsten Werte. Kurz beschreiben warum.", "label_en": "Your 3-5 most important values. Briefly explain why.", "type": "textarea", "required": true},
+  {"id": "daily_structure", "label": "Wie sieht dein typischer Arbeitstag aus? Wann bist du am produktivsten?", "label_en": "What does your typical workday look like? When are you most productive?", "type": "textarea", "required": true},
+  {"id": "tools", "label": "Welche Tools nutzt du täglich?", "label_en": "What tools do you use daily?", "type": "textarea", "required": false}
+]

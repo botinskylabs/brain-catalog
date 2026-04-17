@@ -1,0 +1,8 @@
+[
+  {"id": "demographics", "label": "Wer ist dein idealer Kunde? (Alter, Branche, Standort)", "label_en": "Who is your ideal customer? (Age, industry, location)", "type": "textarea", "required": true},
+  {"id": "pain_point", "label": "Was ist das größte Problem das du löst? (In den Worten deines Kunden)", "label_en": "What is the biggest problem you solve? (In your customer's words)", "type": "textarea", "required": true},
+  {"id": "desired_outcome", "label": "Was will dein Kunde wirklich erreichen?", "label_en": "What does your customer really want to achieve?", "type": "textarea", "required": true},
+  {"id": "core_message", "label": "Der eine Satz der erklärt was du tust und warum es wichtig ist.", "label_en": "The one sentence that explains what you do and why it matters.", "type": "textarea", "required": true},
+  {"id": "primary_channel", "label": "Dein Hauptkanal für Marketing? (z.B. Instagram, LinkedIn, Newsletter)", "label_en": "Your primary marketing channel? (e.g. Instagram, LinkedIn, Newsletter)", "type": "textarea", "required": true},
+  {"id": "never_say", "label": "Wörter oder Phrasen die du NIE verwenden willst.", "label_en": "Words or phrases you NEVER want to use.", "type": "textarea", "required": false}
+]

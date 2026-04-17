@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-04-17T12:59:34.970Z",
+  "generated_at": "2026-04-17T15:16:52.573Z",
   "packages": [
     {
       "id": "brain-foundation",
@@ -82,7 +82,51 @@
           "encoding": "utf8"
         }
       ],
-      "contentHash": "524555bd113a9b180ead0e03e2d56f6ea9030a983f230600ad2dabe22e62272d"
+      "contentHash": "524555bd113a9b180ead0e03e2d56f6ea9030a983f230600ad2dabe22e62272d",
+      "install_questions": [
+        {
+          "id": "short_term",
+          "label": "Was willst du in den nächsten 3 Monaten erreichen?",
+          "label_en": "What do you want to achieve in the next 3 months?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "mid_term",
+          "label": "Wo stehst du in einem Jahr? (Umsatz, Team, Produkt, Lifestyle)",
+          "label_en": "Where do you see yourself in one year? (Revenue, team, product, lifestyle)",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "long_term",
+          "label": "Die große Vision: Was baust du wirklich? (3-5 Jahre)",
+          "label_en": "The big vision: What are you really building? (3-5 years)",
+          "type": "textarea",
+          "required": false
+        },
+        {
+          "id": "core_values",
+          "label": "Deine 3-5 wichtigsten Werte. Kurz beschreiben warum.",
+          "label_en": "Your 3-5 most important values. Briefly explain why.",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "daily_structure",
+          "label": "Wie sieht dein typischer Arbeitstag aus? Wann bist du am produktivsten?",
+          "label_en": "What does your typical workday look like? When are you most productive?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "tools",
+          "label": "Welche Tools nutzt du täglich?",
+          "label_en": "What tools do you use daily?",
+          "type": "textarea",
+          "required": false
+        }
+      ]
     },
     {
       "id": "business-essentials",
@@ -133,7 +177,46 @@
           "encoding": "utf8"
         }
       ],
-      "contentHash": "77e92d9d4b4122be90c7b7e80780933ef843240959d09921371c775790e9cc2a"
+      "contentHash": "77e92d9d4b4122be90c7b7e80780933ef843240959d09921371c775790e9cc2a",
+      "install_questions": [
+        {
+          "id": "products",
+          "label": "Welche Produkte/Services bietest du an? (Name, Preis, Zielgruppe)",
+          "label_en": "What products/services do you offer? (Name, price, target audience)",
+          "type": "textarea",
+          "required": true,
+          "help": "Je detaillierter, desto besser kann dein Agent Angebote erstellen.",
+          "help_en": "The more detail, the better your agent can create proposals."
+        },
+        {
+          "id": "pricing_model",
+          "label": "Wie ist dein Pricing aufgebaut?",
+          "label_en": "How is your pricing structured?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "positioning",
+          "label": "Was unterscheidet dich von der Konkurrenz?",
+          "label_en": "What sets you apart from competitors?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "competitors",
+          "label": "Wer sind deine 3-5 wichtigsten Wettbewerber?",
+          "label_en": "Who are your 3-5 main competitors?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "business_model",
+          "label": "Wie verdienst du Geld? (2-3 Sätze)",
+          "label_en": "How do you make money? (2-3 sentences)",
+          "type": "textarea",
+          "required": true
+        }
+      ]
     },
     {
       "id": "clients-network",
@@ -184,7 +267,37 @@
           "encoding": "utf8"
         }
       ],
-      "contentHash": "14a2bc933ec45a7d4a8519ada748bf28a39ef5edc43b6d6cd6788a7f34ba48d3"
+      "contentHash": "14a2bc933ec45a7d4a8519ada748bf28a39ef5edc43b6d6cd6788a7f34ba48d3",
+      "install_questions": [
+        {
+          "id": "key_clients",
+          "label": "Wer sind deine wichtigsten Kunden?",
+          "label_en": "Who are your key clients?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "key_contacts",
+          "label": "Wer sind die 5-10 wichtigsten Menschen in deinem Netzwerk?",
+          "label_en": "Who are the 5-10 most important people in your network?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "partnerships",
+          "label": "Hast du Partner oder Kooperationen?",
+          "label_en": "Do you have partners or collaborations?",
+          "type": "textarea",
+          "required": false
+        },
+        {
+          "id": "testimonials",
+          "label": "Was sagen zufriedene Kunden über dich?",
+          "label_en": "What do satisfied customers say about you?",
+          "type": "textarea",
+          "required": false
+        }
+      ]
     },
     {
       "id": "content-brand",
@@ -230,7 +343,37 @@
           "encoding": "utf8"
         }
       ],
-      "contentHash": "9220bae456a4d2b498d2c0dbf9ac4242e07b447cd4bef8bd85fa4eac0425ddf8"
+      "contentHash": "9220bae456a4d2b498d2c0dbf9ac4242e07b447cd4bef8bd85fa4eac0425ddf8",
+      "install_questions": [
+        {
+          "id": "brand_voice",
+          "label": "Wie klingst du? Beschreibe deinen Ton in 3-5 Adjektiven mit Beispielen.",
+          "label_en": "What do you sound like? Describe your tone in 3-5 adjectives with examples.",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "content_pillars",
+          "label": "Über welche 3-5 Themen postest du regelmäßig?",
+          "label_en": "What 3-5 topics do you regularly post about?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "content_frequency",
+          "label": "Wie oft postest du? Auf welchen Plattformen?",
+          "label_en": "How often do you post? On which platforms?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "never_topics",
+          "label": "Worüber sprichst du NIE?",
+          "label_en": "What do you NEVER talk about?",
+          "type": "textarea",
+          "required": false
+        }
+      ]
     },
     {
       "id": "email-ads-seo",
@@ -281,7 +424,37 @@
           "encoding": "utf8"
         }
       ],
-      "contentHash": "ac0d9671aeb126f8025ddd023990307f70810c3e5c9f3b3d57c1509fe5cabd88"
+      "contentHash": "ac0d9671aeb126f8025ddd023990307f70810c3e5c9f3b3d57c1509fe5cabd88",
+      "install_questions": [
+        {
+          "id": "email_list",
+          "label": "Hast du eine E-Mail-Liste? Wie groß? Welches Tool?",
+          "label_en": "Do you have an email list? How big? What tool?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "email_frequency",
+          "label": "Wie oft schickst du Newsletter?",
+          "label_en": "How often do you send newsletters?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "ads_budget",
+          "label": "Schaltest du Paid Ads? Plattform? Budget?",
+          "label_en": "Do you run paid ads? Platform? Budget?",
+          "type": "textarea",
+          "required": false
+        },
+        {
+          "id": "seo_status",
+          "label": "Betreibst du SEO? Welche Keywords?",
+          "label_en": "Do you do SEO? What keywords?",
+          "type": "textarea",
+          "required": false
+        }
+      ]
     },
     {
       "id": "finance-legal",
@@ -326,7 +499,37 @@
           "encoding": "utf8"
         }
       ],
-      "contentHash": "b622f785059452c56b90ac15b31561337335a8cb6006c3adb477cc1205b3e53c"
+      "contentHash": "b622f785059452c56b90ac15b31561337335a8cb6006c3adb477cc1205b3e53c",
+      "install_questions": [
+        {
+          "id": "revenue",
+          "label": "Wie hoch ist dein monatlicher Umsatz/Budget?",
+          "label_en": "What's your monthly revenue/budget?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "expenses",
+          "label": "Was sind deine größten laufenden Kosten?",
+          "label_en": "What are your biggest recurring expenses?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "legal_structure",
+          "label": "Rechtsform deines Unternehmens?",
+          "label_en": "Legal structure of your business?",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "contracts",
+          "label": "Welche wichtigen Verträge hast du?",
+          "label_en": "What important contracts do you have?",
+          "type": "textarea",
+          "required": false
+        }
+      ]
     },
     {
       "id": "health-energy",
@@ -367,7 +570,51 @@
           "encoding": "utf8"
         }
       ],
-      "contentHash": "10c29cbf90b94a0c36ea0298510d7afff13a2117b1a0201b9a3a0205fd1d0720"
+      "contentHash": "10c29cbf90b94a0c36ea0298510d7afff13a2117b1a0201b9a3a0205fd1d0720",
+      "install_questions": [
+        {
+          "id": "physical_health",
+          "label": "Wie ist dein aktueller Gesundheitszustand?",
+          "label_en": "What's your current health status?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "fitness",
+          "label": "Was machst du für Fitness/Sport?",
+          "label_en": "What do you do for fitness/sports?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "nutrition",
+          "label": "Wie ernährst du dich? Besonderheiten?",
+          "label_en": "How do you eat? Any specifics?",
+          "type": "textarea",
+          "required": false
+        },
+        {
+          "id": "sleep",
+          "label": "Wie viel schläfst du? Schlafrhythmus?",
+          "label_en": "How much do you sleep? Sleep rhythm?",
+          "type": "textarea",
+          "required": false
+        },
+        {
+          "id": "conditions",
+          "label": "Allergien, Unverträglichkeiten, chronisches?",
+          "label_en": "Allergies, intolerances, chronic issues?",
+          "type": "textarea",
+          "required": false
+        },
+        {
+          "id": "mental_health",
+          "label": "Wie gehst du mit Stress um?",
+          "label_en": "How do you handle stress?",
+          "type": "textarea",
+          "required": false
+        }
+      ]
     },
     {
       "id": "knowledge-learning",
@@ -417,7 +664,30 @@
           "encoding": "utf8"
         }
       ],
-      "contentHash": "b85499e071f3b93dfcb7dd5c7a0db27c11eb83755dedb492a605c56ff3c834ec"
+      "contentHash": "b85499e071f3b93dfcb7dd5c7a0db27c11eb83755dedb492a605c56ff3c834ec",
+      "install_questions": [
+        {
+          "id": "expertise",
+          "label": "Was ist dein Fachgebiet? Worin bist du Experte?",
+          "label_en": "What's your area of expertise?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "learning_goals",
+          "label": "Was willst du als nächstes lernen?",
+          "label_en": "What do you want to learn next?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "books_resources",
+          "label": "Welche Bücher/Kurse haben dich am meisten beeinflusst?",
+          "label_en": "What books/courses have influenced you most?",
+          "type": "textarea",
+          "required": false
+        }
+      ]
     },
     {
       "id": "life-admin",
@@ -458,7 +728,37 @@
           "encoding": "utf8"
         }
       ],
-      "contentHash": "952d6cc2e903b80636943f0daf385efac5997e10effc560325b5f6929c05c714"
+      "contentHash": "952d6cc2e903b80636943f0daf385efac5997e10effc560325b5f6929c05c714",
+      "install_questions": [
+        {
+          "id": "personal_finance",
+          "label": "Wie ist deine finanzielle Situation privat?",
+          "label_en": "What's your personal financial situation?",
+          "type": "textarea",
+          "required": false
+        },
+        {
+          "id": "insurance",
+          "label": "Welche Versicherungen hast du?",
+          "label_en": "What insurance do you have?",
+          "type": "textarea",
+          "required": false
+        },
+        {
+          "id": "subscriptions",
+          "label": "Welche Abos/Lizenzen zahlst du monatlich?",
+          "label_en": "What subscriptions do you pay monthly?",
+          "type": "textarea",
+          "required": false
+        },
+        {
+          "id": "important_dates",
+          "label": "Wichtige Termine die du nicht vergessen darfst?",
+          "label_en": "Important dates you must not forget?",
+          "type": "textarea",
+          "required": false
+        }
+      ]
     },
     {
       "id": "marketing-basics",
@@ -555,7 +855,51 @@
           "encoding": "utf8"
         }
       ],
-      "contentHash": "1aaec0d373c28c7dd697be79b09f676730813aef453538dc84e78491c10580f7"
+      "contentHash": "1aaec0d373c28c7dd697be79b09f676730813aef453538dc84e78491c10580f7",
+      "install_questions": [
+        {
+          "id": "demographics",
+          "label": "Wer ist dein idealer Kunde? (Alter, Branche, Standort)",
+          "label_en": "Who is your ideal customer? (Age, industry, location)",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "pain_point",
+          "label": "Was ist das größte Problem das du löst? (In den Worten deines Kunden)",
+          "label_en": "What is the biggest problem you solve? (In your customer's words)",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "desired_outcome",
+          "label": "Was will dein Kunde wirklich erreichen?",
+          "label_en": "What does your customer really want to achieve?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "core_message",
+          "label": "Der eine Satz der erklärt was du tust und warum es wichtig ist.",
+          "label_en": "The one sentence that explains what you do and why it matters.",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "primary_channel",
+          "label": "Dein Hauptkanal für Marketing? (z.B. Instagram, LinkedIn, Newsletter)",
+          "label_en": "Your primary marketing channel? (e.g. Instagram, LinkedIn, Newsletter)",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "never_say",
+          "label": "Wörter oder Phrasen die du NIE verwenden willst.",
+          "label_en": "Words or phrases you NEVER want to use.",
+          "type": "textarea",
+          "required": false
+        }
+      ]
     },
     {
       "id": "operations-workflows",
@@ -607,7 +951,37 @@
           "encoding": "utf8"
         }
       ],
-      "contentHash": "fd235a5031fd376835ced36cb7a71cd82a4878cb4bc1f6fbafc3d8294ddfc795"
+      "contentHash": "fd235a5031fd376835ced36cb7a71cd82a4878cb4bc1f6fbafc3d8294ddfc795",
+      "install_questions": [
+        {
+          "id": "tools_stack",
+          "label": "Welche Tools nutzt du täglich?",
+          "label_en": "What tools do you use daily?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "workflows",
+          "label": "Beschreibe deine 2-3 wichtigsten Workflows.",
+          "label_en": "Describe your 2-3 most important workflows.",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "automations",
+          "label": "Was hast du automatisiert?",
+          "label_en": "What have you automated?",
+          "type": "textarea",
+          "required": false
+        },
+        {
+          "id": "team",
+          "label": "Arbeitest du alleine oder im Team? Wer macht was?",
+          "label_en": "Do you work alone or with a team? Who does what?",
+          "type": "textarea",
+          "required": true
+        }
+      ]
     },
     {
       "id": "personal-life",
@@ -653,7 +1027,44 @@
           "encoding": "utf8"
         }
       ],
-      "contentHash": "f4cca8e6a8c4109a9b092c33f18eb44c136c0897e26abd480bd6851e9bfd2d70"
+      "contentHash": "f4cca8e6a8c4109a9b092c33f18eb44c136c0897e26abd480bd6851e9bfd2d70",
+      "install_questions": [
+        {
+          "id": "personal_goals",
+          "label": "Was sind deine persönlichen Ziele? (nicht Business)",
+          "label_en": "What are your personal goals? (not business)",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "relationships",
+          "label": "Wer sind die wichtigsten Menschen in deinem Leben?",
+          "label_en": "Who are the most important people in your life?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "hobbies",
+          "label": "Was machst du gerne außerhalb der Arbeit?",
+          "label_en": "What do you enjoy doing outside of work?",
+          "type": "textarea",
+          "required": false
+        },
+        {
+          "id": "daily_routine",
+          "label": "Beschreibe deinen idealen Tag.",
+          "label_en": "Describe your ideal day.",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "travel",
+          "label": "Wo lebst du? Wo reist du gerne hin?",
+          "label_en": "Where do you live? Where do you like to travel?",
+          "type": "textarea",
+          "required": false
+        }
+      ]
     },
     {
       "id": "planning-reflection",
@@ -709,7 +1120,37 @@
           "encoding": "utf8"
         }
       ],
-      "contentHash": "4ffc656b4b485c34cd2bcf86e5ce3d18873badbd969e47406c3a85b4ee233beb"
+      "contentHash": "4ffc656b4b485c34cd2bcf86e5ce3d18873badbd969e47406c3a85b4ee233beb",
+      "install_questions": [
+        {
+          "id": "weekly_routine",
+          "label": "Wie planst du deine Woche?",
+          "label_en": "How do you plan your week?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "monthly_goals",
+          "label": "Was sind deine Ziele für diesen Monat?",
+          "label_en": "What are your goals for this month?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "quarterly_okrs",
+          "label": "Hast du Quartalsziele oder OKRs?",
+          "label_en": "Do you have quarterly goals or OKRs?",
+          "type": "textarea",
+          "required": false
+        },
+        {
+          "id": "reflection_habit",
+          "label": "Wie oft reflektierst du? Was hat zuletzt funktioniert?",
+          "label_en": "How often do you reflect? What worked recently?",
+          "type": "textarea",
+          "required": true
+        }
+      ]
     },
     {
       "id": "sales-starter",
@@ -803,7 +1244,44 @@
           "encoding": "utf8"
         }
       ],
-      "contentHash": "bc2094cd92decee8b19b03a40e2a46f7a6ad7322b32c1409a42b66e99d22ebfa"
+      "contentHash": "bc2094cd92decee8b19b03a40e2a46f7a6ad7322b32c1409a42b66e99d22ebfa",
+      "install_questions": [
+        {
+          "id": "process_steps",
+          "label": "Beschreibe deinen typischen Sales-Ablauf in 4-6 Schritten.",
+          "label_en": "Describe your typical sales process in 4-6 steps.",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "lead_sources",
+          "label": "Wo kommen deine Kunden/Leads her?",
+          "label_en": "Where do your customers/leads come from?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "objection_too_expensive",
+          "label": "Wie reagierst du wenn jemand sagt 'Zu teuer'?",
+          "label_en": "How do you respond when someone says 'Too expensive'?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "objection_no_time",
+          "label": "Wie reagierst du wenn jemand sagt 'Keine Zeit'?",
+          "label_en": "How do you respond when someone says 'No time'?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "followup_timing",
+          "label": "Wann meldest du dich nach dem Erstgespräch? (z.B. 1 Tag, 3 Tage)",
+          "label_en": "When do you follow up after the first call? (e.g. 1 day, 3 days)",
+          "type": "textarea",
+          "required": true
+        }
+      ]
     },
     {
       "id": "ux-design-essentials",

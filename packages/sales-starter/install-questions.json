@@ -1,0 +1,7 @@
+[
+  {"id": "process_steps", "label": "Beschreibe deinen typischen Sales-Ablauf in 4-6 Schritten.", "label_en": "Describe your typical sales process in 4-6 steps.", "type": "textarea", "required": true},
+  {"id": "lead_sources", "label": "Wo kommen deine Kunden/Leads her?", "label_en": "Where do your customers/leads come from?", "type": "textarea", "required": true},
+  {"id": "objection_too_expensive", "label": "Wie reagierst du wenn jemand sagt 'Zu teuer'?", "label_en": "How do you respond when someone says 'Too expensive'?", "type": "textarea", "required": true},
+  {"id": "objection_no_time", "label": "Wie reagierst du wenn jemand sagt 'Keine Zeit'?", "label_en": "How do you respond when someone says 'No time'?", "type": "textarea", "required": true},
+  {"id": "followup_timing", "label": "Wann meldest du dich nach dem Erstgespräch? (z.B. 1 Tag, 3 Tage)", "label_en": "When do you follow up after the first call? (e.g. 1 day, 3 days)", "type": "textarea", "required": true}
+]
