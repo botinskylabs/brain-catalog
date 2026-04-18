@@ -1,3 +1,13 @@
+---
+title: "Messaging"
+created: "2026-04-18"
+version: 1
+category: marketing
+source: AI Brain Builder by Botinsky
+package: marketing-basics
+ai_ready: true
+---
+
 # Messaging
 
 > Was du sagst — und was du NIE sagst. Dein Agent nutzt das für jeden Text.

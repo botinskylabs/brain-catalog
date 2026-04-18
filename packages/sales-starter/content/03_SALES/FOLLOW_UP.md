@@ -1,3 +1,13 @@
+---
+title: "Follow-Up System"
+created: "2026-04-18"
+version: 1
+category: sales
+source: AI Brain Builder by Botinsky
+package: sales-starter
+ai_ready: true
+---
+
 # Follow-Up System
 
 > Wie bleibst du dran? Die meisten Verkäufe passieren im Follow-Up, nicht im ersten Gespräch.

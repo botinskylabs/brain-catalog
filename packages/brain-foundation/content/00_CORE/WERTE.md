@@ -1,3 +1,13 @@
+---
+title: "Meine Werte"
+created: "2026-04-18"
+version: 1
+category: identity
+source: AI Brain Builder by Botinsky
+package: brain-foundation
+ai_ready: true
+---
+
 # Meine Werte
 
 > Was mir wichtig ist. Der Agent orientiert sich daran bei Empfehlungen.

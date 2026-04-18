@@ -1,3 +1,13 @@
+---
+title: "Meine Vision"
+created: "2026-04-18"
+version: 1
+category: identity
+source: AI Brain Builder by Botinsky
+package: brain-foundation
+ai_ready: true
+---
+
 # Meine Vision
 
 > Wo will ich hin? Diese Datei hilft dem Agent langfristig zu denken.

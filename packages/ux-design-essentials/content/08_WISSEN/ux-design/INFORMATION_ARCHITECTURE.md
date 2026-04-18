@@ -1,3 +1,13 @@
+---
+title: "Information Architecture"
+created: "2026-04-18"
+version: 1
+category: other
+source: AI Brain Builder by Botinsky
+package: ux-design-essentials
+ai_ready: true
+---
+
 # Information Architecture
 
 > Wie Content und Funktionen strukturiert werden, damit User sie finden. Die oft unterschätzte Hälfte von UX.

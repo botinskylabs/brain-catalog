@@ -1,3 +1,13 @@
+---
+title: "Marketing-Kanäle"
+created: "2026-04-18"
+version: 1
+category: marketing
+source: AI Brain Builder by Botinsky
+package: marketing-basics
+ai_ready: true
+---
+
 # Marketing-Kanäle
 
 > Wo bist du aktiv? Fokus auf 1-2 Kanäle statt 10 halbherzig.

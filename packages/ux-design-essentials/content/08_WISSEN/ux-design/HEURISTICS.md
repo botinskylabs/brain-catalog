@@ -1,3 +1,13 @@
+---
+title: "UX Heuristiken — Jakob Nielsen's 10 Regeln"
+created: "2026-04-18"
+version: 1
+category: other
+source: AI Brain Builder by Botinsky
+package: ux-design-essentials
+ai_ready: true
+---
+
 # UX Heuristiken — Jakob Nielsen's 10 Regeln
 
 > Die fundamentalen Prinzipien jeder guten UI. Jeder Screen wird an diesen gemessen.

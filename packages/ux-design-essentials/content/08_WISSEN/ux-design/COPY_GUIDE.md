@@ -1,3 +1,13 @@
+---
+title: "Copy Guide für UI-Texte"
+created: "2026-04-18"
+version: 1
+category: other
+source: AI Brain Builder by Botinsky
+package: ux-design-essentials
+ai_ready: true
+---
+
 # Copy Guide für UI-Texte
 
 > Jedes Wort in der UI ist eine Design-Entscheidung. Diese Regeln gelten für alle UI-Texte.

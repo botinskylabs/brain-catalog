@@ -1,3 +1,13 @@
+---
+title: "Einwand-Handling"
+created: "2026-04-18"
+version: 1
+category: sales
+source: AI Brain Builder by Botinsky
+package: sales-starter
+ai_ready: true
+---
+
 # Einwand-Handling
 
 > Die häufigsten Einwände und wie du darauf reagierst.

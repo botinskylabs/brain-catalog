@@ -1,3 +1,13 @@
+---
+title: "UI Anti-Patterns — was NIE machen"
+created: "2026-04-18"
+version: 1
+category: other
+source: AI Brain Builder by Botinsky
+package: ux-design-essentials
+ai_ready: true
+---
+
 # UI Anti-Patterns — was NIE machen
 
 > Die UX-Fehler die User immer wieder nervt. Jeder Agent-Vorschlag muss diese Fallen vermeiden.
