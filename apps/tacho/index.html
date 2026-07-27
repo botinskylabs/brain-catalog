@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A0F18">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="description" content="Große GPS-Tachoanzeige für Kinder.">
+<title>Wie schnell fahren wir?</title>
+
+<style>
+  :root {
+    --ground:     #0A0F18;
+    --ground-2:   #131C2A;
+    --track:      #1E2937;
+    --ink:        #F2F5FA;
+    --ink-dim:    #7E8DA4;
+    --accent:     #FFAE2B;
+    --accent-dim: rgba(255, 174, 43, 0.15);
+    --signal:     #4ED9A4;
+    --alert:      #FF7B6B;
+
+    --font-display: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --ground:     #EDF1F6;
+      --ground-2:   #FFFFFF;
+      --track:      #D5DCE6;
+      --ink:        #0E1520;
+      --ink-dim:    #5C6B80;
+      --accent:     #B85C00;
+      --accent-dim: rgba(184, 92, 0, 0.12);
+      --signal:     #1B8A62;
+      --alert:      #C0392B;
+    }
+  }
+
+  :root[data-theme="light"] {
+    --ground:     #EDF1F6;
+    --ground-2:   #FFFFFF;
+    --track:      #D5DCE6;
+    --ink:        #0E1520;
+    --ink-dim:    #5C6B80;
+    --accent:     #B85C00;
+    --accent-dim: rgba(184, 92, 0, 0.12);
+    --signal:     #1B8A62;
+    --alert:      #C0392B;
+  }
+
+  :root[data-theme="dark"] {
+    --ground:     #0A0F18;
+    --ground-2:   #131C2A;
+    --track:      #1E2937;
+    --ink:        #F2F5FA;
+    --ink-dim:    #7E8DA4;
+    --accent:     #FFAE2B;
+    --accent-dim: rgba(255, 174, 43, 0.15);
+    --signal:     #4ED9A4;
+    --alert:      #FF7B6B;
+  }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--font-display);
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .cluster {
+    position: relative;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 1rem;
+    height: 100dvh;
+    padding: max(1rem, env(safe-area-inset-top)) 1rem max(1rem, env(safe-area-inset-bottom));
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: clamp(0.62rem, 2.4vw, 0.75rem);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  /* ---- Instrument ---- */
+
+  .dial {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 0;
+  }
+
+  .dial svg {
+    width: min(100%, 62dvh, 30rem);
+    height: auto;
+    display: block;
+  }
+
+  .arc-track { stroke: var(--track); }
+
+  .arc-value {
+    stroke: var(--accent);
+    stroke-dasharray: 706.86;
+    stroke-dashoffset: 706.86;
+  }
+
+  .tick { stroke: var(--track); }
+  .tick-major { stroke: var(--ink-dim); }
+  .tick-label {
+    fill: var(--ink-dim);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-anchor: middle;
+    dominant-baseline: middle;
+  }
+
+  .head { fill: var(--accent); }
+
+  /* Readout sits inside the dial */
+  .readout {
+    position: absolute;
+    display: grid;
+    justify-items: center;
+    gap: 0.1em;
+    pointer-events: none;
+  }
+
+  .value {
+    font-size: min(30dvh, 8.5rem);
+    font-weight: 800;
+    line-height: 0.82;
+    letter-spacing: -0.05em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .unit {
+    font-family: var(--font-mono);
+    font-size: clamp(0.7rem, 3vw, 0.95rem);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    padding-left: 0.3em;
+  }
+
+  /* ---- Kid-facing comparison ---- */
+
+  .compare {
+    display: grid;
+    gap: 0.55rem;
+    justify-items: center;
+  }
+
+  .compare-text {
+    font-size: clamp(1.05rem, 4.6vw, 1.5rem);
+    font-weight: 600;
+    text-wrap: balance;
+    max-width: 22ch;
+    transition: opacity 0.25s ease;
+  }
+
+  .record {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    background: none;
+    border: 1px solid var(--track);
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    font-variant-numeric: tabular-nums;
+    cursor: pointer;
+  }
+
+  .record:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  /* ---- Status ---- */
+
+  .status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    min-height: 1.4em;
+  }
+
+  .lamp {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--ink-dim);
+    flex: none;
+  }
+
+  .status[data-state="live"] .lamp { background: var(--signal); }
+  .status[data-state="searching"] .lamp { background: var(--accent); animation: pulse 1.4s ease-in-out infinite; }
+  .status[data-state="error"] { color: var(--alert); }
+  .status[data-state="error"] .lamp { background: var(--alert); }
+
+  @keyframes pulse { 50% { opacity: 0.25; } }
+
+  /* ---- Start / error overlay ---- */
+
+  .gate {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 1.5rem;
+    padding: 2rem 1.5rem;
+    background: var(--ground);
+    z-index: 2;
+  }
+
+  .gate[hidden] { display: none; }
+
+  .gate-title {
+    font-size: clamp(1.6rem, 7vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .gate-note {
+    color: var(--ink-dim);
+    font-size: 0.95rem;
+    max-width: 28ch;
+    line-height: 1.5;
+    text-wrap: balance;
+    margin: -0.75rem 0 0;
+  }
+
+  .go {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--ground);
+    background: var(--accent);
+    border: none;
+    border-radius: 999px;
+    padding: 1.1rem 2.75rem;
+    cursor: pointer;
+  }
+
+  .go:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cluster">
+  <p class="eyebrow">Geschwindigkeit</p>
+
+  <div class="dial">
+    <svg viewBox="0 0 400 400" aria-hidden="true">
+      <g id="ticks"></g>
+      <path class="arc-track" d="M93.93 306.07 A150 150 0 1 1 306.07 306.07"
+            fill="none" stroke-width="14" stroke-linecap="round" />
+      <path id="arc" class="arc-value" d="M93.93 306.07 A150 150 0 1 1 306.07 306.07"
+            fill="none" stroke-width="14" stroke-linecap="round" />
+      <circle id="head" class="head" cx="93.93" cy="306.07" r="9" />
+    </svg>
+
+    <div class="readout">
+      <div class="value" id="value" role="status" aria-label="Aktuelle Geschwindigkeit">–</div>
+      <div class="unit">km/h</div>
+    </div>
+  </div>
+
+  <div class="compare">
+    <p class="compare-text" id="compare">Bereit zum Losfahren</p>
+    <button class="record" id="record" type="button">Schnellste: – km/h</button>
+    <p class="status" id="status" data-state="idle"><span class="lamp"></span><span id="status-text">GPS aus</span></p>
+  </div>
+
+  <div class="gate" id="gate">
+    <h1 class="gate-title">Wie schnell fahren wir?</h1>
+    <p class="gate-note">Die App misst über GPS. Sie zeigt ungefähre Werte und ersetzt keinen Tacho.</p>
+    <button class="go" id="go" type="button">Los geht's</button>
+  </div>
+</div>
+
+<script>
+  (function () {
+    "use strict";
+
+    var MAX_KMH = 140;
+    var ARC_LEN = 706.86;
+    var SWEEP_START = 135;   // degrees, lower-left
+    var SWEEP_ANGLE = 270;
+    var CX = 200, CY = 200, R = 150;
+    var STANDSTILL = 3;      // below this we call it zero — GPS drifts when parked
+
+    var el = {
+      value: document.getElementById("value"),
+      arc: document.getElementById("arc"),
+      head: document.getElementById("head"),
+      ticks: document.getElementById("ticks"),
+      compare: document.getElementById("compare"),
+      record: document.getElementById("record"),
+      status: document.getElementById("status"),
+      statusText: document.getElementById("status-text"),
+      gate: document.getElementById("gate"),
+      go: document.getElementById("go")
+    };
+
+    var COMPARISONS = [
+      [2,   "Wir stehen"],
+      [8,   "So schnell wie beim Spazierengehen"],
+      [20,  "So schnell wie ein Roller"],
+      [32,  "So schnell wie ein Fahrrad"],
+      [45,  "So schnell wie ein Pferd im Galopp"],
+      [60,  "So schnell wie ein Hase"],
+      [80,  "So schnell wie ein Windhund"],
+      [100, "So schnell wie ein Gepard"],
+      [125, "So schnell wie ein Rennboot"],
+      [Infinity, "So schnell wie ein Segelflugzeug"]
+    ];
+
+    function polar(deg, radius) {
+      var rad = deg * Math.PI / 180;
+      return { x: CX + radius * Math.cos(rad), y: CY + radius * Math.sin(rad) };
+    }
+
+    // --- Dial ticks -------------------------------------------------------
+    (function drawTicks() {
+      var NS = "http://www.w3.org/2000/svg";
+      for (var v = 0; v <= MAX_KMH; v += 10) {
+        var major = v % 20 === 0;
+        var deg = SWEEP_START + SWEEP_ANGLE * (v / MAX_KMH);
+        var outer = polar(deg, R - 14);
+        var inner = polar(deg, R - (major ? 26 : 21));
+        var line = document.createElementNS(NS, "line");
+        line.setAttribute("x1", outer.x.toFixed(2));
+        line.setAttribute("y1", outer.y.toFixed(2));
+        line.setAttribute("x2", inner.x.toFixed(2));
+        line.setAttribute("y2", inner.y.toFixed(2));
+        line.setAttribute("stroke-width", major ? 3 : 2);
+        line.setAttribute("stroke-linecap", "round");
+        line.setAttribute("class", major ? "tick tick-major" : "tick");
+        el.ticks.appendChild(line);
+
+        if (major) {
+          var at = polar(deg, R - 44);
+          var label = document.createElementNS(NS, "text");
+          label.setAttribute("x", at.x.toFixed(2));
+          label.setAttribute("y", at.y.toFixed(2));
+          label.setAttribute("class", "tick-label");
+          label.textContent = String(v);
+          el.ticks.appendChild(label);
+        }
+      }
+    })();
+
+    // --- Rendering --------------------------------------------------------
+    var shown = 0;      // animated value on screen
+    var target = 0;     // smoothed value from GPS
+    var best = 0;
+    var live = false;
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function comparisonFor(kmh) {
+      for (var i = 0; i < COMPARISONS.length; i++) {
+        if (kmh < COMPARISONS[i][0]) return COMPARISONS[i][1];
+      }
+      return "";
+    }
+
+    function paint() {
+      var frac = Math.max(0, Math.min(1, shown / MAX_KMH));
+      el.arc.style.strokeDashoffset = (ARC_LEN * (1 - frac)).toFixed(1);
+      var head = polar(SWEEP_START + SWEEP_ANGLE * frac, R);
+      el.head.setAttribute("cx", head.x.toFixed(2));
+      el.head.setAttribute("cy", head.y.toFixed(2));
+
+      var rounded = Math.round(shown);
+      if (el.value.textContent !== String(rounded)) {
+        el.value.textContent = String(rounded);
+      }
+
+      var text = comparisonFor(rounded);
+      if (el.compare.textContent !== text) el.compare.textContent = text;
+    }
+
+    function tick() {
+      shown += (target - shown) * (reduceMotion ? 1 : 0.12);
+      if (Math.abs(target - shown) < 0.05) shown = target;
+      paint();
+      requestAnimationFrame(tick);
+    }
+
+    function setStatus(state, text) {
+      el.status.dataset.state = state;
+      el.statusText.textContent = text;
+    }
+
+    function updateRecord() {
+      el.record.textContent = "Schnellste: " + (live ? Math.round(best) : "–") + " km/h";
+    }
+
+    el.record.addEventListener("click", function () {
+      best = 0;
+      updateRecord();
+    });
+
+    // --- Speed source -----------------------------------------------------
+    var smoothed = null;
+    var last = null;   // previous fix, for the fallback calculation
+
+    function distance(a, b) {
+      var toRad = Math.PI / 180;
+      var dLat = (b.lat - a.lat) * toRad;
+      var dLon = (b.lon - a.lon) * toRad;
+      var lat1 = a.lat * toRad, lat2 = b.lat * toRad;
+      var h = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+      return 6371000 * 2 * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h));
+    }
+
+    function onPosition(pos) {
+      var c = pos.coords;
+      var kmh = null;
+
+      if (typeof c.speed === "number" && isFinite(c.speed) && c.speed >= 0) {
+        kmh = c.speed * 3.6;
+      } else if (last) {
+        // No speed from the receiver — derive it from two fixes
+        var dt = (pos.timestamp - last.t) / 1000;
+        if (dt > 0.4 && dt < 15) {
+          var d = distance(last, { lat: c.latitude, lon: c.longitude });
+          if (d > (c.accuracy || 20) / 2) kmh = (d / dt) * 3.6;
+          else kmh = 0;
+        }
+      }
+
+      last = { lat: c.latitude, lon: c.longitude, t: pos.timestamp };
+      if (kmh === null) return;
+
+      kmh = Math.min(kmh, 400);
+      smoothed = smoothed === null ? kmh : smoothed + (kmh - smoothed) * 0.4;
+      target = smoothed < STANDSTILL ? 0 : smoothed;
+
+      if (target > best) { best = target; updateRecord(); }
+
+      live = true;
+      updateRecord();
+      setStatus("live", "GPS genau auf " + Math.round(c.accuracy || 0) + " m");
+    }
+
+    function onError(err) {
+      if (err.code === err.TIMEOUT) {
+        setStatus("searching", "Suche Satelliten");
+        return;
+      }
+      target = 0;
+      smoothed = null;
+      live = false;
+      updateRecord();
+      if (err.code === err.PERMISSION_DENIED) {
+        setStatus("error", "Standort blockiert");
+        showGate(
+          "Standort ist blockiert",
+          "Erlaube den Zugriff auf den Standort in den Browser-Einstellungen und tippe dann erneut auf Start.",
+          "Nochmal versuchen"
+        );
+      } else {
+        setStatus("error", "Kein GPS-Signal");
+      }
+    }
+
+    function showGate(title, note, button) {
+      el.gate.querySelector(".gate-title").textContent = title;
+      el.gate.querySelector(".gate-note").textContent = note;
+      el.go.textContent = button;
+      el.gate.hidden = false;
+    }
+
+    // --- Keep the screen awake -------------------------------------------
+    var wakeLock = null;
+
+    async function keepAwake() {
+      if (!("wakeLock" in navigator)) return;
+      try {
+        wakeLock = await navigator.wakeLock.request("screen");
+      } catch (e) { /* battery saver or unsupported — not fatal */ }
+    }
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible" && wakeLock === null) keepAwake();
+    });
+
+    // --- Start ------------------------------------------------------------
+    var watchId = null;
+
+    el.go.addEventListener("click", function () {
+      if (!("geolocation" in navigator)) {
+        showGate(
+          "Kein GPS verfügbar",
+          "Dieser Browser kann den Standort nicht bestimmen. Probiere es in Safari oder Chrome auf dem Handy.",
+          "Nochmal versuchen"
+        );
+        return;
+      }
+
+      el.gate.hidden = true;
+      setStatus("searching", "Suche Satelliten");
+      keepAwake();
+
+      if (watchId !== null) navigator.geolocation.clearWatch(watchId);
+      watchId = navigator.geolocation.watchPosition(onPosition, onError, {
+        enableHighAccuracy: true,
+        maximumAge: 1000,
+        timeout: 12000
+      });
+    });
+
+    updateRecord();
+    paint();
+    requestAnimationFrame(tick);
+  })();
+</script>
+</body>
+</html>
