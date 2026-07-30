@@ -16,7 +16,9 @@
   }
 
   function photo(agent) {
-    return 'assets/agents/' + agent.id + '.svg';
+    // In der Einzeldatei-Fassung liegen die Bilder als Data-URI vor.
+    var inlined = window.AGENT_IMAGES;
+    return (inlined && inlined[agent.id]) || 'assets/agents/' + agent.id + '.svg';
   }
 
   function list(items) {

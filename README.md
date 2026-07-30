@@ -12,9 +12,10 @@ Jede installierte Brain-Platform-App zieht beim Start die Datei `index.json` aus
 
 ## Das Digitale Immobilienbüro
 
-Unter `docs/` liegt eine eigenständige Webseite, die das Team aus zehn spezialisierten
-KI-Agenten für den Verkauf hochwertiger Immobilien vorstellt — mit Profilbild, Mission,
-Verantwortlichkeiten, Fähigkeiten und Output je Agent.
+Unter `docs/` liegt eine eigenständige Präsentationsseite, die das Vorhaben vorstellt:
+ein Team aus zehn spezialisierten KI-Agenten für den Verkauf hochwertiger Immobilien —
+mit Profilbild, Mission, Verantwortlichkeiten, Fähigkeiten und Output je Agent, dem
+Zusammenspiel der Rollen und dem vorgeschlagenen Aufbau in drei Stufen.
 
 - `docs/index.html` — Seitenstruktur
 - `docs/agents.js` — Inhalte aller zehn Agenten (hier werden Texte gepflegt)
@@ -31,6 +32,13 @@ Die Profilbilder sind generiert. Nach Änderungen an Farben, Frisuren oder Symbo
 
 ```bash
 python3 tools/generate-avatars.py
+```
+
+Zum Verschicken oder Hochladen gibt es eine Fassung als einzelne HTML-Datei — CSS,
+JavaScript und alle Profilbilder sind darin eingebettet, es braucht keine weiteren Dateien:
+
+```bash
+python3 tools/build-singlefile.py   # -> dist/digitales-immobilienbuero.html
 ```
 
 ## Eigenes Paket einreichen
