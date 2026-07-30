@@ -7,6 +7,31 @@ Jede installierte Brain-Platform-App zieht beim Start die Datei `index.json` aus
 ## Struktur
 
 - `index.json` — der gesamte Katalog als einzelne JSON-Datei. Jedes Paket trägt sein Manifest und seine Inhalte (markdown) inline, daher kein Zip, kein Binary-Download.
+- `docs/` — statische Präsentationsseite „Das Digitale Immobilienbüro“ (siehe unten).
+- `tools/` — Hilfsskripte, u. a. der Generator für die Agenten-Profilbilder.
+
+## Das Digitale Immobilienbüro
+
+Unter `docs/` liegt eine eigenständige Webseite, die das Team aus zehn spezialisierten
+KI-Agenten für den Verkauf hochwertiger Immobilien vorstellt — mit Profilbild, Mission,
+Verantwortlichkeiten, Fähigkeiten und Output je Agent.
+
+- `docs/index.html` — Seitenstruktur
+- `docs/agents.js` — Inhalte aller zehn Agenten (hier werden Texte gepflegt)
+- `docs/app.js` — rendert Karten und Detail-Dialog
+- `docs/styles.css` — Gestaltung
+- `docs/assets/agents/*.svg` — die Profilbilder
+
+Lokal ansehen: `docs/index.html` im Browser öffnen — keine Abhängigkeiten, kein Build.
+
+Veröffentlichen über GitHub Pages: **Settings → Pages → Source: Deploy from a branch →
+Branch `main`, Ordner `/docs`**.
+
+Die Profilbilder sind generiert. Nach Änderungen an Farben, Frisuren oder Symbolen:
+
+```bash
+python3 tools/generate-avatars.py
+```
 
 ## Eigenes Paket einreichen
 

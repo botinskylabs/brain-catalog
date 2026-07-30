@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-label="Profilbild matching">
+  <defs>
+    <linearGradient id="bg-matching" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#A63E68"/>
+      <stop offset="1" stop-color="#4A1636"/>
+    </linearGradient>
+    <radialGradient id="glow-matching" cx="0.5" cy="0.2" r="0.78">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="clip-matching"><circle cx="200" cy="200" r="200"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#clip-matching)">
+    <rect width="400" height="400" fill="url(#bg-matching)"/>
+    <circle cx="200" cy="80" r="230" fill="url(#glow-matching)"/>
+    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.09" stroke-width="1">
+      <circle cx="200" cy="200" r="186"/><circle cx="200" cy="200" r="150"/>
+    </g>
+    <circle cx="200" cy="204" r="116" fill="#FFFFFF" fill-opacity="0.06"/>
+
+    <!-- Haar hinten -->
+    <g fill="#241611"><path d="M116 202 C116 122 154 90 200 90 C246 90 284 122 284 202 L284 344 L250 344 L250 192 C250 152 228 130 200 130 C172 130 150 152 150 192 L150 344 L116 344 Z"/></g>
+
+    <!-- Hals -->
+    <path d="M176 214h48v58a24 24 0 0 1-48 0z" fill="#B17D57"/>
+
+    <!-- Kleidung -->
+    <path d="M28 400 C28 320 90 288 150 280 C174 300 226 300 250 280 C310 288 372 320 372 400 Z" fill="#DCBFC9"/><path d="M172 276 C180 310 220 310 228 276 L246 282 C238 328 162 328 154 282 Z" fill="#B17D57"/><path d="M154 282 L200 320 L246 282" fill="none" stroke="#FFFFFF" stroke-opacity="0.14" stroke-width="2"/>
+
+    <!-- Ohren -->
+    <g fill="#B17D57">
+      <ellipse cx="139" cy="188" rx="9" ry="13"/><ellipse cx="261" cy="188" rx="9" ry="13"/>
+    </g>
+
+    <!-- Kopf -->
+    <ellipse cx="200" cy="180" rx="62" ry="70" fill="#C98E63"/>
+    <path d="M200 110 a62 70 0 0 1 0 140 a44 70 0 0 0 0 -140 Z" fill="#000000" fill-opacity="0.05"/>
+
+    <g fill="#2A2118" fill-opacity="0.82"><ellipse cx="177" cy="181" rx="5" ry="6.2"/><ellipse cx="223" cy="181" rx="5" ry="6.2"/></g><g fill="none" stroke="#2A2118" stroke-linecap="round"><path d="M165 163 C172 157 184 157 190 162" stroke-width="4" stroke-opacity="0.42"/><path d="M210 162 C216 157 228 157 235 163" stroke-width="4" stroke-opacity="0.42"/><path d="M200 188 v14 c0 4 3 6 7 6" stroke-width="3.4" stroke-opacity="0.24"/><path d="M184 214 C192 224 208 224 216 214" stroke-width="4.4" stroke-opacity="0.46"/></g>
+    
+
+    <!-- Haar vorn -->
+    <g fill="#241611"><path d="M130 210 C126 140 158 92 200 92 C242 92 274 140 270 210 C266 190 262 176 256 168 C254 150 240 140 200 140 C160 140 146 150 144 168 C138 176 134 190 130 210 Z"/></g>
+    
+    
+
+    <path d="M0 344c62-28 122-40 200-40s138 12 200 40" fill="none" stroke="#FFAFC7" stroke-opacity="0.20" stroke-width="2"/>
+  </g>
+
+  <!-- Rollensymbol -->
+  <g transform="translate(320 320)">
+    <circle r="55" fill="#0E1016"/>
+    <circle r="55" fill="none" stroke="#FFAFC7" stroke-opacity="0.55" stroke-width="2"/>
+    <g stroke="#FFAFC7" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="-6" cy="0" r="8.5"/><circle cx="6" cy="0" r="8.5"/></g>
+  </g>
+
+  <circle cx="200" cy="200" r="199" fill="none" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="2"/>
+</svg>
