@@ -201,6 +201,42 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -.01em
 .pillar h3 { font-size: 21px; margin-bottom: 8px; }
 .pillar p { margin: 0; color: var(--text-dim); font-size: 15.5px; }
 
+/* ------------------------------------------------------------- Concierge */
+
+.concierge {
+  display: grid; gap: 34px; margin-top: 46px;
+  grid-template-columns: minmax(220px, 280px) 1fr;
+  align-items: start;
+}
+
+.concierge-card {
+  margin: 0; padding: 34px 26px 28px; text-align: center;
+  border: 1px solid rgba(216, 183, 112, .3); border-radius: 22px;
+  background: linear-gradient(168deg, rgba(216, 183, 112, .12), rgba(12, 15, 22, .7));
+}
+.concierge-card img { width: 150px; height: 150px; border-radius: 50%; }
+.concierge-card figcaption { display: block; margin-top: 20px; }
+.concierge-card strong {
+  display: block; font-family: var(--serif); font-size: 20px; font-weight: 600;
+}
+.concierge-card span {
+  display: block; margin-top: 6px;
+  font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold);
+}
+
+.concierge-body { display: flex; flex-direction: column; gap: 30px; }
+
+.concierge-quote {
+  margin: 0; padding-left: 24px;
+  border-left: 2px solid rgba(216, 183, 112, .5);
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(21px, 2.6vw, 27px); line-height: 1.4; color: var(--gold-soft);
+}
+
+.facts { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+.fact h3 { font-size: 18px; margin-bottom: 7px; }
+.fact p { margin: 0; color: var(--text-dim); font-size: 15px; }
+
 /* ------------------------------------------------------------ Team-Grid */
 
 .team-grid {
@@ -412,6 +448,9 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -.01em
   .section { padding: 66px 0; }
   .roster img { width: 48px; height: 48px; margin-left: -14px; }
   .modal-head, .modal-mission, .detail-grid { padding-left: 24px; padding-right: 24px; }
+  .concierge { grid-template-columns: 1fr; gap: 26px; }
+  .concierge-card { padding: 28px 22px 24px; }
+  .concierge-card img { width: 120px; height: 120px; }
   .modal-head img { width: 84px; height: 84px; }
 }
 

@@ -14,14 +14,16 @@ Jede installierte Brain-Platform-App zieht beim Start die Datei `index.json` aus
 
 Unter `docs/` liegt eine eigenständige Präsentationsseite, die das Vorhaben vorstellt:
 ein Team aus zehn spezialisierten KI-Agenten für den Verkauf hochwertiger Immobilien —
-mit Profilbild, Mission, Verantwortlichkeiten, Fähigkeiten und Output je Agent, dem
-Zusammenspiel der Rollen und dem vorgeschlagenen Aufbau in drei Stufen.
+mit dem Auftritt nach außen (Real Estate Concierge), Profilbild, Mission,
+Verantwortlichkeiten, Fähigkeiten und Output je Agent, dem Zusammenspiel der Rollen
+und dem vorgeschlagenen Aufbau in drei Stufen.
 
 - `docs/index.html` — Seitenstruktur
 - `docs/agents.js` — Inhalte aller zehn Agenten (hier werden Texte gepflegt)
 - `docs/app.js` — rendert Karten und Detail-Dialog
 - `docs/styles.css` — Gestaltung
-- `docs/assets/agents/*.svg` — die Profilbilder
+- `docs/assets/agents/*.svg` — die Profilbilder der Agenten
+- `docs/assets/concierge.svg` — das Zeichen des Real Estate Concierge (gegen ein Foto austauschbar)
 
 Lokal ansehen: `docs/index.html` im Browser öffnen — keine Abhängigkeiten, kein Build.
 

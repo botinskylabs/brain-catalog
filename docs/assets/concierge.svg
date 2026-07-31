@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-label="Zeichen des Real Estate Concierge">
+  <defs>
+    <linearGradient id="c-disc" x1="0.1" y1="0" x2="0.85" y2="1">
+      <stop offset="0" stop-color="#F6E4B6"/>
+      <stop offset="0.5" stop-color="#D8B770"/>
+      <stop offset="1" stop-color="#95742C"/>
+    </linearGradient>
+    <radialGradient id="c-sheen" cx="0.35" cy="0.24" r="0.72">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <circle cx="200" cy="200" r="200" fill="url(#c-disc)"/>
+  <circle cx="200" cy="200" r="200" fill="url(#c-sheen)"/>
+  <g fill="none" stroke="#3A2D10" stroke-opacity="0.16" stroke-width="1.5">
+    <circle cx="200" cy="200" r="182"/>
+    <circle cx="200" cy="200" r="168"/>
+  </g>
+
+  <!-- Schlüssel, dessen Kopf ein Haus ist -->
+  <g fill="none" stroke="#231B08" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M130 156 L200 92 L270 156"/>
+    <path d="M148 148 V214 h104 v-66"/>
+    <path d="M200 214 V308"/>
+    <path d="M200 254 H240"/>
+    <path d="M200 284 H232"/>
+  </g>
+  <circle cx="200" cy="176" r="17" fill="none" stroke="#231B08" stroke-width="12"/>
+
+  <circle cx="200" cy="200" r="199" fill="none" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="2"/>
+</svg>

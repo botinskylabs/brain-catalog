@@ -35,8 +35,9 @@ images = {
     name[:-4]: data_uri(open(os.path.join(agent_dir, name), encoding='utf-8').read())
     for name in sorted(os.listdir(agent_dir)) if name.endswith('.svg')
 }
+images['__concierge'] = data_uri(read('assets', 'concierge.svg'))
 images_js = 'window.AGENT_IMAGES = {\n' + ',\n'.join(
-    '  %s: "%s"' % (slug, uri) for slug, uri in images.items()
+    '  "%s": "%s"' % (slug, uri) for slug, uri in images.items()
 ) + '\n};'
 
 # Kopf und Rumpf der Seite extrahieren
@@ -44,6 +45,7 @@ title = re.search(r'<title>(.*?)</title>', html, re.S).group(1)
 body = re.search(r'<body>(.*)</body>', html, re.S).group(1)
 body = body.replace('<script src="agents.js"></script>', '')
 body = body.replace('<script src="app.js"></script>', '')
+body = body.replace('src="assets/concierge.svg"', 'src="' + images['__concierge'] + '"')
 
 page = (
     '<title>%s</title>\n' % title +
