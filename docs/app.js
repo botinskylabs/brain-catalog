@@ -17,9 +17,11 @@
   }
 
   function photo(agent) {
-    // In der Einzeldatei-Fassung liegen die Bilder als Data-URI vor.
+    // Reihenfolge: eingebettet (Einzeldatei) > Foto > Platzhalter-Silhouette.
     var inlined = window.AGENT_IMAGES;
-    return (inlined && inlined[agent.id]) || 'assets/agents/' + (agent.photo || agent.id + '.svg');
+    if (inlined && inlined[agent.id]) return inlined[agent.id];
+    var photos = window.AGENT_PHOTOS || {};
+    return 'assets/agents/' + (photos[agent.id] || agent.photo || agent.id + '.svg');
   }
 
   function block(title, intro, items) {
