@@ -7,6 +7,42 @@ Jede installierte Brain-Platform-App zieht beim Start die Datei `index.json` aus
 ## Struktur
 
 - `index.json` — der gesamte Katalog als einzelne JSON-Datei. Jedes Paket trägt sein Manifest und seine Inhalte (markdown) inline, daher kein Zip, kein Binary-Download.
+- `docs/` — statische Präsentationsseite „Das Digitale Immobilienbüro“ (siehe unten).
+- `tools/` — Hilfsskripte, u. a. der Generator für die Agenten-Profilbilder.
+
+## Das Digitale Immobilienbüro
+
+Unter `docs/` liegt eine eigenständige Präsentationsseite, die das Vorhaben vorstellt:
+ein Team aus zehn spezialisierten KI-Agenten für den Verkauf hochwertiger Immobilien —
+mit dem Auftritt nach außen (Real Estate Concierge), Profilbild, Mission,
+Verantwortlichkeiten, Fähigkeiten und Output je Agent, dem Zusammenspiel der Rollen
+und dem vorgeschlagenen Aufbau in drei Stufen.
+
+- `docs/index.html` — Seitenstruktur
+- `docs/agents.js` — Inhalte aller zehn Agenten (hier werden Texte gepflegt)
+- `docs/app.js` — rendert Karten und Detail-Dialog
+- `docs/styles.css` — Gestaltung
+- `docs/assets/agents/*.svg` — die Portraitplatten der Agenten (Platzhalter, gegen Fotos austauschbar)
+- `docs/assets/concierge.svg` — Portrait des Real Estate Concierge (ebenso austauschbar)
+- `docs/SEITE.md` — die komplette Seite als Text: Inhalte, Aufbau, Gestaltung, offene Punkte
+
+Lokal ansehen: `docs/index.html` im Browser öffnen — keine Abhängigkeiten, kein Build.
+
+Veröffentlichen über GitHub Pages: **Settings → Pages → Source: Deploy from a branch →
+Branch `main`, Ordner `/docs`**.
+
+Die Profilbilder sind generiert. Nach Änderungen an Farben, Frisuren oder Symbolen:
+
+```bash
+python3 tools/generate-avatars.py
+```
+
+Zum Verschicken oder Hochladen gibt es eine Fassung als einzelne HTML-Datei — CSS,
+JavaScript und alle Profilbilder sind darin eingebettet, es braucht keine weiteren Dateien:
+
+```bash
+python3 tools/build-singlefile.py   # -> dist/digitales-immobilienbuero.html
+```
 
 ## Eigenes Paket einreichen
 

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" width="300" height="400" role="img" aria-label="Portrait negotiation">
+  <defs>
+    <linearGradient id="bg-negotiation" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#EAE8E4"/>
+      <stop offset="1" stop-color="#D1CFCB"/>
+    </linearGradient>
+    <clipPath id="clip-negotiation"><rect width="300" height="400"/></clipPath>
+  </defs>
+
+  <rect width="300" height="400" fill="url(#bg-negotiation)"/>
+
+  <g clip-path="url(#clip-negotiation)">
+    <g transform="translate(-30 6) scale(0.9)" fill="#2E3035">
+      
+      <path d="M176 214h48v58a24 24 0 0 1-48 0z"/>
+      <path d="M18 440 C18 330 85 292 150 282 C174 302 226 302 250 282 C315 292 382 330 382 440 Z"/>
+      <ellipse cx="200" cy="180" rx="62" ry="70"/>
+      <path d="M142 184 C144 246 170 272 200 272 C230 272 256 246 258 184 C252 224 232 246 200 246 C168 246 148 224 142 184 Z"/><path d="M180 202 C188 197 212 197 220 202 C213 209 187 209 180 202 Z"/>
+      <path d="M130 210 C126 140 158 92 200 92 C242 92 274 140 270 210 C266 190 262 176 256 168 C254 150 240 140 200 140 C160 140 146 150 144 168 C138 176 134 190 130 210 Z"/>
+    </g>
+  </g>
+</svg>

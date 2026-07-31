@@ -1,0 +1,1110 @@
+<title>Das Digitale Immobilienbüro — Projektvorstellung</title>
+<style>
+/* ==========================================================================
+   Das Digitale Immobilienbüro — Stylesheet
+   Reduziert, flächig, Grau in Weiß. Struktur entsteht durch Haarlinien
+   und Weißraum, nicht durch Farbe.
+   ========================================================================== */
+
+:root {
+  --paper:     #F4F3F0;
+  --surface:   #FFFFFF;
+  --surface-2: #EDECE8;
+  --ink:       #17181C;
+  --ink-soft:  #5F6169;
+  --ink-mute:  #8B8D93;
+  --rule:      #DFDDD8;
+  --rule-soft: #EAE8E4;
+  --photo:     grayscale(1);
+
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --wrap: 1240px;
+  --gutter: 40px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:     #131417;
+    --surface:   #1A1C20;
+    --surface-2: #202329;
+    --ink:       #EFEEEB;
+    --ink-soft:  #A3A5AB;
+    --ink-mute:  #7C7E85;
+    --rule:      #2C2F35;
+    --rule-soft: #24272C;
+    --photo:     grayscale(1) brightness(.74) contrast(1.02);
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper:     #131417;
+  --surface:   #1A1C20;
+  --surface-2: #202329;
+  --ink:       #EFEEEB;
+  --ink-soft:  #A3A5AB;
+  --ink-mute:  #7C7E85;
+  --rule:      #2C2F35;
+  --rule-soft: #24272C;
+  --photo:     grayscale(1) brightness(.74) contrast(1.02);
+}
+
+:root[data-theme="light"] {
+  --paper:     #F4F3F0;
+  --surface:   #FFFFFF;
+  --surface-2: #EDECE8;
+  --ink:       #17181C;
+  --ink-soft:  #5F6169;
+  --ink-mute:  #8B8D93;
+  --rule:      #DFDDD8;
+  --rule-soft: #EAE8E4;
+  --photo:     grayscale(1);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16.5px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { width: min(var(--wrap), calc(100% - var(--gutter) * 2)); margin-inline: auto; }
+
+a { color: inherit; }
+
+h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 400; letter-spacing: -.015em; }
+
+.label {
+  display: block;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: .24em; text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.num { font-variant-numeric: tabular-nums; }
+
+.skip {
+  position: absolute; left: -9999px; top: 0; z-index: 99;
+  background: var(--ink); color: var(--paper); padding: 12px 18px; font-size: 14px;
+}
+.skip:focus { left: 0; }
+
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+/* --------------------------------------------------------------- Header */
+
+.site-header {
+  position: sticky; top: 0; z-index: 40;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.header-inner {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 32px; padding: 20px 0;
+}
+
+.brand { text-decoration: none; display: flex; align-items: baseline; gap: 14px; }
+.brand strong { font-family: var(--serif); font-size: 19px; font-weight: 400; letter-spacing: .01em; }
+.brand .label { display: inline-block; }
+
+.site-nav { display: flex; gap: 30px; }
+.site-nav a {
+  text-decoration: none; font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--ink-soft); padding-bottom: 2px;
+  border-bottom: 1px solid transparent; transition: color .2s, border-color .2s;
+}
+.site-nav a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+/* ----------------------------------------------------------------- Hero */
+
+.hero { padding: 96px 0 0; }
+
+.hero-grid {
+  display: grid; gap: 48px;
+  grid-template-columns: 1.35fr 1fr;
+  align-items: end;
+  padding-bottom: 64px;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 5.4vw, 76px);
+  line-height: 1.06;
+  margin-top: 26px;
+  text-wrap: balance;
+}
+.hero h1 em { font-style: italic; color: var(--ink-soft); }
+
+.hero-side { padding-bottom: 10px; }
+.hero-side p { margin: 0 0 18px; color: var(--ink-soft); max-width: 46ch; }
+.hero-side p:first-child { color: var(--ink); font-size: 18px; }
+
+/* Kontaktbogen: alle zehn Portraits als Streifen */
+.filmstrip {
+  display: grid; grid-template-columns: repeat(10, 1fr);
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+.filmstrip figure { margin: 0; position: relative; }
+.filmstrip img {
+  display: block; width: 100%; height: 158px; object-fit: cover; object-position: 50% 18%;
+  filter: var(--photo);
+}
+.filmstrip figure + figure { border-left: 1px solid var(--rule-soft); }
+.filmstrip figcaption {
+  position: absolute; left: 10px; bottom: 8px;
+  font-size: 10px; letter-spacing: .14em; color: var(--ink);
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  padding: 2px 6px;
+}
+
+/* ------------------------------------------------------------- Sections */
+
+.section { padding: 104px 0; border-top: 1px solid var(--rule); }
+.section:first-of-type { border-top: 0; }
+
+.section-head { display: grid; grid-template-columns: 1.35fr 1fr; gap: 48px; align-items: start; }
+.section-head h2 { font-size: clamp(30px, 3.8vw, 46px); line-height: 1.12; margin-top: 22px; text-wrap: balance; }
+.section-head p { margin: 0; color: var(--ink-soft); max-width: 48ch; }
+
+/* Aussagen in Spalten, durch Linien getrennt */
+.columns {
+  display: grid; gap: 0; margin-top: 64px;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--rule);
+}
+.columns > * {
+  padding: 30px 32px 8px 0;
+  border-right: 1px solid var(--rule-soft);
+}
+.columns > *:last-child { border-right: 0; }
+.columns h3 { font-size: 21px; margin-bottom: 10px; }
+.columns p { margin: 0; color: var(--ink-soft); font-size: 15.5px; max-width: 34ch; }
+
+/* ------------------------------------------------------------- Portraits */
+
+.team-grid {
+  display: grid; gap: 1px; margin-top: 64px;
+  grid-template-columns: repeat(5, 1fr);
+  background: var(--rule-soft);
+  border: 1px solid var(--rule-soft);
+}
+
+.agent {
+  display: block; width: 100%; text-align: left;
+  background: var(--surface); border: 0; cursor: pointer;
+  padding: 0 0 24px; font: inherit; color: inherit;
+  transition: background .2s;
+}
+.agent:hover { background: var(--surface-2); }
+.agent:hover .agent-photo { filter: var(--photo) contrast(1.06); }
+
+.agent-photo {
+  display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover;
+  filter: var(--photo);
+  transition: filter .3s;
+}
+
+.agent-meta { display: block; padding: 18px 20px 0; }
+.agent-meta .label { margin-bottom: 8px; }
+.agent-name { display: block; font-family: var(--serif); font-size: 19px; line-height: 1.25; }
+.agent-role { display: block; margin-top: 4px; font-size: 14px; color: var(--ink-mute); }
+.agent-mission { margin: 10px 0 0; font-size: 14px; color: var(--ink-soft); }
+
+/* ------------------------------------------------------------- Concierge */
+
+.concierge { display: grid; gap: 56px; grid-template-columns: 300px 1fr; margin-top: 64px; align-items: start; }
+.concierge figure { margin: 0; }
+.concierge figure img {
+  display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover;
+  filter: var(--photo); border: 1px solid var(--rule);
+}
+.concierge figcaption { margin-top: 14px; }
+.concierge figcaption strong { display: block; font-family: var(--serif); font-size: 20px; font-weight: 400; }
+.concierge figcaption .label { margin-top: 6px; }
+
+blockquote.pull {
+  margin: 0 0 44px; padding: 0;
+  font-family: var(--serif); font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.28; letter-spacing: -.015em; text-wrap: balance;
+}
+
+.stack { display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.stack > article {
+  padding: 26px 0; border-bottom: 1px solid var(--rule-soft);
+  display: grid; grid-template-columns: 240px 1fr; gap: 32px;
+}
+.stack > article:last-child { border-bottom: 0; }
+.stack h3 { font-size: 19px; }
+.stack p { margin: 0; color: var(--ink-soft); font-size: 15.5px; max-width: 56ch; }
+
+/* ------------------------------------------------------------ Ablaufkette */
+
+.chain { list-style: none; margin: 64px 0 0; padding: 0; border-top: 1px solid var(--rule); }
+.chain li {
+  display: grid; grid-template-columns: 60px 220px 1fr; gap: 24px; align-items: baseline;
+  padding: 22px 0; border-bottom: 1px solid var(--rule-soft);
+}
+.chain .num { font-size: 12px; letter-spacing: .14em; color: var(--ink-mute); }
+.chain strong { font-family: var(--serif); font-size: 20px; font-weight: 400; }
+.chain span:last-child { color: var(--ink-soft); font-size: 15.5px; }
+.chain li.final strong { font-style: italic; }
+
+/* --------------------------------------------------------------- Modell */
+
+.split {
+  display: grid; gap: 0; margin-top: 64px;
+  grid-template-columns: 1fr 1fr; border-top: 1px solid var(--rule);
+}
+.split > article { padding: 32px 40px 32px 0; border-right: 1px solid var(--rule-soft); }
+.split > article:last-child { border-right: 0; padding-left: 40px; padding-right: 0; }
+.split h3 { font-size: 22px; margin-bottom: 14px; }
+.split ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.split li { padding-left: 18px; position: relative; color: var(--ink-soft); font-size: 15.5px; }
+.split li::before {
+  content: ""; position: absolute; left: 0; top: .78em;
+  width: 8px; height: 1px; background: var(--ink-mute);
+}
+
+.note {
+  margin: 56px 0 0; padding-top: 26px; border-top: 1px solid var(--rule);
+  color: var(--ink-mute); font-size: 14px; max-width: 68ch;
+}
+
+.closing {
+  margin: 64px 0 0; max-width: 34ch;
+  font-family: var(--serif); font-size: clamp(22px, 2.6vw, 30px); line-height: 1.3;
+  letter-spacing: -.015em;
+}
+
+/* --------------------------------------------------------------- Footer */
+
+.site-footer { border-top: 1px solid var(--rule); padding: 40px 0 64px; }
+.footer-inner { display: flex; flex-wrap: wrap; gap: 12px 48px; justify-content: space-between; }
+.footer-inner p { margin: 0; font-size: 13.5px; color: var(--ink-mute); }
+
+/* ---------------------------------------------------------------- Panel */
+
+.panel-backdrop {
+  position: fixed; inset: 0; z-index: 60;
+  background: color-mix(in srgb, var(--ink) 34%, transparent);
+  opacity: 0; transition: opacity .3s;
+}
+.panel-backdrop[hidden] { display: none; }
+.panel-open .panel-backdrop { opacity: 1; }
+
+.panel {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 61;
+  width: min(680px, 100%);
+  background: var(--surface);
+  border-left: 1px solid var(--rule);
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform .34s cubic-bezier(.4, 0, .2, 1);
+}
+.panel[hidden] { display: none; }
+.panel-open .panel { transform: translateX(0); }
+
+.panel-close {
+  position: absolute; top: 26px; right: 30px;
+  background: none; border: 0; cursor: pointer; padding: 6px;
+  font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft);
+}
+.panel-close:hover { color: var(--ink); }
+
+.panel-head { padding: 64px 56px 30px; border-bottom: 1px solid var(--rule); }
+.panel-head img {
+  display: block; width: 108px; aspect-ratio: 3 / 4; object-fit: cover;
+  filter: var(--photo); margin-bottom: 24px; border: 1px solid var(--rule);
+}
+.panel-head h2 { font-size: clamp(28px, 4vw, 38px); line-height: 1.1; margin-top: 12px; }
+.panel-head .agent-role { font-size: 16px; margin-top: 8px; }
+.panel-mission {
+  margin: 0; padding: 30px 56px 0;
+  font-family: var(--serif); font-size: 21px; line-height: 1.4;
+}
+
+.detail { padding: 34px 56px 64px; display: grid; gap: 34px; }
+.detail section { border-top: 1px solid var(--rule-soft); padding-top: 22px; }
+.detail h3 { margin-bottom: 16px; }
+.detail .intro { margin: -6px 0 14px; color: var(--ink-soft); font-size: 15px; }
+.detail ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; }
+.detail li { padding-left: 20px; position: relative; color: var(--ink-soft); font-size: 15.5px; }
+.detail li::before {
+  content: ""; position: absolute; left: 0; top: .78em;
+  width: 9px; height: 1px; background: var(--ink-mute);
+}
+.detail .why p { margin: 0; color: var(--ink); font-size: 16px; max-width: 58ch; }
+
+/* ------------------------------------------------------------ Responsive */
+
+@media (max-width: 1080px) {
+  .team-grid { grid-template-columns: repeat(3, 1fr); }
+  .filmstrip { grid-template-columns: repeat(5, 1fr); }
+  .filmstrip figure:nth-child(n+6) { border-top: 1px solid var(--rule-soft); }
+}
+
+@media (max-width: 880px) {
+  :root { --gutter: 24px; }
+  .site-nav { display: none; }
+  .hero { padding-top: 56px; }
+  .hero-grid, .section-head { grid-template-columns: 1fr; gap: 26px; }
+  .hero-grid { padding-bottom: 44px; }
+  .section { padding: 68px 0; }
+  .columns { grid-template-columns: 1fr; }
+  .columns > * { border-right: 0; border-bottom: 1px solid var(--rule-soft); padding: 24px 0; }
+  .columns > *:last-child { border-bottom: 0; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .concierge { grid-template-columns: 1fr; gap: 34px; }
+  .concierge figure { max-width: 220px; }
+  .stack > article, .chain li { grid-template-columns: 1fr; gap: 8px; }
+  .split { grid-template-columns: 1fr; }
+  .split > article { border-right: 0; border-bottom: 1px solid var(--rule-soft); padding: 26px 0; }
+  .split > article:last-child { padding-left: 0; border-bottom: 0; }
+  .panel-head { padding: 56px 26px 26px; }
+  .panel-mission { padding: 26px 26px 0; }
+  .detail { padding: 28px 26px 56px; }
+  .panel-close { top: 18px; right: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition-duration: .001ms !important; }
+}
+</style>
+<a class="skip" href="#team">Direkt zum Team</a>
+
+<header class="site-header" id="top">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top">
+      <strong>Das Digitale Immobilienbüro</strong>
+      <span class="label">Projektvorstellung</span>
+    </a>
+    <nav class="site-nav" aria-label="Inhalt">
+      <a href="#auftritt">Auftritt</a>
+      <a href="#team">Das Team</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#modell">Modell</a>
+      <a href="#aufbau">Aufbau</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="label">Konzept · Stand Juli 2026</span>
+          <h1>Ein Ansprechpartner.<br><em>Zehn Spezialisten dahinter.</em></h1>
+        </div>
+        <div class="hero-side">
+          <p>Ein Büro aus digitalen Spezialisten für die Vermittlung hochwertiger Immobilien.</p>
+          <p>
+            Nicht eine einzelne KI, sondern zehn Rollen mit klar geschnittenen
+            Verantwortungsbereichen – wie in einem Immobilienunternehmen. Nach außen
+            bleibt es eine Person: der Real Estate Concierge.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="filmstrip" id="filmstrip" aria-hidden="true"></div>
+  </section>
+
+  <!-- IDEE -->
+  <section class="section" id="idee">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="label">Die Idee</span>
+          <h2>Kein Werkzeug. Ein Büro.</h2>
+        </div>
+        <p>
+          Eine einzelne KI ist ein Assistent. Zehn Rollen mit klaren Zuständigkeiten
+          sind eine Organisation – mit Übergaben und einer Führung, die sie zusammenhält.
+        </p>
+      </div>
+
+      <div class="columns">
+        <article>
+          <h3>Skalierbar</h3>
+          <p>Jede weitere Immobilie und jeder weitere Käufer laufen durch dieselben Rollen. Mehr Volumen heißt nicht mehr Aufwand.</p>
+        </article>
+        <article>
+          <h3>Nachvollziehbar</h3>
+          <p>Jede Aufgabe hat einen Verantwortlichen. Jederzeit sichtbar, wer was getan hat und warum eine Entscheidung so gefallen ist.</p>
+        </article>
+        <article>
+          <h3>Kontinuierlich besser</h3>
+          <p>Jede Rolle lernt in ihrem Bereich weiter: bessere Leads, bessere Texte, bessere Argumente.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUFTRITT -->
+  <section class="section" id="auftritt">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="label">Auftritt nach außen</span>
+          <h2>Vorne steht ein Mensch</h2>
+        </div>
+        <p>
+          Der Markt sieht kein System und keine Software. Er sieht einen Ansprechpartner.
+          Das Büro arbeitet dahinter.
+        </p>
+      </div>
+
+      <div class="concierge">
+        <figure>
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgNDAwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJQb3J0cmFpdCBkZXMgUmVhbCBFc3RhdGUgQ29uY2llcmdlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYy1iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMC4zNSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNFRkVERTkiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRDhENkQxIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0idXJsKCNjLWJnKSIvPgogIDxnIGNsaXAtcGF0aD0iaW5zZXQoMCkiPgogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTMwIDYpIHNjYWxlKDAuOSkiIGZpbGw9IiMyNDI2MkEiPgogICAgICA8cGF0aCBkPSJNMTc2IDIxNGg0OHY1OGEyNCAyNCAwIDAgMS00OCAweiIvPgogICAgICA8cGF0aCBkPSJNMTQgNDQwIEMxNCAzMzAgODIgMjkyIDE1MCAyODIgQzE3NCAzMDIgMjI2IDMwMiAyNTAgMjgyIEMzMTggMjkyIDM4NiAzMzAgMzg2IDQ0MCBaIi8+CiAgICAgIDxlbGxpcHNlIGN4PSIyMDAiIGN5PSIxODAiIHJ4PSI2MiIgcnk9IjcwIi8+CiAgICAgIDxwYXRoIGQ9Ik0xMzAgMjEwIEMxMjYgMTQwIDE1OCA5MiAyMDAgOTIgQzI0MiA5MiAyNzQgMTQwIDI3MCAyMTAgQzI2NiAxOTAgMjYyIDE3NiAyNTYgMTY4IEMyNTQgMTUwIDI0MCAxNDAgMjAwIDE0MCBDMTYwIDE0MCAxNDYgMTUwIDE0NCAxNjggQzEzOCAxNzYgMTM0IDE5MCAxMzAgMjEwIFoiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="Portrait des Real Estate Concierge" width="300" height="400">
+          <figcaption>
+            <strong>Konstantin Botinsky</strong>
+            <span class="label">Real Estate Concierge</span>
+          </figcaption>
+        </figure>
+
+        <div>
+          <blockquote class="pull">
+            „Ich verkaufe Ihnen nichts. Ich sorge dafür, dass Sie finden,
+            was Sie suchen – Ihr Haus oder Ihr Investment.“
+          </blockquote>
+
+          <div class="stack">
+            <article>
+              <h3>Kein Makler, ein Concierge</h3>
+              <p>Ich vertrete kein Objekt, sondern die Suche. Wer sucht, bekommt jemanden an die Seite gestellt, der zuhört, filtert und vorsortiert.</p>
+            </article>
+            <article>
+              <h3>Für den Suchenden kostenfrei</h3>
+              <p>Die Begleitung kostet den Suchenden nichts. Vergütet wird die Vermittlung über die Verkäuferseite – als Tippgeber, nicht als Verkäufer.</p>
+            </article>
+            <article>
+              <h3>Zehn Spezialisten im Rücken</h3>
+              <p>Was nach einem einzelnen Ansprechpartner aussieht, ist die Arbeit eines ganzen Büros: Recherche, Objektwissen, Matching, Betreuung.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section" id="team">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="label">Das Team</span>
+          <h2>Zehn Rollen, ein Verantwortungsbereich pro Kopf</h2>
+        </div>
+        <p>
+          Ein Klick auf ein Portrait öffnet Mission, Verantwortlichkeiten, Fähigkeiten
+          und Output der jeweiligen Rolle.
+        </p>
+      </div>
+
+      <div class="team-grid" id="teamGrid"></div>
+    </div>
+  </section>
+
+  <!-- ABLAUF -->
+  <section class="section" id="ablauf">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="label">Ablauf</span>
+          <h2>Vom ersten Kontakt bis zur Unterschrift</h2>
+        </div>
+        <p>
+          Die Rollen arbeiten nicht nebeneinander, sondern übergeben in einer festen Kette.
+          Zwei Rollen liegen quer darüber: Organisation und Führung.
+        </p>
+      </div>
+
+      <ol class="chain">
+        <li><span class="num">01</span><strong>Research</strong><span>Käufer und Multiplikatoren finden</span></li>
+        <li><span class="num">02</span><strong>Outreach</strong><span>Kontakte in Gespräche verwandeln</span></li>
+        <li><span class="num">04</span><strong>Buyer Matching</strong><span>Käuferprofil und Objekt abgleichen</span></li>
+        <li><span class="num">03</span><strong>Property</strong><span>Jede Frage zum Objekt beantworten</span></li>
+        <li><span class="num">08</span><strong>Negotiation</strong><span>Verhandlung strukturiert vorbereiten</span></li>
+        <li class="final"><span class="num">—</span><strong>Abschluss</strong><span>Notartermin und Übergabe</span></li>
+      </ol>
+
+      <div class="split">
+        <article>
+          <h3>Dauerhaft im Hintergrund</h3>
+          <ul>
+            <li><strong>Content</strong> baut Vertrauen auf, bevor jemand anruft</li>
+            <li><strong>Relationship</strong> hält jeden Kontakt warm, auch über Monate</li>
+            <li><strong>Market Intelligence</strong> hält jede Entscheidung auf aktuellem Stand</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Die Klammer</h3>
+          <ul>
+            <li><strong>Operations</strong> hält CRM, Termine, Dokumente und Fristen sauber</li>
+            <li><strong>Executive</strong> setzt Prioritäten, erkennt Engpässe, liefert das tägliche Briefing</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODELL -->
+  <section class="section" id="modell">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="label">Zusammenarbeit</span>
+          <h2>Wer was einbringt</h2>
+        </div>
+        <p>
+          Vorschlag für die Aufteilung zwischen Objektseite und Käuferseite.
+          Konditionen sind offen und gehören ins Gespräch.
+        </p>
+      </div>
+
+      <div class="split">
+        <article>
+          <h3>Jirko — Objekte und Marktzugang</h3>
+          <ul>
+            <li>Zugang zu Objekten und Eigentümern</li>
+            <li>Bewertung und Einschätzung vor Ort</li>
+            <li>Bestehende Kontakte im Markt</li>
+            <li>Fachliche Prüfung im Einzelfall</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Concierge und Büro — Käuferseite und System</h3>
+          <ul>
+            <li>Aufbau und Betrieb der zehn Rollen</li>
+            <li>Käuferrecherche, Ansprache, Betreuung</li>
+            <li>Auftritt nach außen und Content</li>
+            <li>Dokumentation aller Vorgänge im CRM</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="stack" style="margin-top:64px">
+        <article>
+          <h3>Stufe 1 — Fremde Objekte</h3>
+          <p>Vermittelt wird, was über die Objektseite hereinkommt. Das System beweist, dass es Käufer findet, die sonst niemand erreicht. Erlös aus der Vermittlung, aufgeteilt nach Beitrag.</p>
+        </article>
+        <article>
+          <h3>Stufe 2 — Eigene Objekte</h3>
+          <p>Sobald der Käuferzugang trägt, lohnt es sich, selbst zu halten statt nur zu vermitteln. Aus der Provision wird eine Marge.</p>
+        </article>
+        <article>
+          <h3>Stufe 3 — Das System als Produkt</h3>
+          <p>Was für ein Büro funktioniert, funktioniert für viele. Das Büro lässt sich als Ganzes lizenzieren oder abgeben – dann ist nicht die einzelne Immobilie der Wert, sondern der Apparat dahinter.</p>
+        </article>
+      </div>
+
+      <p class="note">
+        Alle drei Stufen sind Vorschläge, keine Zusagen. Vergütungsmodelle in der
+        Immobilienvermittlung sind rechtlich geregelt; die konkrete Ausgestaltung
+        gehört vor dem Start fachlich geprüft.
+      </p>
+    </div>
+  </section>
+
+  <!-- AUFBAU -->
+  <section class="section" id="aufbau">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="label">Aufbau</span>
+          <h2>Das Büro entsteht in drei Schritten</h2>
+        </div>
+        <p>
+          Nicht alle zehn Rollen müssen gleichzeitig existieren. Zuerst das, was Käufer
+          bringt, dann das, was Gespräche trägt, zuletzt das, was skaliert.
+        </p>
+      </div>
+
+      <div class="stack" style="margin-top:64px">
+        <article>
+          <h3>Käufer und Struktur</h3>
+          <p><strong>Research · Outreach · Operations.</strong> Der Pool potenzieller Käufer wächst, jeder Kontakt landet sauber im CRM, aus Recherche werden Gespräche.</p>
+        </article>
+        <article>
+          <h3>Gespräche und Objektwissen</h3>
+          <p><strong>Property · Buyer Matching · Relationship.</strong> Jede Frage zum Objekt ist beantwortbar, jeder Käufer bekommt das passende Objekt, kein Interessent geht verloren.</p>
+        </article>
+        <article>
+          <h3>Reichweite und Steuerung</h3>
+          <p><strong>Content · Market Intelligence · Negotiation · Executive.</strong> Vertrauen entsteht vor dem Erstkontakt, Entscheidungen beruhen auf aktuellen Daten, eine Instanz hält alles zusammen.</p>
+        </article>
+      </div>
+
+      <p class="closing">
+        Am Ende steht kein Werkzeug, das jemand bedient, sondern ein Büro, das arbeitet.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p>Das Digitale Immobilienbüro — Projektvorstellung</p>
+    <p>Konzeptstand Juli 2026 · kontakt@digitales-immobilienbuero.de</p>
+  </div>
+</footer>
+
+<!-- Detailansicht -->
+<div class="panel-backdrop" id="backdrop" hidden></div>
+<aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="panelName" hidden>
+  <button class="panel-close" type="button" id="panelClose">Schließen</button>
+  <div id="panelBody"></div>
+</aside>
+
+<script>
+window.AGENT_IMAGES = {
+  "content": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgNDAwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJQb3J0cmFpdCBjb250ZW50Ij4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmctY29udGVudCIgeDE9IjAiIHkxPSIwIiB4Mj0iMC4zNSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNGMkYwRUMiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRDhENkQzIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGNsaXBQYXRoIGlkPSJjbGlwLWNvbnRlbnQiPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIi8+PC9jbGlwUGF0aD4KICA8L2RlZnM+CgogIDxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2JnLWNvbnRlbnQpIi8+CgogIDxnIGNsaXAtcGF0aD0idXJsKCNjbGlwLWNvbnRlbnQpIj4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0zMCA2KSBzY2FsZSgwLjkpIiBmaWxsPSIjM0EzQzQyIj4KICAgICAgCiAgICAgIDxwYXRoIGQ9Ik0xNzYgMjE0aDQ4djU4YTI0IDI0IDAgMCAxLTQ4IDB6Ii8+CiAgICAgIDxwYXRoIGQ9Ik0yOCA0NDAgQzI4IDMzMCA5MCAyOTIgMTUwIDI4MiBDMTc0IDMwMiAyMjYgMzAyIDI1MCAyODIgQzMxMCAyOTIgMzcyIDMzMCAzNzIgNDQwIFoiLz4KICAgICAgPGVsbGlwc2UgY3g9IjIwMCIgY3k9IjE4MCIgcng9IjYyIiByeT0iNzAiLz4KICAgICAgCiAgICAgIDxwYXRoIGQ9Ik0xMzAgMjEwIEMxMjYgMTQwIDE1OCA5MiAyMDAgOTIgQzI0MiA5MiAyNzQgMTQwIDI3MCAyMTAgQzI2NiAxOTAgMjYyIDE3NiAyNTYgMTY4IEMyNTQgMTUwIDI0MCAxNDAgMjAwIDE0MCBDMTYwIDE0MCAxNDYgMTUwIDE0NCAxNjggQzEzOCAxNzYgMTM0IDE5MCAxMzAgMjEwIFoiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxNTQiIHI9IjI1Ii8+PGNpcmNsZSBjeD0iMTc0IiBjeT0iMTI2IiByPSIyNyIvPjxjaXJjbGUgY3g9IjIwNiIgY3k9IjExOCIgcj0iMjgiLz48Y2lyY2xlIGN4PSIyMzgiIGN5PSIxMzIiIHI9IjI1Ii8+PGNpcmNsZSBjeD0iMjU4IiBjeT0iMTYwIiByPSIyMiIvPgogICAgPC9nPgogIDwvZz4KPC9zdmc+Cg==",
+  "executive": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgNDAwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJQb3J0cmFpdCBleGVjdXRpdmUiPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJiZy1leGVjdXRpdmUiIHgxPSIwIiB5MT0iMCIgeDI9IjAuMzUiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRUNFQUU2Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0QzRDFDRCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxjbGlwUGF0aCBpZD0iY2xpcC1leGVjdXRpdmUiPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIi8+PC9jbGlwUGF0aD4KICA8L2RlZnM+CgogIDxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2JnLWV4ZWN1dGl2ZSkiLz4KCiAgPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAtZXhlY3V0aXZlKSI+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMzAgNikgc2NhbGUoMC45KSB0cmFuc2xhdGUoNDAwIDApIHNjYWxlKC0xIDEpIiBmaWxsPSIjMkIyRDMyIj4KICAgICAgCiAgICAgIDxwYXRoIGQ9Ik0xNzYgMjE0aDQ4djU4YTI0IDI0IDAgMCAxLTQ4IDB6Ii8+CiAgICAgIDxwYXRoIGQ9Ik0xNiA0NDAgQzE2IDMzMCA4NCAyOTIgMTUwIDI4MiBDMTc0IDMwMiAyMjYgMzAyIDI1MCAyODIgQzMxNiAyOTIgMzg0IDMzMCAzODQgNDQwIFoiLz4KICAgICAgPGVsbGlwc2UgY3g9IjIwMCIgY3k9IjE4MCIgcng9IjYyIiByeT0iNzAiLz4KICAgICAgCiAgICAgIDxwYXRoIGQ9Ik0xMzAgMjA4IEMxMjYgMTM4IDE2MCA5MiAyMDIgOTIgQzI0MCA5MiAyNjYgMTEyIDI3MiAxNTQgQzI2NCAxNDIgMjU0IDEzNCAyNDYgMTMwIEMyMjIgMTE4IDE5MCAxMjQgMTY4IDEzOCBDMTQ4IDE1MCAxMzYgMTc2IDEzMCAyMDggWiIvPgogICAgPC9nPgogIDwvZz4KPC9zdmc+Cg==",
+  "market": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgNDAwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJQb3J0cmFpdCBtYXJrZXQiPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJiZy1tYXJrZXQiIHgxPSIwIiB5MT0iMCIgeDI9IjAuMzUiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRjBFRUVBIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0Q2RDVEMSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxjbGlwUGF0aCBpZD0iY2xpcC1tYXJrZXQiPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIi8+PC9jbGlwUGF0aD4KICA8L2RlZnM+CgogIDxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2JnLW1hcmtldCkiLz4KCiAgPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAtbWFya2V0KSI+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMzAgNikgc2NhbGUoMC45KSIgZmlsbD0iIzM4M0E0MCI+CiAgICAgIAogICAgICA8cGF0aCBkPSJNMTc2IDIxNGg0OHY1OGEyNCAyNCAwIDAgMS00OCAweiIvPgogICAgICA8cGF0aCBkPSJNMjQgNDQwIEMyNCAzMzAgODggMjkyIDE1MCAyODIgQzE3NCAzMDIgMjI2IDMwMiAyNTAgMjgyIEMzMTIgMjkyIDM3NiAzMzAgMzc2IDQ0MCBaIi8+CiAgICAgIDxlbGxpcHNlIGN4PSIyMDAiIGN5PSIxODAiIHJ4PSI2MiIgcnk9IjcwIi8+CiAgICAgIAogICAgICA8cGF0aCBkPSJNMTQ0IDE5NiBDMTQyIDEzOCAxNjggOTYgMjAyIDk2IEMyNDAgOTYgMjY4IDEzNiAyNjQgMTkwIEMyNTggMTcyIDI1MiAxNjAgMjQ4IDE1NCBDMjQ0IDE0MiAyMzIgMTM0IDIwMCAxMzQgQzE2OCAxMzQgMTU0IDE0NCAxNTAgMTU2IEMxNDYgMTY0IDE0NiAxNzggMTQ0IDE5NiBaIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K",
+  "matching": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgNDAwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJQb3J0cmFpdCBtYXRjaGluZyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnLW1hdGNoaW5nIiB4MT0iMCIgeTE9IjAiIHgyPSIwLjM1IiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI0U5RTdFMyIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNEMENFQ0EiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8Y2xpcFBhdGggaWQ9ImNsaXAtbWF0Y2hpbmciPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIi8+PC9jbGlwUGF0aD4KICA8L2RlZnM+CgogIDxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2JnLW1hdGNoaW5nKSIvPgoKICA8ZyBjbGlwLXBhdGg9InVybCgjY2xpcC1tYXRjaGluZykiPgogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTMwIDYpIHNjYWxlKDAuOSkiIGZpbGw9IiM0NDQ2NEMiPgogICAgICA8cGF0aCBkPSJNMTE4IDIwMCBDMTE4IDEyMCAxNTYgODggMjAwIDg4IEMyNDQgODggMjgyIDEyMCAyODIgMjAwIEwyODIgMzMwIEMyNjAgMzE2IDIzMiAzMDggMjAwIDMwOCBDMTY4IDMwOCAxNDAgMzE2IDExOCAzMzAgWiIvPgogICAgICA8cGF0aCBkPSJNMTc2IDIxNGg0OHY1OGEyNCAyNCAwIDAgMS00OCAweiIvPgogICAgICA8cGF0aCBkPSJNMzQgNDQwIEMzNCAzMzAgOTMgMjkyIDE1MCAyODIgQzE3NCAzMDIgMjI2IDMwMiAyNTAgMjgyIEMzMDcgMjkyIDM2NiAzMzAgMzY2IDQ0MCBaIi8+CiAgICAgIDxlbGxpcHNlIGN4PSIyMDAiIGN5PSIxODAiIHJ4PSI2MiIgcnk9IjcwIi8+CiAgICAgIAogICAgICA8cGF0aCBkPSJNMTMwIDIxMCBDMTI2IDE0MCAxNTggOTIgMjAwIDkyIEMyNDIgOTIgMjc0IDE0MCAyNzAgMjEwIEMyNjYgMTkwIDI2MiAxNzYgMjU2IDE2OCBDMjU0IDE1MCAyNDAgMTQwIDIwMCAxNDAgQzE2MCAxNDAgMTQ2IDE1MCAxNDQgMTY4IEMxMzggMTc2IDEzNCAxOTAgMTMwIDIxMCBaIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K",
+  "negotiation": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgNDAwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJQb3J0cmFpdCBuZWdvdGlhdGlvbiI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnLW5lZ290aWF0aW9uIiB4MT0iMCIgeTE9IjAiIHgyPSIwLjM1IiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI0VBRThFNCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNEMUNGQ0IiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8Y2xpcFBhdGggaWQ9ImNsaXAtbmVnb3RpYXRpb24iPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIi8+PC9jbGlwUGF0aD4KICA8L2RlZnM+CgogIDxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2JnLW5lZ290aWF0aW9uKSIvPgoKICA8ZyBjbGlwLXBhdGg9InVybCgjY2xpcC1uZWdvdGlhdGlvbikiPgogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTMwIDYpIHNjYWxlKDAuOSkiIGZpbGw9IiMyRTMwMzUiPgogICAgICAKICAgICAgPHBhdGggZD0iTTE3NiAyMTRoNDh2NThhMjQgMjQgMCAwIDEtNDggMHoiLz4KICAgICAgPHBhdGggZD0iTTE4IDQ0MCBDMTggMzMwIDg1IDI5MiAxNTAgMjgyIEMxNzQgMzAyIDIyNiAzMDIgMjUwIDI4MiBDMzE1IDI5MiAzODIgMzMwIDM4MiA0NDAgWiIvPgogICAgICA8ZWxsaXBzZSBjeD0iMjAwIiBjeT0iMTgwIiByeD0iNjIiIHJ5PSI3MCIvPgogICAgICA8cGF0aCBkPSJNMTQyIDE4NCBDMTQ0IDI0NiAxNzAgMjcyIDIwMCAyNzIgQzIzMCAyNzIgMjU2IDI0NiAyNTggMTg0IEMyNTIgMjI0IDIzMiAyNDYgMjAwIDI0NiBDMTY4IDI0NiAxNDggMjI0IDE0MiAxODQgWiIvPjxwYXRoIGQ9Ik0xODAgMjAyIEMxODggMTk3IDIxMiAxOTcgMjIwIDIwMiBDMjEzIDIwOSAxODcgMjA5IDE4MCAyMDIgWiIvPgogICAgICA8cGF0aCBkPSJNMTMwIDIxMCBDMTI2IDE0MCAxNTggOTIgMjAwIDkyIEMyNDIgOTIgMjc0IDE0MCAyNzAgMjEwIEMyNjYgMTkwIDI2MiAxNzYgMjU2IDE2OCBDMjU0IDE1MCAyNDAgMTQwIDIwMCAxNDAgQzE2MCAxNDAgMTQ2IDE1MCAxNDQgMTY4IEMxMzggMTc2IDEzNCAxOTAgMTMwIDIxMCBaIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K",
+  "operations": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgNDAwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJQb3J0cmFpdCBvcGVyYXRpb25zIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmctb3BlcmF0aW9ucyIgeDE9IjAiIHkxPSIwIiB4Mj0iMC4zNSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNGM0YxRUQiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRDlEN0Q0Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGNsaXBQYXRoIGlkPSJjbGlwLW9wZXJhdGlvbnMiPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIi8+PC9jbGlwUGF0aD4KICA8L2RlZnM+CgogIDxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2JnLW9wZXJhdGlvbnMpIi8+CgogIDxnIGNsaXAtcGF0aD0idXJsKCNjbGlwLW9wZXJhdGlvbnMpIj4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0zMCA2KSBzY2FsZSgwLjkpIiBmaWxsPSIjNDI0NDRBIj4KICAgICAgPHBhdGggZD0iTTI1MiAxMzAgQzI5NiAxMzggMzIwIDE3NiAzMTIgMjE4IEMzMDYgMjUwIDI4NCAyNzAgMjU2IDI3NiBDMjgwIDI0NiAyODYgMjA4IDI3MiAxODAgQzI2NCAxNjQgMjU2IDE0NiAyNTIgMTMwIFoiLz4KICAgICAgPHBhdGggZD0iTTE3NiAyMTRoNDh2NThhMjQgMjQgMCAwIDEtNDggMHoiLz4KICAgICAgPHBhdGggZD0iTTMyIDQ0MCBDMzIgMzMwIDkyIDI5MiAxNTAgMjgyIEMxNzQgMzAyIDIyNiAzMDIgMjUwIDI4MiBDMzA4IDI5MiAzNjggMzMwIDM2OCA0NDAgWiIvPgogICAgICA8ZWxsaXBzZSBjeD0iMjAwIiBjeT0iMTgwIiByeD0iNjIiIHJ5PSI3MCIvPgogICAgICAKICAgICAgPHBhdGggZD0iTTEzMCAyMTAgQzEyNiAxNDAgMTU4IDkyIDIwMCA5MiBDMjQyIDkyIDI3NCAxNDAgMjcwIDIxMCBDMjY2IDE5MCAyNjIgMTc2IDI1NiAxNjggQzI1NCAxNTAgMjQwIDE0MCAyMDAgMTQwIEMxNjAgMTQwIDE0NiAxNTAgMTQ0IDE2OCBDMTM4IDE3NiAxMzQgMTkwIDEzMCAyMTAgWiIvPgogICAgPC9nPgogIDwvZz4KPC9zdmc+Cg==",
+  "outreach": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgNDAwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJQb3J0cmFpdCBvdXRyZWFjaCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnLW91dHJlYWNoIiB4MT0iMCIgeTE9IjAiIHgyPSIwLjM1IiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI0VCRTlFNSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNEMkQwQ0MiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8Y2xpcFBhdGggaWQ9ImNsaXAtb3V0cmVhY2giPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIi8+PC9jbGlwUGF0aD4KICA8L2RlZnM+CgogIDxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2JnLW91dHJlYWNoKSIvPgoKICA8ZyBjbGlwLXBhdGg9InVybCgjY2xpcC1vdXRyZWFjaCkiPgogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTMwIDYpIHNjYWxlKDAuOSkiIGZpbGw9IiM0OTRCNTEiPgogICAgICAKICAgICAgPHBhdGggZD0iTTE3NiAyMTRoNDh2NThhMjQgMjQgMCAwIDEtNDggMHoiLz4KICAgICAgPHBhdGggZD0iTTM2IDQ0MCBDMzYgMzMwIDk0IDI5MiAxNTAgMjgyIEMxNzQgMzAyIDIyNiAzMDIgMjUwIDI4MiBDMzA2IDI5MiAzNjQgMzMwIDM2NCA0NDAgWiIvPgogICAgICA8ZWxsaXBzZSBjeD0iMjAwIiBjeT0iMTgwIiByeD0iNjIiIHJ5PSI3MCIvPgogICAgICAKICAgICAgPGNpcmNsZSBjeD0iMjAwIiBjeT0iODgiIHI9IjI1Ii8+PHBhdGggZD0iTTEzMCAyMTAgQzEyNiAxNDAgMTU4IDkyIDIwMCA5MiBDMjQyIDkyIDI3NCAxNDAgMjcwIDIxMCBDMjY2IDE5MCAyNjIgMTc2IDI1NiAxNjggQzI1NCAxNTAgMjQwIDE0MCAyMDAgMTQwIEMxNjAgMTQwIDE0NiAxNTAgMTQ0IDE2OCBDMTM4IDE3NiAxMzQgMTkwIDEzMCAyMTAgWiIvPgogICAgPC9nPgogIDwvZz4KPC9zdmc+Cg==",
+  "property": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgNDAwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJQb3J0cmFpdCBwcm9wZXJ0eSI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnLXByb3BlcnR5IiB4MT0iMCIgeTE9IjAiIHgyPSIwLjM1IiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI0Y0RjJFRSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNEQUQ4RDUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8Y2xpcFBhdGggaWQ9ImNsaXAtcHJvcGVydHkiPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIi8+PC9jbGlwUGF0aD4KICA8L2RlZnM+CgogIDxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2JnLXByb3BlcnR5KSIvPgoKICA8ZyBjbGlwLXBhdGg9InVybCgjY2xpcC1wcm9wZXJ0eSkiPgogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTMwIDYpIHNjYWxlKDAuOSkiIGZpbGw9IiMzMzM1M0EiPgogICAgICAKICAgICAgPHBhdGggZD0iTTE3NiAyMTRoNDh2NThhMjQgMjQgMCAwIDEtNDggMHoiLz4KICAgICAgPHBhdGggZD0iTTIyIDQ0MCBDMjIgMzMwIDg3IDI5MiAxNTAgMjgyIEMxNzQgMzAyIDIyNiAzMDIgMjUwIDI4MiBDMzEzIDI5MiAzNzggMzMwIDM3OCA0NDAgWiIvPgogICAgICA8ZWxsaXBzZSBjeD0iMjAwIiBjeT0iMTgwIiByeD0iNjIiIHJ5PSI3MCIvPgogICAgICAKICAgICAgPHBhdGggZD0iTTEzMCAyMDggQzEyNiAxMzggMTYwIDkyIDIwMiA5MiBDMjQwIDkyIDI2NiAxMTIgMjcyIDE1NCBDMjY0IDE0MiAyNTQgMTM0IDI0NiAxMzAgQzIyMiAxMTggMTkwIDEyNCAxNjggMTM4IEMxNDggMTUwIDEzNiAxNzYgMTMwIDIwOCBaIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K",
+  "relationship": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgNDAwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJQb3J0cmFpdCByZWxhdGlvbnNoaXAiPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJiZy1yZWxhdGlvbnNoaXAiIHgxPSIwIiB5MT0iMCIgeDI9IjAuMzUiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRURFQkU3Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0Q0RDJDRSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxjbGlwUGF0aCBpZD0iY2xpcC1yZWxhdGlvbnNoaXAiPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIi8+PC9jbGlwUGF0aD4KICA8L2RlZnM+CgogIDxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2JnLXJlbGF0aW9uc2hpcCkiLz4KCiAgPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAtcmVsYXRpb25zaGlwKSI+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMzAgNikgc2NhbGUoMC45KSIgZmlsbD0iIzRDNEU1NCI+CiAgICAgIDxlbGxpcHNlIGN4PSIyMDAiIGN5PSIxOTIiIHJ4PSI3OCIgcnk9IjEwMiIvPgogICAgICA8cGF0aCBkPSJNMTc2IDIxNGg0OHY1OGEyNCAyNCAwIDAgMS00OCAweiIvPgogICAgICA8cGF0aCBkPSJNMzYgNDQwIEMzNiAzMzAgOTQgMjkyIDE1MCAyODIgQzE3NCAzMDIgMjI2IDMwMiAyNTAgMjgyIEMzMDYgMjkyIDM2NCAzMzAgMzY0IDQ0MCBaIi8+CiAgICAgIDxlbGxpcHNlIGN4PSIyMDAiIGN5PSIxODAiIHJ4PSI2MiIgcnk9IjcwIi8+CiAgICAgIAogICAgICA8cGF0aCBkPSJNMTMwIDIxMCBDMTI2IDE0MCAxNTggOTIgMjAwIDkyIEMyNDIgOTIgMjc0IDE0MCAyNzAgMjEwIEMyNjYgMTkwIDI2MiAxNzYgMjU2IDE2OCBDMjU0IDE1MCAyNDAgMTQwIDIwMCAxNDAgQzE2MCAxNDAgMTQ2IDE1MCAxNDQgMTY4IEMxMzggMTc2IDEzNCAxOTAgMTMwIDIxMCBaIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K",
+  "research": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgNDAwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJQb3J0cmFpdCByZXNlYXJjaCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnLXJlc2VhcmNoIiB4MT0iMCIgeTE9IjAiIHgyPSIwLjM1IiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI0YwRUVFQSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNENkQ1RDEiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8Y2xpcFBhdGggaWQ9ImNsaXAtcmVzZWFyY2giPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIi8+PC9jbGlwUGF0aD4KICA8L2RlZnM+CgogIDxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2JnLXJlc2VhcmNoKSIvPgoKICA8ZyBjbGlwLXBhdGg9InVybCgjY2xpcC1yZXNlYXJjaCkiPgogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTMwIDYpIHNjYWxlKDAuOSkiIGZpbGw9IiMzRTQwNDYiPgogICAgICAKICAgICAgPHBhdGggZD0iTTE3NiAyMTRoNDh2NThhMjQgMjQgMCAwIDEtNDggMHoiLz4KICAgICAgPHBhdGggZD0iTTI4IDQ0MCBDMjggMzMwIDkwIDI5MiAxNTAgMjgyIEMxNzQgMzAyIDIyNiAzMDIgMjUwIDI4MiBDMzEwIDI5MiAzNzIgMzMwIDM3MiA0NDAgWiIvPgogICAgICA8ZWxsaXBzZSBjeD0iMjAwIiBjeT0iMTgwIiByeD0iNjIiIHJ5PSI3MCIvPgogICAgICAKICAgICAgPHBhdGggZD0iTTEzMCAyMTAgQzEyNiAxNDAgMTU4IDkyIDIwMCA5MiBDMjQyIDkyIDI3NCAxNDAgMjcwIDIxMCBDMjY2IDE5MCAyNjIgMTc2IDI1NiAxNjggQzI1NCAxNTAgMjQwIDE0MCAyMDAgMTQwIEMxNjAgMTQwIDE0NiAxNTAgMTQ0IDE2OCBDMTM4IDE3NiAxMzQgMTkwIDEzMCAyMTAgWiIvPgogICAgPC9nPgogIDwvZz4KPC9zdmc+Cg==",
+  "__concierge": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgNDAwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJQb3J0cmFpdCBkZXMgUmVhbCBFc3RhdGUgQ29uY2llcmdlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYy1iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMC4zNSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNFRkVERTkiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRDhENkQxIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0idXJsKCNjLWJnKSIvPgogIDxnIGNsaXAtcGF0aD0iaW5zZXQoMCkiPgogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTMwIDYpIHNjYWxlKDAuOSkiIGZpbGw9IiMyNDI2MkEiPgogICAgICA8cGF0aCBkPSJNMTc2IDIxNGg0OHY1OGEyNCAyNCAwIDAgMS00OCAweiIvPgogICAgICA8cGF0aCBkPSJNMTQgNDQwIEMxNCAzMzAgODIgMjkyIDE1MCAyODIgQzE3NCAzMDIgMjI2IDMwMiAyNTAgMjgyIEMzMTggMjkyIDM4NiAzMzAgMzg2IDQ0MCBaIi8+CiAgICAgIDxlbGxpcHNlIGN4PSIyMDAiIGN5PSIxODAiIHJ4PSI2MiIgcnk9IjcwIi8+CiAgICAgIDxwYXRoIGQ9Ik0xMzAgMjEwIEMxMjYgMTQwIDE1OCA5MiAyMDAgOTIgQzI0MiA5MiAyNzQgMTQwIDI3MCAyMTAgQzI2NiAxOTAgMjYyIDE3NiAyNTYgMTY4IEMyNTQgMTUwIDI0MCAxNDAgMjAwIDE0MCBDMTYwIDE0MCAxNDYgMTUwIDE0NCAxNjggQzEzOCAxNzYgMTM0IDE5MCAxMzAgMjEwIFoiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo="
+};
+</script>
+<script>
+/**
+ * Datenbasis für das Digitale Immobilienbüro.
+ * Jeder Eintrag beschreibt einen Agenten des Teams.
+ */
+window.AGENTS = [
+  {
+    id: 'research',
+    nr: '01',
+    name: 'Research Agent',
+    role: 'Der Käufer-Finder',
+    mission: 'Findet kontinuierlich neue potenzielle Käufer und Multiplikatoren für jede Immobilie.',
+    tags: ['Leadgenerierung', 'Recherche', 'CRM'],
+    duties: [
+      'Recherche potenzieller Käufer',
+      'Recherche von Family Offices',
+      'Vermögensverwalter finden',
+      'Steuerberater mit vermögenden Mandanten',
+      'Private Banker',
+      'Unternehmer',
+      'Ärzte',
+      'Anwälte',
+      'Investoren',
+      'Internationale Käufer',
+      'Firmen mit Expansionsplänen'
+    ],
+    skills: [
+      'LinkedIn analysieren',
+      'Webseiten durchsuchen',
+      'Unternehmensdaten recherchieren',
+      'Immobilienportale beobachten',
+      'Nachrichten auswerten',
+      'Firmenexpansionen erkennen',
+      'Finanzierungsindikatoren erkennen',
+      'CRM automatisch befüllen'
+    ],
+    output: [
+      'täglich neue Leads',
+      'Priorisierung nach Kaufwahrscheinlichkeit',
+      'Hintergrundinformationen',
+      'Gesprächsanlässe'
+    ],
+    why: 'Ohne Käufer gibt es keinen Verkauf. Dieser Agent sorgt dafür, dass der Vertrieb niemals auf Empfehlungen oder Zufall angewiesen ist. Er baut jeden Tag den Pool potenzieller Käufer aus.'
+  },
+  {
+    id: 'outreach',
+    nr: '02',
+    name: 'Outreach Agent',
+    role: 'Der Beziehungsstarter',
+    mission: 'Verwandelt recherchierte Kontakte in Gespräche.',
+    tags: ['Erstkontakt', 'Kampagnen', 'Terminierung'],
+    duties: [
+      'personalisierte Nachrichten schreiben',
+      'LinkedIn Outreach',
+      'E-Mail Outreach',
+      'Follow-up Kampagnen',
+      'Termine vereinbaren',
+      'Reaktionen auswerten',
+      'Kommunikation personalisieren'
+    ],
+    skills: [
+      'Tonalität an Zielgruppe anpassen',
+      'Gesprächsanlässe erkennen',
+      'Einwände vorwegnehmen',
+      'A/B Tests',
+      'Öffnungsraten optimieren',
+      'Antwortwahrscheinlichkeit erhöhen'
+    ],
+    output: [
+      'qualifizierte Erstgespräche',
+      'gebuchte Besichtigungen',
+      'steigende Antwortrate'
+    ],
+    why: 'Die meisten hochwertigen Käufer suchen nicht aktiv. Man muss sie intelligent ansprechen.'
+  },
+  {
+    id: 'property',
+    nr: '03',
+    name: 'Property Agent',
+    role: 'Der Immobilienexperte',
+    mission: 'Kennt jede Immobilie besser als jeder Makler.',
+    tags: ['Objektwissen', 'Exposé', 'Lage'],
+    duties: [
+      'sämtliche Objektdaten verwalten',
+      'Exposé verstehen',
+      'Grundrisse kennen',
+      'Umgebung analysieren',
+      'Bauunterlagen kennen',
+      'Sanierungen dokumentieren',
+      'Energieausweis kennen',
+      'Besonderheiten erklären'
+    ],
+    skillsIntro: 'Kann jede Käuferfrage beantworten. Zum Beispiel:',
+    skills: [
+      'Warum wurde dieser Preis gewählt?',
+      'Welche Schulen liegen in der Nähe?',
+      'Welche Restaurants?',
+      'Wie entwickelt sich das Viertel?',
+      'Welche Rendite wäre möglich?',
+      'Welche Umbauten wären sinnvoll?'
+    ],
+    output: [
+      'sofortige Antworten',
+      'keine Wartezeiten',
+      'perfekte Objektkenntnis'
+    ],
+    why: 'Je teurer eine Immobilie ist, desto detaillierter werden die Fragen. Dieser Agent kennt jede Antwort.'
+  },
+  {
+    id: 'matching',
+    nr: '04',
+    name: 'Buyer Matching Agent',
+    role: 'Der perfekte Vermittler',
+    mission: 'Erkennt automatisch, welche Immobilie zu welchem Käufer passt.',
+    tags: ['Käuferprofil', 'Matching Score', 'Beratung'],
+    duties: [
+      'Käufer interviewen',
+      'Bedürfnisse erkennen',
+      'Budget analysieren',
+      'Lebenssituation verstehen',
+      'Investmentziele erkennen'
+    ],
+    skillsIntro: 'Erstellt ein Käuferprofil, vergleicht es mit allen Immobilien und berechnet:',
+    skills: [
+      'Matching Score',
+      'Risiken',
+      'Vorteile',
+      'Argumente'
+    ],
+    output: ['Dieses Objekt passt zu 96 %.'],
+    why: 'Menschen kaufen Lösungen. Nicht Immobilien.'
+  },
+  {
+    id: 'content',
+    nr: '05',
+    name: 'Content Agent',
+    role: 'Der Markenaufbauer',
+    mission: 'Produziert kontinuierlich hochwertigen Content rund um die Immobilie.',
+    tags: ['Storytelling', 'Social Media', 'Luxusmarketing'],
+    duties: [
+      'LinkedIn Posts',
+      'Instagram Posts',
+      'Newsletter',
+      'Videos',
+      'Storytelling',
+      'Blogartikel',
+      'Investmentanalysen'
+    ],
+    skillsIntro: 'Kennt:',
+    skills: [
+      'Zielgruppen',
+      'Algorithmen',
+      'Storytelling',
+      'Copywriting',
+      'Architektur',
+      'Luxusmarketing'
+    ],
+    output: ['Jede Woche neue Inhalte.'],
+    why: 'Premiumimmobilien verkaufen sich über Vertrauen. Content erzeugt Vertrauen.'
+  },
+  {
+    id: 'relationship',
+    nr: '06',
+    name: 'Relationship Agent',
+    role: 'Der Kundenbetreuer',
+    mission: 'Pflegt jede Beziehung langfristig.',
+    tags: ['Follow-up', 'Gedächtnis', 'Empfehlungen'],
+    duties: [
+      'Follow-ups',
+      'Erinnerungen',
+      'Geburtstage',
+      'Gesprächsnotizen',
+      'Interessen merken',
+      'Empfehlungen verwalten'
+    ],
+    skillsIntro: 'Kennt jede Interaktion. Weiß:',
+    skills: [
+      'wann zuletzt gesprochen wurde',
+      'was wichtig war',
+      'welche Fragen offen sind'
+    ],
+    output: ['Kein Interessent geht verloren.'],
+    why: 'Millionenobjekte werden selten im ersten Gespräch verkauft. Oft entscheidet sich ein Käufer Monate später.'
+  },
+  {
+    id: 'market',
+    nr: '07',
+    name: 'Market Intelligence Agent',
+    role: 'Der Marktanalyst',
+    mission: 'Beobachtet permanent den Immobilienmarkt.',
+    tags: ['Preisentwicklung', 'Wettbewerb', 'Marktbericht'],
+    duties: [
+      'Preisentwicklung',
+      'Vergleichsobjekte',
+      'Nachfrage',
+      'Neubauprojekte',
+      'Finanzierung',
+      'Zinssituation',
+      'Konkurrenz'
+    ],
+    skillsIntro: 'Erkennt:',
+    skills: [
+      'Preisänderungen',
+      'Trends',
+      'Marktchancen',
+      'Risiken'
+    ],
+    outputIntro: 'Wöchentliche Marktberichte mit Empfehlungen:',
+    output: [
+      'Preis erhöhen',
+      'Preis senken',
+      'Verkaufszeitpunkt',
+      'Argumente'
+    ],
+    why: 'Der Markt verändert sich täglich. Dieser Agent verhindert Entscheidungen auf Basis veralteter Informationen.'
+  },
+  {
+    id: 'negotiation',
+    nr: '08',
+    name: 'Negotiation Agent',
+    role: 'Der Verhandlungsstratege',
+    mission: 'Unterstützt den Makler bei Preisverhandlungen.',
+    tags: ['Einwände', 'Preisanker', 'Psychologie'],
+    duties: [
+      'Einwände analysieren',
+      'Verhandlung vorbereiten',
+      'Gegenargumente entwickeln',
+      'Käuferpsychologie analysieren'
+    ],
+    skillsIntro: 'Kennt:',
+    skills: [
+      'Verhandlungstechniken',
+      'Preisanker',
+      'BATNA',
+      'Verkaufspsychologie'
+    ],
+    output: ['Argumentationsleitfäden', 'Verhandlungssimulationen'],
+    why: 'Schon wenige Prozentpunkte Preisunterschied können bei hochpreisigen Objekten einen erheblichen finanziellen Unterschied machen. Eine strukturierte Vorbereitung erhöht die Chance auf einen erfolgreichen Abschluss.'
+  },
+  {
+    id: 'operations',
+    nr: '09',
+    name: 'Operations Agent',
+    role: 'Der Bürochef',
+    mission: 'Organisiert sämtliche Abläufe.',
+    tags: ['CRM', 'Termine', 'Dokumente'],
+    duties: [
+      'CRM pflegen',
+      'Termine koordinieren',
+      'Dokumente verwalten',
+      'Aufgaben verteilen',
+      'Status überwachen'
+    ],
+    skillsIntro: 'Automatisiert:',
+    skills: [
+      'Erinnerungen',
+      'Aufgaben',
+      'Checklisten',
+      'Fristen',
+      'Dokumentenablage'
+    ],
+    output: ['Ein perfekt organisiertes Immobilienbüro.'],
+    why: 'Vertrieb funktioniert nur dann effizient, wenn die Organisation im Hintergrund zuverlässig läuft.'
+  },
+  {
+    id: 'executive',
+    nr: '10',
+    name: 'Executive Agent',
+    role: 'Der Geschäftsführer',
+    mission: 'Koordiniert alle anderen Agenten.',
+    tags: ['Steuerung', 'Kennzahlen', 'Briefing'],
+    lead: true,
+    duties: [
+      'Prioritäten setzen',
+      'Ziele überwachen',
+      'Kennzahlen analysieren',
+      'Entscheidungen vorbereiten',
+      'Engpässe erkennen'
+    ],
+    skillsIntro: 'Kennt den aktuellen Status aller Immobilien:',
+    skills: [
+      'Anzahl Käufer',
+      'Anzahl Besichtigungen',
+      'Pipeline',
+      'Markt',
+      'Umsatzprognosen'
+    ],
+    outputIntro: 'Ein tägliches Management-Briefing:',
+    output: [
+      'Was ist heute wichtig?',
+      'Wo drohen Risiken?',
+      'Welche Chancen gibt es?',
+      'Welche Aufgaben haben höchste Priorität?'
+    ],
+    why: 'Ohne zentrale Koordination arbeiten einzelne Spezialisten nebeneinander. Dieser Agent sorgt dafür, dass das gesamte digitale Immobilienbüro wie ein eingespieltes Team funktioniert und alle Informationen zu klaren Entscheidungen zusammengeführt werden.'
+  }
+];
+</script>
+<script>
+/* Rendering und Interaktion für Das Digitale Immobilienbüro. */
+(function () {
+  'use strict';
+
+  var agents = window.AGENTS || [];
+  var grid = document.getElementById('teamGrid');
+  var strip = document.getElementById('filmstrip');
+  var panel = document.getElementById('panel');
+  var backdrop = document.getElementById('backdrop');
+  var panelBody = document.getElementById('panelBody');
+  var lastFocused = null;
+
+  function esc(value) {
+    return String(value).replace(/[&<>"']/g, function (ch) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+    });
+  }
+
+  function photo(agent) {
+    // Reihenfolge: eingebettet (Einzeldatei) > Foto > Platzhalter-Silhouette.
+    var inlined = window.AGENT_IMAGES;
+    if (inlined && inlined[agent.id]) return inlined[agent.id];
+    var photos = window.AGENT_PHOTOS || {};
+    return 'assets/agents/' + (photos[agent.id] || agent.photo || agent.id + '.svg');
+  }
+
+  function block(title, intro, items) {
+    if (!items || !items.length) return '';
+    return '<section>' +
+      '<h3 class="label">' + esc(title) + '</h3>' +
+      (intro ? '<p class="intro">' + esc(intro) + '</p>' : '') +
+      '<ul>' + items.map(function (item) {
+        return '<li>' + esc(item) + '</li>';
+      }).join('') + '</ul>' +
+      '</section>';
+  }
+
+  /* ------------------------------------------------------------ Aufbau */
+
+  function renderTeam() {
+    grid.innerHTML = agents.map(function (agent) {
+      return '<button class="agent" type="button" data-id="' + esc(agent.id) + '">' +
+        '<img class="agent-photo" src="' + photo(agent) + '" alt="Portrait ' + esc(agent.name) + '" width="300" height="400" loading="lazy">' +
+        '<span class="agent-meta">' +
+          '<span class="label num">' + esc(agent.nr) + '</span>' +
+          '<span class="agent-name">' + esc(agent.name) + '</span>' +
+          '<span class="agent-role">' + esc(agent.role) + '</span>' +
+          '<span class="agent-mission">' + esc(agent.mission) + '</span>' +
+        '</span>' +
+      '</button>';
+    }).join('');
+  }
+
+  function renderStrip() {
+    strip.innerHTML = agents.map(function (agent) {
+      return '<figure>' +
+        '<img src="' + photo(agent) + '" alt="" width="300" height="400">' +
+        '<figcaption class="num">' + esc(agent.nr) + '</figcaption>' +
+      '</figure>';
+    }).join('');
+  }
+
+  /* ------------------------------------------------------------- Panel */
+
+  function openPanel(id) {
+    var agent = agents.filter(function (a) { return a.id === id; })[0];
+    if (!agent) return;
+
+    panelBody.innerHTML =
+      '<div class="panel-head">' +
+        '<img src="' + photo(agent) + '" alt="Portrait ' + esc(agent.name) + '" width="300" height="400">' +
+        '<span class="label num">Rolle ' + esc(agent.nr) + '</span>' +
+        '<h2 id="panelName">' + esc(agent.name) + '</h2>' +
+        '<span class="agent-role">' + esc(agent.role) + '</span>' +
+      '</div>' +
+      '<p class="panel-mission">' + esc(agent.mission) + '</p>' +
+      '<div class="detail">' +
+        block('Verantwortlichkeiten', agent.dutiesIntro, agent.duties) +
+        block('Fähigkeiten', agent.skillsIntro, agent.skills) +
+        block('Output', agent.outputIntro, agent.output) +
+        '<section class="why">' +
+          '<h3 class="label">Warum diese Rolle</h3>' +
+          '<p>' + esc(agent.why) + '</p>' +
+        '</section>' +
+      '</div>';
+
+    lastFocused = document.activeElement;
+    panel.hidden = false;
+    backdrop.hidden = false;
+    // Erst im nächsten Frame öffnen, damit die Bewegung sichtbar wird.
+    requestAnimationFrame(function () { document.body.classList.add('panel-open'); });
+    document.body.style.overflow = 'hidden';
+    document.getElementById('panelClose').focus();
+  }
+
+  function closePanel() {
+    document.body.classList.remove('panel-open');
+    document.body.style.overflow = '';
+    window.setTimeout(function () {
+      panel.hidden = true;
+      backdrop.hidden = true;
+      panelBody.innerHTML = '';
+    }, 320);
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  /* ---------------------------------------------------------- Bindings */
+
+  grid.addEventListener('click', function (event) {
+    var card = event.target.closest('.agent');
+    if (card) openPanel(card.dataset.id);
+  });
+
+  backdrop.addEventListener('click', closePanel);
+  document.getElementById('panelClose').addEventListener('click', closePanel);
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && !panel.hidden) closePanel();
+  });
+
+  renderTeam();
+  renderStrip();
+})();
+</script>

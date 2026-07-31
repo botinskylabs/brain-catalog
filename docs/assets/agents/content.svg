@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" width="300" height="400" role="img" aria-label="Portrait content">
+  <defs>
+    <linearGradient id="bg-content" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#F2F0EC"/>
+      <stop offset="1" stop-color="#D8D6D3"/>
+    </linearGradient>
+    <clipPath id="clip-content"><rect width="300" height="400"/></clipPath>
+  </defs>
+
+  <rect width="300" height="400" fill="url(#bg-content)"/>
+
+  <g clip-path="url(#clip-content)">
+    <g transform="translate(-30 6) scale(0.9)" fill="#3A3C42">
+      
+      <path d="M176 214h48v58a24 24 0 0 1-48 0z"/>
+      <path d="M28 440 C28 330 90 292 150 282 C174 302 226 302 250 282 C310 292 372 330 372 440 Z"/>
+      <ellipse cx="200" cy="180" rx="62" ry="70"/>
+      
+      <path d="M130 210 C126 140 158 92 200 92 C242 92 274 140 270 210 C266 190 262 176 256 168 C254 150 240 140 200 140 C160 140 146 150 144 168 C138 176 134 190 130 210 Z"/><circle cx="150" cy="154" r="25"/><circle cx="174" cy="126" r="27"/><circle cx="206" cy="118" r="28"/><circle cx="238" cy="132" r="25"/><circle cx="258" cy="160" r="22"/>
+    </g>
+  </g>
+</svg>
