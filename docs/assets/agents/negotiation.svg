@@ -1,59 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-label="Profilbild negotiation">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" width="300" height="400" role="img" aria-label="Portrait negotiation">
   <defs>
-    <linearGradient id="bg-negotiation" x1="0.1" y1="0" x2="0.9" y2="1">
-      <stop offset="0" stop-color="#94304E"/>
-      <stop offset="1" stop-color="#3A1226"/>
+    <linearGradient id="bg-negotiation" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#EAE8E4"/>
+      <stop offset="1" stop-color="#D1CFCB"/>
     </linearGradient>
-    <radialGradient id="glow-negotiation" cx="0.5" cy="0.2" r="0.78">
-      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.26"/>
-      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
-    </radialGradient>
-    <clipPath id="clip-negotiation"><circle cx="200" cy="200" r="200"/></clipPath>
+    <clipPath id="clip-negotiation"><rect width="300" height="400"/></clipPath>
   </defs>
 
+  <rect width="300" height="400" fill="url(#bg-negotiation)"/>
+
   <g clip-path="url(#clip-negotiation)">
-    <rect width="400" height="400" fill="url(#bg-negotiation)"/>
-    <circle cx="200" cy="80" r="230" fill="url(#glow-negotiation)"/>
-    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.09" stroke-width="1">
-      <circle cx="200" cy="200" r="186"/><circle cx="200" cy="200" r="150"/>
+    <g transform="translate(-30 6) scale(0.9)" fill="#2E3035">
+      
+      <path d="M176 214h48v58a24 24 0 0 1-48 0z"/>
+      <path d="M18 440 C18 330 85 292 150 282 C174 302 226 302 250 282 C315 292 382 330 382 440 Z"/>
+      <ellipse cx="200" cy="180" rx="62" ry="70"/>
+      <path d="M142 184 C144 246 170 272 200 272 C230 272 256 246 258 184 C252 224 232 246 200 246 C168 246 148 224 142 184 Z"/><path d="M180 202 C188 197 212 197 220 202 C213 209 187 209 180 202 Z"/>
+      <path d="M130 210 C126 140 158 92 200 92 C242 92 274 140 270 210 C266 190 262 176 256 168 C254 150 240 140 200 140 C160 140 146 150 144 168 C138 176 134 190 130 210 Z"/>
     </g>
-    <circle cx="200" cy="204" r="116" fill="#FFFFFF" fill-opacity="0.06"/>
-
-    <!-- Haar hinten -->
-    <g fill="#2A1C14"></g>
-
-    <!-- Hals -->
-    <path d="M176 214h48v58a24 24 0 0 1-48 0z" fill="#A9744A"/>
-
-    <!-- Kleidung -->
-    <path d="M164 282 C180 300 220 300 236 282 L258 400 H142 Z" fill="#FBF7EF"/><path d="M164 282 L200 322 L236 282 L226 276 L200 300 L174 276 Z" fill="#E2DED7"/><path d="M200 316 L213 340 L207 400 H193 L187 340 Z" fill="#B26F76"/><g fill="#221E24"><path d="M28 400 C28 322 88 290 152 281 L200 336 L182 400 Z"/><path d="M372 400 C372 322 312 290 248 281 L200 336 L218 400 Z"/></g><path d="M152 281 L200 336 L248 281" fill="none" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="2"/>
-
-    <!-- Ohren -->
-    <g fill="#A9744A">
-      <ellipse cx="139" cy="188" rx="9" ry="13"/><ellipse cx="261" cy="188" rx="9" ry="13"/>
-    </g>
-
-    <!-- Kopf -->
-    <ellipse cx="200" cy="180" rx="62" ry="70" fill="#C08454"/>
-    <path d="M200 110 a62 70 0 0 1 0 140 a44 70 0 0 0 0 -140 Z" fill="#000000" fill-opacity="0.05"/>
-
-    <g fill="#2A2118" fill-opacity="0.82"><ellipse cx="177" cy="181" rx="5" ry="6.2"/><ellipse cx="223" cy="181" rx="5" ry="6.2"/></g><g fill="none" stroke="#2A2118" stroke-linecap="round"><path d="M165 163 C172 157 184 157 190 162" stroke-width="4" stroke-opacity="0.42"/><path d="M210 162 C216 157 228 157 235 163" stroke-width="4" stroke-opacity="0.42"/><path d="M200 188 v14 c0 4 3 6 7 6" stroke-width="3.4" stroke-opacity="0.24"/><path d="M184 214 C192 224 208 224 216 214" stroke-width="4.4" stroke-opacity="0.46"/></g>
-    <g fill="#2A1C14"><path d="M142 184 C144 246 170 272 200 272 C230 272 256 246 258 184 C252 224 232 246 200 246 C168 246 148 224 142 184 Z"/><path d="M180 202 C188 197 212 197 220 202 C213 209 187 209 180 202 Z"/></g>
-
-    <!-- Haar vorn -->
-    <g fill="#2A1C14"><path d="M130 210 C126 140 158 92 200 92 C242 92 274 140 270 210 C266 190 262 176 256 168 C254 150 240 140 200 140 C160 140 146 150 144 168 C138 176 134 190 130 210 Z"/></g>
-    
-    
-
-    <path d="M0 344c62-28 122-40 200-40s138 12 200 40" fill="none" stroke="#FF9FA8" stroke-opacity="0.20" stroke-width="2"/>
   </g>
-
-  <!-- Rollensymbol -->
-  <g transform="translate(320 320)">
-    <circle r="55" fill="#0E1016"/>
-    <circle r="55" fill="none" stroke="#FF9FA8" stroke-opacity="0.55" stroke-width="2"/>
-    <g stroke="#FF9FA8" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M0 -13 V11"/><path d="M-11.5 -7.5 H11.5"/><path d="M-7 12 H7"/><path d="M-17 -0.5 A6 6 0 0 0 -6 -0.5"/><path d="M6 -0.5 A6 6 0 0 0 17 -0.5"/><path d="M-11.5 -7.5 V-0.5"/><path d="M11.5 -7.5 V-0.5"/></g>
-  </g>
-
-  <circle cx="200" cy="200" r="199" fill="none" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="2"/>
 </svg>

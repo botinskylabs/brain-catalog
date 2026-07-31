@@ -22,8 +22,9 @@ und dem vorgeschlagenen Aufbau in drei Stufen.
 - `docs/agents.js` — Inhalte aller zehn Agenten (hier werden Texte gepflegt)
 - `docs/app.js` — rendert Karten und Detail-Dialog
 - `docs/styles.css` — Gestaltung
-- `docs/assets/agents/*.svg` — die Profilbilder der Agenten
-- `docs/assets/concierge.svg` — das Zeichen des Real Estate Concierge (gegen ein Foto austauschbar)
+- `docs/assets/agents/*.svg` — die Portraitplatten der Agenten (Platzhalter, gegen Fotos austauschbar)
+- `docs/assets/concierge.svg` — Portrait des Real Estate Concierge (ebenso austauschbar)
+- `docs/SEITE.md` — die komplette Seite als Text: Inhalte, Aufbau, Gestaltung, offene Punkte
 
 Lokal ansehen: `docs/index.html` im Browser öffnen — keine Abhängigkeiten, kein Build.
 

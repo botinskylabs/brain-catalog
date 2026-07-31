@@ -1,32 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-label="Zeichen des Real Estate Concierge">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" width="300" height="400" role="img" aria-label="Portrait des Real Estate Concierge">
   <defs>
-    <linearGradient id="c-disc" x1="0.1" y1="0" x2="0.85" y2="1">
-      <stop offset="0" stop-color="#F6E4B6"/>
-      <stop offset="0.5" stop-color="#D8B770"/>
-      <stop offset="1" stop-color="#95742C"/>
+    <linearGradient id="c-bg" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#EFEDE9"/>
+      <stop offset="1" stop-color="#D8D6D1"/>
     </linearGradient>
-    <radialGradient id="c-sheen" cx="0.35" cy="0.24" r="0.72">
-      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.45"/>
-      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
-    </radialGradient>
   </defs>
-
-  <circle cx="200" cy="200" r="200" fill="url(#c-disc)"/>
-  <circle cx="200" cy="200" r="200" fill="url(#c-sheen)"/>
-  <g fill="none" stroke="#3A2D10" stroke-opacity="0.16" stroke-width="1.5">
-    <circle cx="200" cy="200" r="182"/>
-    <circle cx="200" cy="200" r="168"/>
+  <rect width="300" height="400" fill="url(#c-bg)"/>
+  <g clip-path="inset(0)">
+    <g transform="translate(-30 6) scale(0.9)" fill="#24262A">
+      <path d="M176 214h48v58a24 24 0 0 1-48 0z"/>
+      <path d="M14 440 C14 330 82 292 150 282 C174 302 226 302 250 282 C318 292 386 330 386 440 Z"/>
+      <ellipse cx="200" cy="180" rx="62" ry="70"/>
+      <path d="M130 210 C126 140 158 92 200 92 C242 92 274 140 270 210 C266 190 262 176 256 168 C254 150 240 140 200 140 C160 140 146 150 144 168 C138 176 134 190 130 210 Z"/>
+    </g>
   </g>
-
-  <!-- Schlüssel, dessen Kopf ein Haus ist -->
-  <g fill="none" stroke="#231B08" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M130 156 L200 92 L270 156"/>
-    <path d="M148 148 V214 h104 v-66"/>
-    <path d="M200 214 V308"/>
-    <path d="M200 254 H240"/>
-    <path d="M200 284 H232"/>
-  </g>
-  <circle cx="200" cy="176" r="17" fill="none" stroke="#231B08" stroke-width="12"/>
-
-  <circle cx="200" cy="200" r="199" fill="none" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="2"/>
 </svg>

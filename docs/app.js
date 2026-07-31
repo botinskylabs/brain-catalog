@@ -4,9 +4,10 @@
 
   var agents = window.AGENTS || [];
   var grid = document.getElementById('teamGrid');
-  var roster = document.getElementById('heroRoster');
-  var modal = document.getElementById('modal');
-  var modalBody = document.getElementById('modalBody');
+  var strip = document.getElementById('filmstrip');
+  var panel = document.getElementById('panel');
+  var backdrop = document.getElementById('backdrop');
+  var panelBody = document.getElementById('panelBody');
   var lastFocused = null;
 
   function esc(value) {
@@ -18,107 +19,103 @@
   function photo(agent) {
     // In der Einzeldatei-Fassung liegen die Bilder als Data-URI vor.
     var inlined = window.AGENT_IMAGES;
-    return (inlined && inlined[agent.id]) || 'assets/agents/' + agent.id + '.svg';
-  }
-
-  function list(items) {
-    return items.map(function (item) { return '<li>' + esc(item) + '</li>'; }).join('');
+    return (inlined && inlined[agent.id]) || 'assets/agents/' + (agent.photo || agent.id + '.svg');
   }
 
   function block(title, intro, items) {
     if (!items || !items.length) return '';
-    return '<div class="detail-block">' +
-      '<h3>' + esc(title) + '</h3>' +
-      (intro ? '<p class="detail-intro">' + esc(intro) + '</p>' : '') +
-      '<ul>' + list(items) + '</ul>' +
-      '</div>';
+    return '<section>' +
+      '<h3 class="label">' + esc(title) + '</h3>' +
+      (intro ? '<p class="intro">' + esc(intro) + '</p>' : '') +
+      '<ul>' + items.map(function (item) {
+        return '<li>' + esc(item) + '</li>';
+      }).join('') + '</ul>' +
+      '</section>';
   }
 
-  /* ---------------------------------------------------------- Karten */
+  /* ------------------------------------------------------------ Aufbau */
 
-  function renderCards() {
+  function renderTeam() {
     grid.innerHTML = agents.map(function (agent) {
-      return '<button class="agent-card' + (agent.lead ? ' is-lead' : '') + '" type="button" data-id="' + esc(agent.id) + '">' +
-        (agent.lead ? '<span class="lead-badge">Leitung</span>' : '') +
-        '<div class="agent-top">' +
-          '<img class="agent-photo" src="' + photo(agent) + '" alt="Profilbild ' + esc(agent.name) + '" width="84" height="84" loading="lazy">' +
-          '<div class="agent-heading">' +
-            '<span class="agent-nr">' + esc(agent.nr) + '</span>' +
-            '<h3 class="agent-name">' + esc(agent.name) + '</h3>' +
-            '<span class="agent-role">„' + esc(agent.role) + '“</span>' +
-          '</div>' +
-        '</div>' +
-        '<p class="agent-mission">' + esc(agent.mission) + '</p>' +
-        '<div class="agent-tags">' + agent.tags.map(function (tag) {
-          return '<span>' + esc(tag) + '</span>';
-        }).join('') + '</div>' +
-        '<span class="agent-more">Profil ansehen' +
-          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>' +
+      return '<button class="agent" type="button" data-id="' + esc(agent.id) + '">' +
+        '<img class="agent-photo" src="' + photo(agent) + '" alt="Portrait ' + esc(agent.name) + '" width="300" height="400" loading="lazy">' +
+        '<span class="agent-meta">' +
+          '<span class="label num">' + esc(agent.nr) + '</span>' +
+          '<span class="agent-name">' + esc(agent.name) + '</span>' +
+          '<span class="agent-role">' + esc(agent.role) + '</span>' +
+          '<span class="agent-mission">' + esc(agent.mission) + '</span>' +
         '</span>' +
       '</button>';
     }).join('');
   }
 
-  function renderRoster() {
-    roster.innerHTML = agents.map(function (agent) {
-      return '<img src="' + photo(agent) + '" alt="" width="62" height="62">';
+  function renderStrip() {
+    strip.innerHTML = agents.map(function (agent) {
+      return '<figure>' +
+        '<img src="' + photo(agent) + '" alt="" width="300" height="400">' +
+        '<figcaption class="num">' + esc(agent.nr) + '</figcaption>' +
+      '</figure>';
     }).join('');
   }
 
-  /* ----------------------------------------------------------- Dialog */
+  /* ------------------------------------------------------------- Panel */
 
-  function openModal(id) {
+  function openPanel(id) {
     var agent = agents.filter(function (a) { return a.id === id; })[0];
     if (!agent) return;
 
-    modalBody.innerHTML =
-      '<div class="modal-head">' +
-        '<img src="' + photo(agent) + '" alt="Profilbild ' + esc(agent.name) + '" width="108" height="108">' +
-        '<div>' +
-          '<span class="agent-nr">Agent ' + esc(agent.nr) + '</span>' +
-          '<h2 id="modalName">' + esc(agent.name) + '</h2>' +
-          '<span class="agent-role">„' + esc(agent.role) + '“</span>' +
-        '</div>' +
+    panelBody.innerHTML =
+      '<div class="panel-head">' +
+        '<img src="' + photo(agent) + '" alt="Portrait ' + esc(agent.name) + '" width="300" height="400">' +
+        '<span class="label num">Rolle ' + esc(agent.nr) + '</span>' +
+        '<h2 id="panelName">' + esc(agent.name) + '</h2>' +
+        '<span class="agent-role">' + esc(agent.role) + '</span>' +
       '</div>' +
-      '<p class="modal-mission">' + esc(agent.mission) + '</p>' +
-      '<div class="detail-grid">' +
+      '<p class="panel-mission">' + esc(agent.mission) + '</p>' +
+      '<div class="detail">' +
         block('Verantwortlichkeiten', agent.dutiesIntro, agent.duties) +
         block('Fähigkeiten', agent.skillsIntro, agent.skills) +
         block('Output', agent.outputIntro, agent.output) +
-        '<div class="detail-block why">' +
-          '<h3>Warum dieser Agent wichtig ist</h3>' +
+        '<section class="why">' +
+          '<h3 class="label">Warum diese Rolle</h3>' +
           '<p>' + esc(agent.why) + '</p>' +
-        '</div>' +
+        '</section>' +
       '</div>';
 
     lastFocused = document.activeElement;
-    modal.hidden = false;
+    panel.hidden = false;
+    backdrop.hidden = false;
+    // Erst im nächsten Frame öffnen, damit die Bewegung sichtbar wird.
+    requestAnimationFrame(function () { document.body.classList.add('panel-open'); });
     document.body.style.overflow = 'hidden';
-    modal.querySelector('.modal-close').focus();
+    document.getElementById('panelClose').focus();
   }
 
-  function closeModal() {
-    modal.hidden = true;
-    modalBody.innerHTML = '';
+  function closePanel() {
+    document.body.classList.remove('panel-open');
     document.body.style.overflow = '';
+    window.setTimeout(function () {
+      panel.hidden = true;
+      backdrop.hidden = true;
+      panelBody.innerHTML = '';
+    }, 320);
     if (lastFocused && lastFocused.focus) lastFocused.focus();
   }
 
-  /* --------------------------------------------------------- Bindings */
+  /* ---------------------------------------------------------- Bindings */
 
   grid.addEventListener('click', function (event) {
-    var card = event.target.closest('.agent-card');
-    if (card) openModal(card.dataset.id);
+    var card = event.target.closest('.agent');
+    if (card) openPanel(card.dataset.id);
   });
 
-  modal.addEventListener('click', function (event) {
-    if (event.target.closest('[data-close]')) closeModal();
-  });
+  backdrop.addEventListener('click', closePanel);
+  document.getElementById('panelClose').addEventListener('click', closePanel);
 
   document.addEventListener('keydown', function (event) {
-    if (event.key === 'Escape' && !modal.hidden) closeModal();
+    if (event.key === 'Escape' && !panel.hidden) closePanel();
   });
 
-  renderCards();
-  renderRoster();
+  renderTeam();
+  renderStrip();
 })();
