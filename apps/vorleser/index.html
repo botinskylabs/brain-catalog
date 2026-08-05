@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="light dark" />
+<title>Vorleser — Text laut vorlesen</title>
+<style>
+  :root {
+    --ground: #edeff3;
+    --surface: #ffffff;
+    --surface-2: #e4e8ee;
+    --line: #ccd3de;
+    --ink: #171c24;
+    --ink-2: #4a5567;
+    --ink-3: #77839a;
+    --signal: #0b7a85;
+    --signal-ink: #ffffff;
+    --signal-soft: rgba(11, 122, 133, 0.11);
+    --live: #9a6612;
+
+    --sans: ui-sans-serif, -apple-system, "Segoe UI Variable Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+    --r: 3px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #0e1218;
+      --surface: #151b23;
+      --surface-2: #1d2530;
+      --line: #2a3441;
+      --ink: #e6ebf2;
+      --ink-2: #a3aebf;
+      --ink-3: #6e7c90;
+      --signal: #3cc7ce;
+      --signal-ink: #06181b;
+      --signal-soft: rgba(60, 199, 206, 0.13);
+      --live: #e0a458;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #0e1218;
+    --surface: #151b23;
+    --surface-2: #1d2530;
+    --line: #2a3441;
+    --ink: #e6ebf2;
+    --ink-2: #a3aebf;
+    --ink-3: #6e7c90;
+    --signal: #3cc7ce;
+    --signal-ink: #06181b;
+    --signal-soft: rgba(60, 199, 206, 0.13);
+    --live: #e0a458;
+  }
+
+  :root[data-theme="light"] {
+    --ground: #edeff3;
+    --surface: #ffffff;
+    --surface-2: #e4e8ee;
+    --line: #ccd3de;
+    --ink: #171c24;
+    --ink-2: #4a5567;
+    --ink-3: #77839a;
+    --signal: #0b7a85;
+    --signal-ink: #ffffff;
+    --signal-soft: rgba(11, 122, 133, 0.11);
+    --live: #9a6612;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: clamp(1.5rem, 4vw, 3.5rem) clamp(1rem, 4vw, 2rem) 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* ---- Kopf ---- */
+  .masthead { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(2rem, 5.5vw, 2.9rem);
+    line-height: 1.05;
+    letter-spacing: -0.028em;
+    font-weight: 620;
+    text-wrap: balance;
+  }
+
+  .lede {
+    margin: 0;
+    max-width: 46ch;
+    color: var(--ink-2);
+    font-size: 1.02rem;
+  }
+
+  /* ---- Gerät ---- */
+  .deck {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    overflow: hidden;
+  }
+
+  .stage { position: relative; }
+
+  #editor,
+  #reader {
+    font-family: var(--serif);
+    font-size: clamp(1.05rem, 2.4vw, 1.22rem);
+    line-height: 1.72;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    min-height: 15rem;
+  }
+
+  #editor {
+    display: block;
+    width: 100%;
+    border: 0;
+    resize: vertical;
+    background: transparent;
+    color: var(--ink);
+    outline-offset: -3px;
+  }
+
+  #editor:focus-visible { outline: 2px solid var(--signal); }
+
+  #reader {
+    display: none;
+    max-height: 26rem;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  body.is-reading #editor { display: none; }
+  body.is-reading #reader { display: block; }
+
+  #reader .spoken { color: var(--ink-3); }
+
+  #reader mark {
+    background: var(--signal-soft);
+    color: var(--ink);
+    box-shadow: inset 0 -0.14em 0 var(--signal);
+    border-radius: 2px;
+    padding: 0.04em 0.06em;
+  }
+
+  /* ---- Signallinie ---- */
+  .signal {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 14px;
+    padding: 0 clamp(1.25rem, 3vw, 2rem);
+    border-top: 1px solid var(--line);
+    background: var(--surface-2);
+  }
+
+  .signal i {
+    flex: 1;
+    height: 2px;
+    background: var(--line);
+    transform-origin: bottom;
+    border-radius: 1px;
+  }
+
+  body.is-speaking .signal i {
+    background: var(--signal);
+    animation: pulse 900ms ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(4.5); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body.is-speaking .signal i { animation: none; transform: scaleY(2.5); }
+  }
+
+  /* ---- Bedienleiste ---- */
+  .rail {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem 0.9rem;
+    padding: 0.85rem clamp(1rem, 3vw, 1.5rem);
+    background: var(--surface-2);
+    border-top: 1px solid var(--line);
+  }
+
+  .transport { display: flex; gap: 0.5rem; }
+
+  button {
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 550;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 0.5rem 0.95rem;
+    cursor: pointer;
+    transition: background 120ms ease, border-color 120ms ease;
+  }
+
+  button:hover:not(:disabled) { border-color: var(--ink-3); }
+  button:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  button.primary {
+    background: var(--signal);
+    border-color: var(--signal);
+    color: var(--signal-ink);
+  }
+
+  button.primary:hover:not(:disabled) { filter: brightness(1.08); }
+
+  .spacer { flex: 1 1 1rem; }
+
+  .field {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .field label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    white-space: nowrap;
+  }
+
+  select {
+    font: inherit;
+    font-size: 0.85rem;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 0.4rem 0.5rem;
+    max-width: 15rem;
+  }
+
+  select:focus-visible { outline: 2px solid var(--signal); outline-offset: 1px; }
+
+  input[type="range"] {
+    accent-color: var(--signal);
+    width: 6.5rem;
+  }
+
+  input[type="range"]:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+
+  .readout {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-2);
+    min-width: 2.6rem;
+  }
+
+  /* ---- Statuszeile ---- */
+  .status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1.1rem;
+    padding: 0.55rem clamp(1rem, 3vw, 1.5rem);
+    border-top: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 0.73rem;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .status strong { color: var(--live); font-weight: 600; }
+
+  .warn {
+    margin: 0;
+    padding: 0.8rem clamp(1rem, 3vw, 1.5rem);
+    border-top: 1px solid var(--line);
+    background: var(--signal-soft);
+    color: var(--ink-2);
+    font-size: 0.86rem;
+  }
+
+  .warn:not([hidden]) { display: block; }
+
+  /* ---- Datei-Abschnitt ---- */
+  section { display: flex; flex-direction: column; gap: 0.9rem; }
+
+  h2 {
+    margin: 0;
+    font-size: 1.15rem;
+    letter-spacing: -0.015em;
+    font-weight: 600;
+  }
+
+  section > p {
+    margin: 0;
+    max-width: 62ch;
+    color: var(--ink-2);
+    font-size: 0.95rem;
+  }
+
+  .steps {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    counter-reset: step;
+  }
+
+  .steps li {
+    display: grid;
+    grid-template-columns: 1.6rem 1fr;
+    gap: 0.75rem;
+    align-items: baseline;
+  }
+
+  .steps li::before {
+    counter-increment: step;
+    content: counter(step);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--ink-3);
+    padding-top: 0.15rem;
+  }
+
+  .steps p { margin: 0 0 0.4rem; color: var(--ink-2); font-size: 0.93rem; }
+
+  pre {
+    margin: 0;
+    padding: 0.7rem 0.85rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  footer {
+    color: var(--ink-3);
+    font-size: 0.82rem;
+    border-top: 1px solid var(--line);
+    padding-top: 1.1rem;
+    max-width: 62ch;
+  }
+
+  a { color: var(--signal); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <span class="eyebrow">Botinsky Labs · Werkzeug</span>
+    <h1>Vorleser</h1>
+    <p class="lede">Text einfügen, Stimme wählen, zuhören. Läuft komplett im Browser — nichts wird hochgeladen, nichts kostet etwas.</p>
+  </header>
+
+  <div class="deck">
+    <div class="stage">
+      <textarea id="editor" spellcheck="false" aria-label="Vorzulesender Text">Diese Seite nutzt die Sprachausgabe, die ohnehin schon in deinem Betriebssystem steckt. Windows, macOS, iOS und Android bringen alle deutsche Stimmen mit — der Browser reicht den Text einfach durch.
+
+Ersetze diesen Absatz durch deinen eigenen Text und drück auf Vorlesen. Während des Vorlesens wird das aktuelle Wort markiert, damit du mitlesen kannst.</textarea>
+      <div id="reader" tabindex="0" aria-live="off"></div>
+    </div>
+
+    <div class="signal" aria-hidden="true"></div>
+
+    <div class="rail">
+      <div class="transport">
+        <button id="play" class="primary" type="button">Vorlesen</button>
+        <button id="pause" type="button" disabled>Pause</button>
+        <button id="stop" type="button" disabled>Stopp</button>
+      </div>
+
+      <span class="spacer"></span>
+
+      <div class="field">
+        <label for="voice">Stimme</label>
+        <select id="voice"></select>
+      </div>
+
+      <div class="field">
+        <label for="rate">Tempo</label>
+        <input id="rate" type="range" min="0.5" max="2" step="0.05" value="1" />
+        <span class="readout" id="rateOut">1,00×</span>
+      </div>
+
+      <div class="field">
+        <label for="pitch">Höhe</label>
+        <input id="pitch" type="range" min="0.5" max="1.5" step="0.05" value="1" />
+        <span class="readout" id="pitchOut">1,00</span>
+      </div>
+    </div>
+
+    <p class="warn" id="warn" hidden></p>
+
+    <div class="status">
+      <span id="state">Bereit</span>
+      <span id="chars">0 Zeichen</span>
+      <span id="estimate">≈ 0:00</span>
+    </div>
+  </div>
+
+  <section id="export">
+    <h2>Und als MP3?</h2>
+    <p>Die Browser-Sprachausgabe spielt nur ab — sie gibt keine Datei heraus. Für eine echte Audiodatei nimmst du <code>edge-tts</code>: kostenlos, kein Konto, kein API-Schlüssel, und die neuronalen deutschen Stimmen klingen deutlich besser als die des Betriebssystems.</p>
+    <ol class="steps">
+      <li>
+        <div>
+          <p>Einmalig installieren (braucht Python):</p>
+          <pre>pip install edge-tts</pre>
+        </div>
+      </li>
+      <li>
+        <div>
+          <p>Text in eine Datei schreiben und umwandeln:</p>
+          <pre>edge-tts --voice de-DE-KatjaNeural \
+         --file text.txt \
+         --write-media hoerbuch.mp3</pre>
+        </div>
+      </li>
+      <li>
+        <div>
+          <p>Andere deutsche Stimmen ansehen:</p>
+          <pre>edge-tts --list-voices | grep de-</pre>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <footer>
+    Welche Stimmen hier auftauchen, hängt vom Gerät ab: macOS und Windows bringen von Haus aus deutsche Stimmen mit, unter Linux muss meist erst eine installiert werden. Chrome liefert die besten Ergebnisse, Safari markiert die Wörter nicht mit.
+  </footer>
+</div>
+
+<script>
+  (function () {
+    "use strict";
+
+    var synth = window.speechSynthesis;
+    var editor = document.getElementById("editor");
+    var reader = document.getElementById("reader");
+    var voiceSel = document.getElementById("voice");
+    var rate = document.getElementById("rate");
+    var pitch = document.getElementById("pitch");
+    var rateOut = document.getElementById("rateOut");
+    var pitchOut = document.getElementById("pitchOut");
+    var playBtn = document.getElementById("play");
+    var pauseBtn = document.getElementById("pause");
+    var stopBtn = document.getElementById("stop");
+    var stateEl = document.getElementById("state");
+    var charsEl = document.getElementById("chars");
+    var estEl = document.getElementById("estimate");
+    var warnEl = document.getElementById("warn");
+    var signal = document.querySelector(".signal");
+
+    for (var i = 0; i < 40; i++) {
+      var tick = document.createElement("i");
+      tick.style.animationDelay = (i * 55 % 900) + "ms";
+      signal.appendChild(tick);
+    }
+
+    if (!synth) {
+      warn("Dieser Browser kennt keine Sprachausgabe. Chrome, Edge oder Safari können es.");
+      playBtn.disabled = true;
+      return;
+    }
+
+    var voices = [];
+    var chunks = [];
+    var chunkIndex = 0;
+    var fullText = "";
+    var keepAlive = null;
+
+    function warn(msg) {
+      warnEl.textContent = msg;
+      warnEl.hidden = false;
+    }
+
+    function fmtNum(n, digits) {
+      return n.toFixed(digits).replace(".", ",");
+    }
+
+    function updateMeta() {
+      var text = editor.value;
+      var n = text.length;
+      charsEl.textContent = n.toLocaleString("de-DE") + (n === 1 ? " Zeichen" : " Zeichen");
+      var words = text.trim() ? text.trim().split(/\s+/).length : 0;
+      var seconds = Math.round((words / 150) * 60 / Number(rate.value));
+      estEl.textContent = "≈ " + Math.floor(seconds / 60) + ":" + String(seconds % 60).padStart(2, "0");
+    }
+
+    /* ---- Stimmen ---- */
+
+    function loadVoices() {
+      voices = synth.getVoices();
+      if (!voices.length) return;
+
+      var german = voices.filter(function (v) { return /^de/i.test(v.lang); });
+      var rest = voices.filter(function (v) { return !/^de/i.test(v.lang); });
+      voiceSel.innerHTML = "";
+
+      function add(list, label) {
+        if (!list.length) return;
+        var group = document.createElement("optgroup");
+        group.label = label;
+        list.forEach(function (v) {
+          var opt = document.createElement("option");
+          opt.value = v.voiceURI;
+          opt.textContent = v.name + " · " + v.lang;
+          group.appendChild(opt);
+        });
+        voiceSel.appendChild(group);
+      }
+
+      add(german, "Deutsch");
+      add(rest, "Weitere Sprachen");
+
+      if (!german.length) {
+        warn("Auf diesem Gerät ist keine deutsche Stimme installiert — die Liste zeigt daher andere Sprachen. Unter Windows lässt sich eine deutsche Stimme in den Spracheinstellungen nachinstallieren.");
+      }
+    }
+
+    loadVoices();
+    synth.addEventListener("voiceschanged", loadVoices);
+
+    function currentVoice() {
+      return voices.filter(function (v) { return v.voiceURI === voiceSel.value; })[0] || null;
+    }
+
+    /* ---- Text in Häppchen teilen (Chrome bricht lange Sätze ab) ---- */
+
+    function splitText(text) {
+      var out = [];
+      var re = /[^.!?…\n]*(?:[.!?…]+["»«')\]]*|\n+|$)/g;
+      var m;
+      while ((m = re.exec(text)) !== null) {
+        if (m[0] === "") { re.lastIndex++; continue; }
+        var piece = m[0];
+        var start = m.index;
+        while (piece.length > 240) {
+          var cut = piece.lastIndexOf(" ", 240);
+          if (cut < 60) cut = 240;
+          out.push({ text: piece.slice(0, cut), start: start });
+          start += cut;
+          piece = piece.slice(cut);
+        }
+        if (piece.trim()) out.push({ text: piece, start: start });
+      }
+      return out;
+    }
+
+    /* ---- Markierung ---- */
+
+    function render(absStart, absEnd) {
+      reader.textContent = "";
+      var before = document.createElement("span");
+      before.className = "spoken";
+      before.textContent = fullText.slice(0, absStart);
+      var mark = document.createElement("mark");
+      mark.textContent = fullText.slice(absStart, absEnd);
+      var after = document.createTextNode(fullText.slice(absEnd));
+      reader.appendChild(before);
+      reader.appendChild(mark);
+      reader.appendChild(after);
+
+      var top = mark.offsetTop - reader.clientHeight / 2;
+      if (top > 0) reader.scrollTop = top;
+    }
+
+    /* ---- Zustand ---- */
+
+    function setState(name) {
+      document.body.classList.toggle("is-reading", name !== "idle");
+      document.body.classList.toggle("is-speaking", name === "speaking");
+      playBtn.disabled = name === "speaking";
+      pauseBtn.disabled = name === "idle";
+      stopBtn.disabled = name === "idle";
+      pauseBtn.textContent = name === "paused" ? "Weiter" : "Pause";
+      stateEl.innerHTML =
+        name === "speaking" ? "<strong>Spricht</strong>" :
+        name === "paused" ? "<strong>Pausiert</strong>" : "Bereit";
+    }
+
+    /* ---- Abspielen ---- */
+
+    function speakChunk(i) {
+      if (i >= chunks.length) { finish(); return; }
+      chunkIndex = i;
+      var chunk = chunks[i];
+      var u = new SpeechSynthesisUtterance(chunk.text);
+      var voice = currentVoice();
+      if (voice) { u.voice = voice; u.lang = voice.lang; }
+      u.rate = Number(rate.value);
+      u.pitch = Number(pitch.value);
+
+      u.onboundary = function (e) {
+        if (e.name === "sentence") return;
+        var from = chunk.start + e.charIndex;
+        var len = e.charLength;
+        if (!len) {
+          var rest = fullText.slice(from);
+          var word = /^\S+/.exec(rest);
+          len = word ? word[0].length : 1;
+        }
+        render(from, from + len);
+      };
+
+      u.onend = function () { if (chunkIndex === i) speakChunk(i + 1); };
+
+      u.onerror = function (e) {
+        if (e.error === "interrupted" || e.error === "canceled") return;
+        warn("Die Sprachausgabe wurde vom Browser abgebrochen (" + e.error + "). Ein anderer Browser oder eine andere Stimme hilft meist.");
+        finish();
+      };
+
+      synth.speak(u);
+    }
+
+    function start() {
+      fullText = editor.value;
+      if (!fullText.trim()) { editor.focus(); return; }
+      synth.cancel();
+      chunks = splitText(fullText);
+      render(0, 0);
+      setState("speaking");
+      speakChunk(0);
+      clearInterval(keepAlive);
+      keepAlive = setInterval(function () {
+        if (synth.speaking && !synth.paused) { synth.pause(); synth.resume(); }
+      }, 9000);
+    }
+
+    function finish() {
+      clearInterval(keepAlive);
+      synth.cancel();
+      setState("idle");
+      editor.focus();
+    }
+
+    playBtn.addEventListener("click", start);
+
+    pauseBtn.addEventListener("click", function () {
+      if (synth.paused) { synth.resume(); setState("speaking"); }
+      else { synth.pause(); setState("paused"); }
+    });
+
+    stopBtn.addEventListener("click", finish);
+
+    editor.addEventListener("input", updateMeta);
+
+    rate.addEventListener("input", function () {
+      rateOut.textContent = fmtNum(Number(rate.value), 2) + "×";
+      updateMeta();
+    });
+
+    pitch.addEventListener("input", function () {
+      pitchOut.textContent = fmtNum(Number(pitch.value), 2);
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && document.body.classList.contains("is-reading")) finish();
+    });
+
+    window.addEventListener("beforeunload", function () { synth.cancel(); });
+
+    updateMeta();
+  })();
+</script>
+<script src="local.js"></script>
+</body>
+</html>

@@ -7,6 +7,7 @@ Jede installierte Brain-Platform-App zieht beim Start die Datei `index.json` aus
 ## Struktur
 
 - `index.json` — der gesamte Katalog als einzelne JSON-Datei. Jedes Paket trägt sein Manifest und seine Inhalte (markdown) inline, daher kein Zip, kein Binary-Download.
+- `apps/` — kleine eigenständige Werkzeuge rund um die Plattform, kein Teil des Katalogs. Aktuell: [`apps/vorleser`](apps/vorleser) — Text vorlesen lassen oder als MP3 speichern.
 
 ## Eigenes Paket einreichen
 
