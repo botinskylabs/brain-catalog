@@ -7,6 +7,7 @@ Jede installierte Brain-Platform-App zieht beim Start die Datei `index.json` aus
 ## Struktur
 
 - `index.json` — der gesamte Katalog als einzelne JSON-Datei. Jedes Paket trägt sein Manifest und seine Inhalte (markdown) inline, daher kein Zip, kein Binary-Download.
+- `crm/` — eigenständige CRM-App (Kunden, Kontakthistorie, Follow-ups) mit REST-API und MCP-Server, damit Agents wie Olivia direkt auf die Daten zugreifen können. Siehe [`crm/README.md`](crm/README.md).
 
 ## Eigenes Paket einreichen
 

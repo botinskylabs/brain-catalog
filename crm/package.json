@@ -1,0 +1,21 @@
+{
+  "name": "@botinskylabs/crm",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Simple CRM mit REST-API und MCP-Server – gebaut fuer Agent-Zugriff",
+  "type": "module",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "bin": {
+    "crm-mcp": "./src/mcp.js"
+  },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env --disable-warning=ExperimentalWarning src/server.js",
+    "dev": "node --env-file-if-exists=.env --disable-warning=ExperimentalWarning --watch src/server.js",
+    "mcp": "node --env-file-if-exists=.env --disable-warning=ExperimentalWarning src/mcp.js",
+    "seed": "node --env-file-if-exists=.env --disable-warning=ExperimentalWarning src/seed.js",
+    "test": "node --disable-warning=ExperimentalWarning --test 'test/**/*.test.js'"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CRM</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📇</text></svg>"
+    />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo">📇</span>
+        <h1>CRM</h1>
+      </div>
+      <div id="stats" class="stats"></div>
+      <button id="new-contact" class="btn primary">+ Kontakt</button>
+    </header>
+
+    <section class="toolbar">
+      <input id="search" type="search" placeholder="Suchen: Name, Firma, E-Mail, Notiz …" />
+      <select id="status-filter" aria-label="Status">
+        <option value="">Alle Status</option>
+      </select>
+      <select id="tag-filter" aria-label="Tag">
+        <option value="">Alle Tags</option>
+      </select>
+      <select id="sort" aria-label="Sortierung">
+        <option value="last_contact">Zuletzt kontaktiert</option>
+        <option value="oldest_contact">Am längsten kein Kontakt</option>
+        <option value="next_follow_up">Nächster Follow-up</option>
+        <option value="name">Name</option>
+        <option value="company">Firma</option>
+        <option value="created">Neueste zuerst</option>
+      </select>
+      <label class="check"><input id="due-only" type="checkbox" /> Nur fällige</label>
+      <label class="check"><input id="stale-only" type="checkbox" /> Kein Kontakt &gt; 30 Tage</label>
+    </section>
+
+    <main>
+      <table id="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Firma</th>
+            <th>Status</th>
+            <th>Tags</th>
+            <th>Letzter Kontakt</th>
+            <th>Follow-up</th>
+            <th class="right">Aktion</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <p id="empty" class="empty" hidden>Keine Kontakte gefunden.</p>
+      <p id="count" class="count"></p>
+    </main>
+
+    <aside id="drawer" class="drawer" hidden>
+      <div class="drawer-head">
+        <h2 id="drawer-title">Kontakt</h2>
+        <button id="drawer-close" class="btn ghost" title="Schließen">✕</button>
+      </div>
+
+      <form id="contact-form" class="form">
+        <div class="grid">
+          <label>Name<input name="name" required /></label>
+          <label>Firma<input name="company" /></label>
+          <label>Rolle<input name="role" /></label>
+          <label>Status<select name="status"></select></label>
+          <label>E-Mail<input name="email" type="email" /></label>
+          <label>Telefon<input name="phone" /></label>
+          <label>Website<input name="website" /></label>
+          <label>Nächster Follow-up<input name="next_follow_up" type="date" /></label>
+        </div>
+        <label>Tags (kommagetrennt)<input name="tags" /></label>
+        <label>Notizen<textarea name="notes" rows="4"></textarea></label>
+        <div class="actions">
+          <button type="submit" class="btn primary">Speichern</button>
+          <button type="button" id="delete-contact" class="btn danger" hidden>Löschen</button>
+        </div>
+      </form>
+
+      <section id="history-section" hidden>
+        <h3>Kontaktpunkt festhalten</h3>
+        <form id="interaction-form" class="form compact">
+          <div class="grid">
+            <label>Art<select name="type"></select></label>
+            <label>Wann<input name="occurred_at" type="datetime-local" /></label>
+          </div>
+          <label>Betreff<input name="subject" placeholder="z. B. Call zu Angebot" /></label>
+          <label>Notizen<textarea name="notes" rows="3"></textarea></label>
+          <div class="actions">
+            <button type="submit" class="btn">Eintragen</button>
+          </div>
+        </form>
+
+        <h3>Historie</h3>
+        <ol id="timeline" class="timeline"></ol>
+      </section>
+    </aside>
+    <div id="backdrop" class="backdrop" hidden></div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
