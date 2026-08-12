@@ -6,33 +6,57 @@ können lesen **und** schreiben.
 | | MCP | REST |
 | --- | --- | --- |
 | Für | Agents auf demselben Rechner (Claude Code, Claude Desktop, Brain Platform) | Agents/Dienste über das Netz, Automationen, n8n, Zapier |
-| Server muss laufen | nein | ja (`npm start`) |
+| App muss laufen | nein | ja |
 | Auth | Prozess-lokal | API-Key |
 
 ---
 
 ## 1. MCP (empfohlen für lokale Agents)
 
+**Der bequeme Weg:** in der App im Menü **Agent-Zugang → MCP-Befehl kopieren**.
+Der kopierte Befehl enthält bereits die richtigen Pfade deiner Installation —
+einfach im Terminal einfügen und ausführen.
+
+Er sieht auf einem Mac so aus:
+
 ```bash
-claude mcp add crm -- node /absoluter/pfad/zu/crm/src/mcp.js
+claude mcp add crm \
+  --env ELECTRON_RUN_AS_NODE='1' \
+  --env CRM_DATA_DIR='/Users/DU/Library/Application Support/CRM' \
+  -- '/Applications/CRM.app/Contents/MacOS/CRM' \
+     '/Applications/CRM.app/Contents/Resources/app/src/mcp.js'
 ```
 
-Oder von Hand in einer MCP-Konfiguration (Claude Desktop, Brain Platform):
+Sieht sperrig aus, hat aber einen Vorteil: die installierte App bringt ihr
+eigenes Node mit (`ELECTRON_RUN_AS_NODE`), es muss also **nichts zusätzlich
+installiert sein**.
+
+Für Agents, die eine JSON-Konfiguration wollen (Claude Desktop, Brain Platform),
+gibt es im selben Menü **MCP-Konfiguration kopieren (JSON)**:
 
 ```json
 {
   "mcpServers": {
     "crm": {
-      "command": "node",
-      "args": ["/absoluter/pfad/zu/crm/src/mcp.js"],
-      "env": { "CRM_DB_PATH": "/absoluter/pfad/zu/crm/data/crm.db" }
+      "command": "/Applications/CRM.app/Contents/MacOS/CRM",
+      "args": ["/Applications/CRM.app/Contents/Resources/app/src/mcp.js"],
+      "env": {
+        "ELECTRON_RUN_AS_NODE": "1",
+        "CRM_DATA_DIR": "/Users/DU/Library/Application Support/CRM"
+      }
     }
   }
 }
 ```
 
-`CRM_DB_PATH` ist nur nötig, wenn die Datenbank woanders liegt als im
-Standardordner der App.
+Wer aus dem Quellcode arbeitet, nimmt schlicht:
+
+```bash
+claude mcp add crm -- node /absoluter/pfad/zu/crm/src/mcp.js
+```
+
+Der MCP-Server liest dieselbe Datenbank wie die App — die App muss dafür **nicht
+geöffnet sein**. Läuft beides gleichzeitig, ist das ebenfalls in Ordnung.
 
 ### Verfügbare Tools
 
@@ -73,7 +97,9 @@ Jedes Tool liefert das Ergebnis sowohl als Text als auch als
 
 ## 2. REST-API
 
-Basis: `http://127.0.0.1:4321/api`. Antworten sind immer JSON, Listen in der
+Basis: `http://127.0.0.1:4321/api`, solange die App läuft — die genaue Adresse
+liefert das Menü **Agent-Zugang → API-Adresse kopieren** (ist Port 4321 belegt,
+nimmt die App den nächsten freien). Antworten sind immer JSON, Listen in der
 Form `{ total, limit, offset, items: [...] }`.
 
 Authentifizierung, sobald der Dienst nicht nur lokal läuft:

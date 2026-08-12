@@ -1,21 +1,79 @@
 {
-  "name": "@botinskylabs/crm",
+  "name": "crm-desktop",
+  "productName": "CRM",
   "version": "0.1.0",
   "private": true,
-  "description": "Simple CRM mit REST-API und MCP-Server – gebaut fuer Agent-Zugriff",
+  "description": "Simple CRM mit REST-API und MCP-Server \u2013 gebaut fuer Agent-Zugriff",
+  "author": "Botinsky Labs",
+  "repository": "https://github.com/botinskylabs/brain-catalog",
   "type": "module",
+  "main": "desktop/main.js",
   "engines": {
     "node": ">=22.5"
   },
-  "bin": {
-    "crm-mcp": "./src/mcp.js"
-  },
   "scripts": {
+    "app": "electron .",
+    "dist": "npm run icon && electron-builder",
+    "dist:mac": "npm run icon && electron-builder --mac",
+    "dist:win": "npm run icon && electron-builder --win",
+    "dist:linux": "npm run icon && electron-builder --linux",
+    "icon": "node scripts/make-icon.mjs",
     "start": "node --env-file-if-exists=.env --disable-warning=ExperimentalWarning src/server.js",
     "dev": "node --env-file-if-exists=.env --disable-warning=ExperimentalWarning --watch src/server.js",
     "mcp": "node --env-file-if-exists=.env --disable-warning=ExperimentalWarning src/mcp.js",
     "seed": "node --env-file-if-exists=.env --disable-warning=ExperimentalWarning src/seed.js",
     "test": "node --disable-warning=ExperimentalWarning --test 'test/**/*.test.js'"
   },
-  "dependencies": {}
+  "build": {
+    "appId": "com.botinskylabs.crm",
+    "productName": "CRM",
+    "copyright": "Botinsky Labs",
+    "asar": false,
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "desktop/**/*",
+      "src/**/*",
+      "public/**/*",
+      "package.json",
+      "!**/*.map"
+    ],
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ],
+      "category": "public.app-category.business",
+      "icon": "build/icon.png",
+      "darkModeSupport": true
+    },
+    "dmg": {
+      "title": "CRM installieren"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "build/icon.png"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "icon": "build/icon.png",
+      "category": "Office"
+    },
+    "publish": null
+  },
+  "devDependencies": {
+    "electron": "^37.10.3",
+    "electron-builder": "^26.15.3"
+  }
 }

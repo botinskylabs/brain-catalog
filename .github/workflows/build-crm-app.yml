@@ -1,0 +1,57 @@
+name: CRM-App bauen
+
+# Manuell startbar unter "Actions" – erzeugt fertige Installer zum Herunterladen,
+# ohne dass lokal irgendetwas installiert sein muss.
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'crm-v*'
+
+jobs:
+  build:
+    name: ${{ matrix.label }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            label: macOS (.dmg)
+            script: dist:mac
+          - os: windows-latest
+            label: Windows (.exe)
+            script: dist:win
+          - os: ubuntu-latest
+            label: Linux (.AppImage)
+            script: dist:linux
+
+    defaults:
+      run:
+        working-directory: crm
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm install --no-audit --no-fund
+
+      - run: npm test
+
+      - name: Installer bauen
+        run: npm run ${{ matrix.script }}
+        env:
+          # Ohne Apple-Entwicklerzertifikat wird nicht signiert.
+          CSC_IDENTITY_AUTO_DISCOVERY: false
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: crm-${{ matrix.os }}
+          if-no-files-found: error
+          path: |
+            crm/dist/*.dmg
+            crm/dist/*.exe
+            crm/dist/*.AppImage

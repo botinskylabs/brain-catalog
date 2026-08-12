@@ -1,32 +1,71 @@
 # CRM
 
-Ein kleines, eigenständiges CRM: Kunden, Kontakthistorie, Follow-ups — und ein
+Eine eigenständige Desktop-App: Kunden, Kontakthistorie, Follow-ups — mit einem
 Datenzugang, der von Anfang an für Agents gebaut ist.
 
+- **Echte App** — eigenes Fenster, eigenes Icon, im Dock, ohne Terminal
 - **Web-Oberfläche** — Tabelle, Suche, Filter, Detail-Ansicht mit Timeline
-- **REST-API** — jeder Datensatz les- und schreibbar
+- **REST-API** — jeder Datensatz les- und schreibbar, solange die App läuft
 - **MCP-Server** — Olivia & Co. bekommen direkte Tools (`crm_search_contacts`,
-  `crm_log_interaction`, `crm_export`, …)
-- **Null npm-Dependencies** — Node 22 mit eingebautem SQLite, kein Build-Schritt
-- **Eine Datei als Datenbank** (`data/crm.db`) — kopieren = Backup
+  `crm_log_interaction`, `crm_export`, …), ganz ohne installiertes Node
+- **Deine Daten bleiben bei dir** — eine SQLite-Datei im Benutzerordner,
+  kopieren = Backup, kein Cloud-Dienst dazwischen
 
-## Start
+## Installieren
+
+### Variante A — fertigen Installer herunterladen (kein Node nötig)
+
+Auf GitHub unter **Actions → „CRM-App bauen" → Run workflow**. Der Lauf baut
+`.dmg` (macOS), `.exe` (Windows) und `.AppImage` (Linux); nach ein paar Minuten
+hängen die Dateien unten am Lauf unter *Artifacts*.
+
+### Variante B — selbst bauen (ein Befehl)
+
+```bash
+cd crm
+./install.sh
+```
+
+Das prüft Node (≥ 22.5), lädt einmalig die Bau-Werkzeuge, baut die App und legt
+sie unter macOS direkt in `/Applications` ab.
+
+Einen weitergabefähigen Installer erzeugt `npm run dist:mac`
+(bzw. `dist:win` / `dist:linux`) — Ergebnis liegt in `dist/`.
+
+> **macOS-Hinweis:** Die App ist nicht bei Apple signiert (dafür bräuchte es ein
+> kostenpflichtiges Entwicklerzertifikat). Beim ersten Start kann macOS meckern.
+> `install.sh` räumt das automatisch weg. Bei einem heruntergeladenen `.dmg`
+> hilft: Rechtsklick auf die App → *Öffnen*, oder einmalig
+> `xattr -dr com.apple.quarantine /Applications/CRM.app`.
+
+### Ohne Installation ausprobieren
 
 ```bash
 cd crm
 npm run seed     # optional: fünf Beispielkontakte
-npm start        # http://127.0.0.1:4321
+npm start        # http://127.0.0.1:4321 im Browser
 ```
 
-Kein `npm install` nötig. Voraussetzung ist Node ≥ 22.5.
+Dafür braucht es kein `npm install` — der Server selbst hat null Abhängigkeiten.
+Electron kommt erst für die Desktop-Hülle dazu.
 
 ```bash
-npm test         # 8 Tests: Service, HTTP-API, MCP-Server
-npm run dev      # mit Auto-Reload
+npm test         # 8 Tests: Fachlogik, HTTP-API, MCP-Server
+npm run app      # App-Fenster aus dem Quellcode starten
+npm run dev      # Server mit Auto-Reload
 ```
 
-Konfiguration über Umgebungsvariablen oder eine `.env` im Ordner `crm/`
-(Vorlage: `.env.example`).
+## Wo die Daten liegen
+
+| System | Pfad |
+| --- | --- |
+| macOS | `~/Library/Application Support/CRM/crm.db` |
+| Windows | `%APPDATA%\CRM\crm.db` |
+| Linux | `~/.config/CRM/crm.db` |
+| Aus dem Quellcode gestartet | `crm/data/crm.db` |
+
+Den genauen Pfad zeigt die App unter **Agent-Zugang → Datenordner anzeigen**.
+Ein App-Update fasst diese Datei nie an.
 
 ## Datenmodell
 
@@ -80,44 +119,44 @@ Die Struktur ist so gewählt, dass Erweiterungen nichts umbauen:
 - **Anderes Aussehen** → `public/` ist reines HTML/CSS/JS ohne Framework und
   ohne Build. Farben liegen als CSS-Variablen oben in `styles.css`.
 
-## Zugriff & Sicherheit
-
-- Ohne `CRM_API_KEY` lauscht der Server nur auf `127.0.0.1` und akzeptiert
-  lokale Aufrufe ohne Schlüssel — bequem für den Rechner unterm Tisch.
-- Sobald der Dienst irgendwo erreichbar sein soll: `CRM_API_KEY` setzen (auch
-  mehrere, kommagetrennt) und mit `X-API-Key: <key>` oder
-  `Authorization: Bearer <key>` aufrufen. Fremde Adressen ohne gültigen Key
-  bekommen 401.
-- `CRM_REQUIRE_KEY=1` verlangt den Key zusätzlich lokal.
-- Browser-Zugriffe von fremden Origins sind geblockt, solange die Origin nicht
-  in `CRM_CORS_ORIGINS` steht.
-
-Wer den Dienst öffentlich stellt, sollte ihn hinter HTTPS (Reverse Proxy)
-betreiben — die App selbst spricht nur HTTP.
-
 ## Agents anbinden
 
-Siehe **[docs/agents.md](docs/agents.md)** — MCP-Einrichtung, alle REST-Endpunkte
-mit Beispielen und ein fertiger Prompt-Baustein für Olivia.
+Der schnellste Weg: in der App **Agent-Zugang → MCP-Befehl kopieren**, im
+Terminal einfügen, fertig. Der Befehl enthält bereits die richtigen Pfade.
 
-Kurzfassung:
+Alles Weitere — alle Tools, alle REST-Endpunkte, ein fertiger Prompt-Baustein
+für Olivia — steht in **[docs/agents.md](docs/agents.md)**.
 
-```bash
-claude mcp add crm -- node /absoluter/pfad/zu/crm/src/mcp.js
-```
+## Zugriff & Sicherheit
+
+- Die App lauscht nur auf `127.0.0.1`, also nur auf deinem Rechner.
+- Für Zugriff von außen (Server-Betrieb): `CRM_API_KEY` setzen und mit
+  `X-API-Key: <key>` aufrufen. Fremde Adressen ohne gültigen Key bekommen 401.
+  `CRM_REQUIRE_KEY=1` verlangt den Key zusätzlich lokal.
+- Browser-Zugriffe von fremden Websites sind geblockt, solange deren Adresse
+  nicht in `CRM_CORS_ORIGINS` steht.
+- Wer den Dienst öffentlich stellt, sollte ihn hinter HTTPS betreiben — die App
+  selbst spricht nur HTTP.
 
 ## Ordner
 
 ```
 crm/
+├── desktop/main.js   Desktop-Huelle: Fenster, Menue, Serverstart
 ├── src/
-│   ├── service.js   Fachlogik: Kontakte, Interaktionen, Filter, Kennzahlen
-│   ├── db.js        SQLite-Verbindung + Migrationen
-│   ├── api.js       REST-Routen (dünne Hülle um service.js)
-│   ├── server.js    HTTP-Server, Auth, statische Dateien
-│   ├── mcp.js       MCP-Server (stdio) mit 9 Tools
-│   └── seed.js      Beispieldaten
-├── public/          Oberfläche (index.html, app.js, styles.css)
-├── docs/agents.md   Agent- und API-Doku
-└── test/            Tests
+│   ├── service.js    Fachlogik: Kontakte, Interaktionen, Filter, Kennzahlen
+│   ├── db.js         SQLite-Verbindung + Migrationen
+│   ├── api.js        REST-Routen (dünne Hülle um service.js)
+│   ├── server.js     HTTP-Server, Auth, statische Dateien
+│   ├── mcp.js        MCP-Server (stdio) mit 9 Tools
+│   └── seed.js       Beispieldaten
+├── public/           Oberfläche (index.html, app.js, styles.css)
+├── scripts/          Icon-Generator (ohne Bildbibliothek)
+├── docs/agents.md    Agent- und API-Doku
+├── install.sh        Bauen + installieren in einem Schritt
+└── test/             Tests
 ```
+
+Der Programmordner wird bewusst unverpackt ausgeliefert (`asar: false`), damit
+Agents `src/mcp.js` direkt starten können und du jederzeit in den Code schauen
+kannst.
